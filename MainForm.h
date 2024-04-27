@@ -1,5 +1,4 @@
 #pragma once
-#include <iostream>
 
 namespace GIBDDBase2024 {
 
@@ -9,7 +8,6 @@ namespace GIBDDBase2024 {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace std;
 
 	/// <summary>
 	/// Сводка для MyForm
@@ -36,15 +34,15 @@ namespace GIBDDBase2024 {
 				delete components;
 			}
 		}
-	private: Button^ button1;
-	private: System::Windows::Forms::TextBox^ textBox1;
+	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Label^ label1;
 	protected:
 
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -54,42 +52,47 @@ namespace GIBDDBase2024 {
 		void InitializeComponent(void)
 		{
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(256, 350);
+			this->button1->Location = System::Drawing::Point(290, 286);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(264, 88);
+			this->button1->Size = System::Drawing::Size(214, 107);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::mainBtn_Click);
 			// 
-			// textBox1
+			// label1
 			// 
-			this->textBox1->Location = System::Drawing::Point(195, 156);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(383, 20);
-			this->textBox1->TabIndex = 1;
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(370, 177);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"label1";
 			// 
-			// MainForm
+			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(784, 561);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
-			this->Name = L"MainForm";
+			this->Name = L"MyForm";
 			this->Text = L"База ГИБДД 2024";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+
+	private: System::Void mainBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->label1->Text = "Some new text";
 	}
-		   
+
 	};
 }
