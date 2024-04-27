@@ -36,6 +36,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="penalty.h" />
+    <ClInclude Include="penaltyTypeStrings.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">

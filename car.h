@@ -25,19 +25,3 @@ struct Car
     vector<Penalty> penalties;
 };
 
-
-enum EngineType
-{
-    GASOLINE,
-    DIESEL,
-    ELECTRIC,
-    HYBRID
-};
-
-enum TransmissionType
-{
-    MANUAL,
-    AUTOMATIC,
-    CVT, // Переменная передача
-    SEMI_AUTOMATIC // Полуавтоматическая
-};
