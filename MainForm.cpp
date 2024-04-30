@@ -10,7 +10,5 @@ int main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	GIBDDBase2024::MainForm mainForm;
 	Application::Run(% mainForm);		
-	
-
 	return 0;
 }

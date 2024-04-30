@@ -132,8 +132,6 @@ namespace GIBDDBase2024 {
 		}
 #pragma endregion	
 
-
-
 		private: System::Void FillCarListView(ListView^ listView, List<Car^>^ cars)
 		{
 			listView->Items->Clear(); // Очищаем ListView перед добавлением новых элементов
