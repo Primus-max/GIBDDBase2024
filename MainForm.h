@@ -2,6 +2,7 @@
 #include "car.h"
 
 using namespace System;
+using namespace System::Collections::Generic;
 
 namespace GIBDDBase2024 {
 
@@ -37,19 +38,13 @@ namespace GIBDDBase2024 {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::TabControl^ CarTabControl;
+	private: System::Windows::Forms::TabPage^ CarTabPage;
+	private: System::Windows::Forms::TabPage^ PenaltiesTabPage;
 
-	private: TextBox^ textBox1;
-	private: Label^ label1;
-	private: Label^ label2;
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ textBox3;
-	protected:
+	private: System::Windows::Forms::ListView^ CarsListView;
 
-
-	protected:
 
 	private:
 		/// <summary>
@@ -64,87 +59,135 @@ namespace GIBDDBase2024 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
+			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
+			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
+			this->CarsListView = (gcnew System::Windows::Forms::ListView());
+			this->CarTabControl->SuspendLayout();
+			this->CarTabPage->SuspendLayout();
 			this->SuspendLayout();
+			// 
+			// CarTabControl
+			// 
+			this->CarTabControl->Controls->Add(this->CarTabPage);
+			this->CarTabControl->Controls->Add(this->PenaltiesTabPage);
+			this->CarTabControl->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->CarTabControl->Location = System::Drawing::Point(0, 0);
+			this->CarTabControl->Name = L"CarTabControl";
+			this->CarTabControl->SelectedIndex = 0;
+			this->CarTabControl->Size = System::Drawing::Size(961, 630);
+			this->CarTabControl->TabIndex = 0;
+			// 
+			// CarTabPage
+			// 
+			this->CarTabPage->Controls->Add(this->CarsListView);
+			this->CarTabPage->Controls->Add(this->button1);
+			this->CarTabPage->Location = System::Drawing::Point(4, 22);
+			this->CarTabPage->Name = L"CarTabPage";
+			this->CarTabPage->Padding = System::Windows::Forms::Padding(3);
+			this->CarTabPage->Size = System::Drawing::Size(953, 604);
+			this->CarTabPage->TabIndex = 0;
+			this->CarTabPage->Text = L"Авто";
+			this->CarTabPage->UseVisualStyleBackColor = true;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(60, 165);
+			this->button1->Location = System::Drawing::Point(213, 56);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(147, 84);
-			this->button1->TabIndex = 0;
+			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->TabIndex = 1;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
-			// textBox2
+			// PenaltiesTabPage
 			// 
-			this->textBox2->Location = System::Drawing::Point(81, 24);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(147, 20);
-			this->textBox2->TabIndex = 1;
+			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
+			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
+			this->PenaltiesTabPage->Padding = System::Windows::Forms::Padding(3);
+			this->PenaltiesTabPage->Size = System::Drawing::Size(953, 604);
+			this->PenaltiesTabPage->TabIndex = 1;
+			this->PenaltiesTabPage->Text = L"Штрафы";
+			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
 			// 
-			// label3
+			// CarsListView
 			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(19, 27);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(40, 13);
-			this->label3->TabIndex = 2;
-			this->label3->Text = L"Марка";
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(19, 55);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(41, 13);
-			this->label4->TabIndex = 3;
-			this->label4->Text = L"Номер";
-			// 
-			// textBox3
-			// 
-			this->textBox3->Location = System::Drawing::Point(81, 55);
-			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(147, 20);
-			this->textBox3->TabIndex = 4;
+			this->CarsListView->HideSelection = false;
+			this->CarsListView->Location = System::Drawing::Point(0, 120);
+			this->CarsListView->Name = L"CarsListView";
+			this->CarsListView->Size = System::Drawing::Size(953, 484);
+			this->CarsListView->TabIndex = 2;
+			this->CarsListView->UseCompatibleStateImageBehavior = false;
 			// 
 			// MainForm
 			// 
-			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->textBox3);
-			this->Controls->Add(this->label4);
-			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(961, 630);
+			this->Controls->Add(this->CarTabControl);
 			this->Name = L"MainForm";
+			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Loaded);
+			this->CarTabControl->ResumeLayout(false);
+			this->CarTabPage->ResumeLayout(false);
 			this->ResumeLayout(false);
-			this->PerformLayout();
 
 		}
-#pragma endregion
+#pragma endregion	
 
 
-	
 
-	
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		
-		Car car;
-		Penalty^ penalty;
-		// Присваивание значения полю brand
-		car.brand = this->textBox2->Text;
-		car.penalties->Add(penalty);
-		car.number = this->textBox3->Text;
+		private: System::Void FillCarListView(ListView^ listView, List<Car^>^ cars)
+		{
+			listView->Items->Clear(); // Очищаем ListView перед добавлением новых элементов
+			listView->Columns->Clear(); // Очищаем столбцы ListView
 
-		// Получение текста из textBox1 и преобразование его в стандартную строку (std::string)
-		
-		// Копирование значения в переменную car.brand
-		//array<wchar_t>^ wideCharArray = this->textBox2->Text->ToCharArray();
+			// Добавляем столбцы с заголовками
+			listView->Columns->Add("ID");
+			listView->Columns->Add("Brand");
+			listView->Columns->Add("Length");
+			listView->Columns->Add("Clearance");
+			listView->Columns->Add("Engine Capacity");
+			listView->Columns->Add("Engine Power");
+			listView->Columns->Add("Wheel Diameter");
+			listView->Columns->Add("Number");
+			listView->Columns->Add("Region");
+			listView->Columns->Add("Car Color");
+
+			// Добавляем каждый автомобиль в ListView
+			for each (Car ^ car in cars)
+			{
+				ListViewItem^ item = gcnew ListViewItem(Convert::ToString(car->id));
+				item->SubItems->Add(car->brand);
+				item->SubItems->Add(Convert::ToString(car->length));
+				item->SubItems->Add(Convert::ToString(car->clearance));
+				item->SubItems->Add(Convert::ToString(car->engineCapacity));
+				item->SubItems->Add(Convert::ToString(car->enginePower));
+				item->SubItems->Add(Convert::ToString(car->wheelDiameter));
+				item->SubItems->Add(car->number);
+				item->SubItems->Add(Convert::ToString(car->region));
+				item->SubItems->Add(car->color);
+				listView->Items->Add(item);
+			}
+		}
+
+
+	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
+		// Создаем тестовый набор данных на три автомобиля
+		List<Car^>^ cars = gcnew List<Car^>();
+		for (int i = 1; i <= 3; ++i)
+		{
+			Car^ car = gcnew Car();
+			car->id = i;
+			car->brand = "Brand" + i;
+			car->number = "Number" + i;
+			cars->Add(car);
+		}
+
+		// Создаем ListView и заполняем его данными о автомобилях
+		//ListView^ listView = gcnew ListView();
+		this->CarsListView->View = View::Details; // Устанавливаем вид отображения в виде таблицы с деталями
+		this->CarsListView->FullRowSelect = true; // Разрешаем выделение целой строки
+
+		// Заполняем ListView данными о автомобилях
+		FillCarListView(this->CarsListView, cars);
 		
 	}
 

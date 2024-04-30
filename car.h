@@ -2,7 +2,6 @@
 
 #include "penalty.h"
 
-
 using namespace System;
 using namespace System::Collections::Generic;
 
@@ -25,10 +24,9 @@ public:
     short region = 0;
 
     // Цвет автомобиля
-    String^ carColor;
+    String^ color;
 
     // Список штрафов
-
    List<Penalty^>^ penalties;
 };
 
