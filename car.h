@@ -1,12 +1,18 @@
 #pragma once
-#include <ctime>
+
 #include "penalty.h"
-#include <vector>
 
-struct Car
+
+using namespace System;
+using namespace System::Collections::Generic;
+
+
+public ref class Car
 {
-    int id = 0;
+public:
 
+    int id;
+    String^ brand;
     // Характеристики автомобиля
     short length = 0;
     short clearance = 0;
@@ -15,13 +21,15 @@ struct Car
     short wheelDiameter = 0;
 
     // Регистрационные данные
-    char number[7] = {};
+    String^ number;
     short region = 0;
 
     // Цвет автомобиля
-    char carColor[10] = {};
+    String^ carColor;
 
     // Список штрафов
-    vector<Penalty> penalties;
+
+   List<Penalty^>^ penalties;
 };
+
 
