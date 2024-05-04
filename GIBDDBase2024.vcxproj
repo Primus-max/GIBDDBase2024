@@ -28,12 +28,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="carManager.cpp" />
+    <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="MainForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
     <ClInclude Include="carManager.h" />
+    <ClInclude Include="CarRepository.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="MainForm.h">

@@ -175,13 +175,72 @@ namespace GIBDDBase2024 {
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
-		dbConnection->Open();
-		String^ query = "CREATE TABLE cars";
-		OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection);
-		dbCommand->ExecuteNonQuery();
+		try
+		{
+			dbConnection->Open();
+
+			//// Создаем таблицу
+			//String^ createTableQuery = "CREATE TABLE cars (id Number, brand Text)";
+			//OleDbCommand^ createTableCommand = gcnew OleDbCommand(createTableQuery, dbConnection);
+			//createTableCommand->ExecuteNonQuery();
+			//Console::WriteLine("Таблица 'cars' успешно создана.");
+
+			
 
 
+			String^ queryFrom = "SELECT * FROM penalty";
+			OleDbCommand^ dbCommandFrom = gcnew OleDbCommand(queryFrom, dbConnection);
+			OleDbDataReader^ reader = dbCommandFrom->ExecuteReader();
 
+			// Чтение данных из результата запроса
+			while (reader->Read())
+			{
+				// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
+				//auto id = reader->GetInt32(0); // индексация начинается с 0
+				auto id = reader["id"];
+				auto make = reader["date_p"];
+				Console::WriteLine(id);
+				Console::WriteLine(make);
+			/*	auto model = reader["brand"];
+				int len = reader->GetInt32(2);
+				auto lreen = reader->GetString(1);
+				int year = reader->GetInt32(3);*/
+
+				
+			}
+
+			String^ queryFromew = "SELECT * FROM penalty";
+			OleDbCommand^ dbCommandFrossm = gcnew OleDbCommand(queryFromew, dbConnection);
+			OleDbDataReader^ readerss = dbCommandFrossm->ExecuteReader();
+
+			// Чтение данных из результата запроса
+			while (readerss->Read())
+			{
+				// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
+				//auto id = reader->GetInt32(0); // индексация начинается с 0
+				auto asdf = reader->GetValue(0);
+				auto mafdsdfke = reader["id"];
+				auto moaadel = reader["brand"];
+				int ldfden = reader->GetInt32(2);
+				auto lrsdfeen = reader->GetString(1);
+				int yedsdfar = reader->GetInt32(3);
+
+				
+			}
+			// Добавляем тестовые данные
+			String^ insertQuery = "INSERT INTO cars (brand, length, clearance, engineCapacity, enginePower, wheelDiameter, number, region, color) VALUES "
+				"('Toyota', 4500, 200, 2000, 150, 16, 'ABC123', 77, 'Red'), "
+				"('BMW', 4800, 190, 2500, 180, 17, 'XYZ789', 78, 'Blue')";
+			OleDbCommand^ insertCommand = gcnew OleDbCommand(insertQuery, dbConnection);
+			insertCommand->ExecuteNonQuery();
+			Console::WriteLine("Тестовые данные успешно добавлены.");
+		}
+		catch (Exception^ ex)
+		{
+			Console::WriteLine("Произошла ошибка: " + ex->Message);
+		}
+		
+		
 		String^ queryFrom = "SELECT * FROM cars";
 		OleDbCommand^ dbCommandFrom = gcnew OleDbCommand(queryFrom, dbConnection);
 		OleDbDataReader^ reader = dbCommandFrom->ExecuteReader();
