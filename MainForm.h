@@ -1,5 +1,6 @@
 #pragma once
 #include "car.h"
+#include "CarRepository.h"
 #include "data.h"
 
 
@@ -46,7 +47,28 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::TabPage^ PenaltiesTabPage;
 
 	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::ListView^ CarsListView;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_capacity;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_power;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_deameter;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+
+
+
+
+
+
+
+
+
+
+
 
 
 	private:
@@ -64,11 +86,22 @@ namespace GIBDDBase2024 {
 		{
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clearance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->engine_capacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->engine_power = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->wheel_deameter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
-			this->CarsListView = (gcnew System::Windows::Forms::ListView());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CarTabControl
@@ -79,20 +112,83 @@ namespace GIBDDBase2024 {
 			this->CarTabControl->Location = System::Drawing::Point(0, 0);
 			this->CarTabControl->Name = L"CarTabControl";
 			this->CarTabControl->SelectedIndex = 0;
-			this->CarTabControl->Size = System::Drawing::Size(961, 630);
+			this->CarTabControl->Size = System::Drawing::Size(1060, 685);
 			this->CarTabControl->TabIndex = 0;
 			// 
 			// CarTabPage
 			// 
-			this->CarTabPage->Controls->Add(this->CarsListView);
+			this->CarTabPage->Controls->Add(this->dataGridView1);
 			this->CarTabPage->Controls->Add(this->button1);
 			this->CarTabPage->Location = System::Drawing::Point(4, 22);
 			this->CarTabPage->Name = L"CarTabPage";
 			this->CarTabPage->Padding = System::Windows::Forms::Padding(3);
-			this->CarTabPage->Size = System::Drawing::Size(953, 604);
+			this->CarTabPage->Size = System::Drawing::Size(1052, 659);
 			this->CarTabPage->TabIndex = 0;
 			this->CarTabPage->Text = L"Авто";
 			this->CarTabPage->UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
+				this->id, this->brand,
+					this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_deameter, this->number, this->region, this->color
+			});
+			this->dataGridView1->Location = System::Drawing::Point(3, 85);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->Size = System::Drawing::Size(1047, 572);
+			this->dataGridView1->TabIndex = 3;
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			// 
+			// brand
+			// 
+			this->brand->HeaderText = L"Марка";
+			this->brand->Name = L"brand";
+			// 
+			// length
+			// 
+			this->length->HeaderText = L"Длина";
+			this->length->Name = L"length";
+			// 
+			// clearance
+			// 
+			this->clearance->HeaderText = L"Просвет";
+			this->clearance->Name = L"clearance";
+			// 
+			// engine_capacity
+			// 
+			this->engine_capacity->HeaderText = L"Объём (д.)";
+			this->engine_capacity->Name = L"engine_capacity";
+			// 
+			// engine_power
+			// 
+			this->engine_power->HeaderText = L"Мощность (д./лс)";
+			this->engine_power->Name = L"engine_power";
+			// 
+			// wheel_deameter
+			// 
+			this->wheel_deameter->HeaderText = L"Радиус (к.)";
+			this->wheel_deameter->Name = L"wheel_diameter";
+			// 
+			// number
+			// 
+			this->number->HeaderText = L"Номер";
+			this->number->Name = L"number";
+			// 
+			// region
+			// 
+			this->region->HeaderText = L"Регион";
+			this->region->Name = L"region";
+			// 
+			// color
+			// 
+			this->color->HeaderText = L"Цвет";
+			this->color->Name = L"color";
 			// 
 			// button1
 			// 
@@ -108,179 +204,59 @@ namespace GIBDDBase2024 {
 			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
 			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
 			this->PenaltiesTabPage->Padding = System::Windows::Forms::Padding(3);
-			this->PenaltiesTabPage->Size = System::Drawing::Size(953, 604);
+			this->PenaltiesTabPage->Size = System::Drawing::Size(1056, 659);
 			this->PenaltiesTabPage->TabIndex = 1;
 			this->PenaltiesTabPage->Text = L"Штрафы";
 			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
 			// 
-			// CarsListView
-			// 
-			this->CarsListView->HideSelection = false;
-			this->CarsListView->Location = System::Drawing::Point(0, 120);
-			this->CarsListView->Name = L"CarsListView";
-			this->CarsListView->Size = System::Drawing::Size(953, 484);
-			this->CarsListView->TabIndex = 2;
-			this->CarsListView->UseCompatibleStateImageBehavior = false;
-			// 
 			// MainForm
 			// 
-			this->ClientSize = System::Drawing::Size(961, 630);
+			this->ClientSize = System::Drawing::Size(1060, 685);
 			this->Controls->Add(this->CarTabControl);
 			this->Name = L"MainForm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Loaded);
 			this->CarTabControl->ResumeLayout(false);
 			this->CarTabPage->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion	
 
-		private: System::Void FillCarListView(ListView^ listView, List<Car^>^ cars)
+	private: System::Void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
+	{
+
+		dataGridView->Rows->Clear();
+
+		for each (Car ^ car in cars)
 		{
-			listView->Items->Clear(); 
-			listView->Columns->Clear(); 
+			array<Object^>^ rowData = gcnew array<Object^>(10);
 
-			// Добавляю столбцы с заголовками
-			listView->Columns->Add("ID");
-			listView->Columns->Add("Brand");
-			listView->Columns->Add("Length");
-			listView->Columns->Add("Clearance");
-			listView->Columns->Add("Engine Capacity");
-			listView->Columns->Add("Engine Power");
-			listView->Columns->Add("Wheel Diameter");
-			listView->Columns->Add("Number");
-			listView->Columns->Add("Region");
-			listView->Columns->Add("Car Color");
+			rowData[0] = car->id;
+			rowData[1] = car->brand;
+			rowData[2] = car->length;
+			rowData[3] = car->clearance;
+			rowData[4] = car->engineCapacity;
+			rowData[5] = car->enginePower;
+			rowData[6] = car->wheelDiameter;
+			rowData[7] = car->number;
+			rowData[8] = car->region;
+			rowData[9] = car->color;
 
-			// Добавляю каждый автомобиль в ListView
-			for each (Car ^ car in cars)
-			{
-				ListViewItem^ item = gcnew ListViewItem(Convert::ToString(car->id));
-				item->SubItems->Add(car->brand);
-				item->SubItems->Add(Convert::ToString(car->length));
-				item->SubItems->Add(Convert::ToString(car->clearance));
-				item->SubItems->Add(Convert::ToString(car->engineCapacity));
-				item->SubItems->Add(Convert::ToString(car->enginePower));
-				item->SubItems->Add(Convert::ToString(car->wheelDiameter));
-				item->SubItems->Add(car->number);
-				item->SubItems->Add(Convert::ToString(car->region));
-				item->SubItems->Add(car->color);
-				listView->Items->Add(item);
-			}
+			dataGridView->Rows->Add(rowData);
 		}
+	}
+
 
 
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
-		
+
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
 
-		try
-		{
-			dbConnection->Open();
+		CarRepository^ carRepos = gcnew CarRepository(connectionString);
+		List<Car^>^ cars = carRepos->GetAllCars();
+		FillCarListView(dataGridView1, cars);
 
-			//// Создаем таблицу
-			//String^ createTableQuery = "CREATE TABLE cars (id Number, brand Text)";
-			//OleDbCommand^ createTableCommand = gcnew OleDbCommand(createTableQuery, dbConnection);
-			//createTableCommand->ExecuteNonQuery();
-			//Console::WriteLine("Таблица 'cars' успешно создана.");
-
-			
-
-
-			String^ queryFrom = "SELECT * FROM penalty";
-			OleDbCommand^ dbCommandFrom = gcnew OleDbCommand(queryFrom, dbConnection);
-			OleDbDataReader^ reader = dbCommandFrom->ExecuteReader();
-
-			// Чтение данных из результата запроса
-			while (reader->Read())
-			{
-				// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
-				//auto id = reader->GetInt32(0); // индексация начинается с 0
-				auto id = reader["id"];
-				auto make = reader["date_p"];
-				Console::WriteLine(id);
-				Console::WriteLine(make);
-			/*	auto model = reader["brand"];
-				int len = reader->GetInt32(2);
-				auto lreen = reader->GetString(1);
-				int year = reader->GetInt32(3);*/
-
-				
-			}
-
-			String^ queryFromew = "SELECT * FROM penalty";
-			OleDbCommand^ dbCommandFrossm = gcnew OleDbCommand(queryFromew, dbConnection);
-			OleDbDataReader^ readerss = dbCommandFrossm->ExecuteReader();
-
-			// Чтение данных из результата запроса
-			while (readerss->Read())
-			{
-				// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
-				//auto id = reader->GetInt32(0); // индексация начинается с 0
-				auto asdf = reader->GetValue(0);
-				auto mafdsdfke = reader["id"];
-				auto moaadel = reader["brand"];
-				int ldfden = reader->GetInt32(2);
-				auto lrsdfeen = reader->GetString(1);
-				int yedsdfar = reader->GetInt32(3);
-
-				
-			}
-			// Добавляем тестовые данные
-			String^ insertQuery = "INSERT INTO cars (brand, length, clearance, engineCapacity, enginePower, wheelDiameter, number, region, color) VALUES "
-				"('Toyota', 4500, 200, 2000, 150, 16, 'ABC123', 77, 'Red'), "
-				"('BMW', 4800, 190, 2500, 180, 17, 'XYZ789', 78, 'Blue')";
-			OleDbCommand^ insertCommand = gcnew OleDbCommand(insertQuery, dbConnection);
-			insertCommand->ExecuteNonQuery();
-			Console::WriteLine("Тестовые данные успешно добавлены.");
-		}
-		catch (Exception^ ex)
-		{
-			Console::WriteLine("Произошла ошибка: " + ex->Message);
-		}
-		
-		
-		String^ queryFrom = "SELECT * FROM cars";
-		OleDbCommand^ dbCommandFrom = gcnew OleDbCommand(queryFrom, dbConnection);
-		OleDbDataReader^ reader = dbCommandFrom->ExecuteReader();
-
-		// Чтение данных из результата запроса
-		while (reader->Read())
-		{
-			// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
-			int id = reader->GetInt32(0); // индексация начинается с 0
-			String^ make = reader->GetString(1);
-			String^ model = reader->GetString(2);
-			int year = reader->GetInt32(3);
-
-			// Делайте что-то с прочитанными данными, например, выводите их
-			Console::WriteLine("ID: {0}, Make: {1}, Model: {2}, Year: {3}", id, make, model, year);
-		}
-
-
-		List<Car^>^ cars = gcnew List<Car^>();
-		for (int i = 1; i <= 3; ++i)
-		{
-			Car^ car = gcnew Car();
-			car->id = i;
-			car->brand = "Brand" + i;
-			car->number = "Number" + i;
-			cars->Add(car);
-		}
-
-		
-		this->CarsListView->View = View::Details;
-		this->CarsListView->FullRowSelect = true;
-
-		// Заполняю ListView данными о автомобилях
-		FillCarListView(this->CarsListView, cars);
-
-		Car^ car = gcnew Car();
-
-		car->brand = "Бмв";
-		addCarToBase(car);		
 	}
-
 	};
 }

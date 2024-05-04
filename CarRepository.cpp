@@ -1,6 +1,9 @@
 #include "CarRepository.h"
 #include <exception>
 #include <iostream>
+
+using namespace System;
+using namespace System::Collections::Generic;
 using namespace System::Data::OleDb;
 using namespace System::Windows::Forms;
 
@@ -29,6 +32,11 @@ void CarRepository::AddCar(Car^ car)
 	{
 		connection->Open();
 		commandInsert->ExecuteNonQuery();
+	}
+	catch (const std::exception& ex) 
+	{
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		MessageBox::Show(errorMessage);
 	}
 	finally
 	{
@@ -65,10 +73,12 @@ List<Car^>^ CarRepository::GetAllCars()
 			cars->Add(car);
 		}
 	}
-	catch (const std::exception&)
+	catch (const std::exception& ex)
 	{
-		MessageBox::Show("Ошибка при чтении данных из базы данных");
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		MessageBox::Show(errorMessage);
 	}
+
 	finally
 	{
 		connection->Close();
@@ -99,9 +109,10 @@ void CarRepository::UpdateCar(Car^ car)
 		connection->Open();
 		commandUpdate->ExecuteNonQuery();
 	}
-	catch (const std::exception&)
+	catch (const std::exception& ex)
 	{
-		MessageBox::Show("Ошибка при обновлении данных в базе");
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		MessageBox::Show(errorMessage);
 	}
 	finally
 	{
@@ -123,9 +134,10 @@ void CarRepository::DeleteCar(int carId)
 		connection->Open();
 		commandDelete->ExecuteNonQuery();
 	}
-	catch (const std::exception&)
+	catch (const std::exception& ex)
 	{
-		MessageBox::Show("Ошибка при удалении авто из базы");
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		MessageBox::Show(errorMessage);
 	}
 	finally
 	{
