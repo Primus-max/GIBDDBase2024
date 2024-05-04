@@ -1,7 +1,7 @@
 #pragma once
 #include <ctime>
 #include "enums.h"
-using namespace std;
+
 
 public ref class Penalty
 {

@@ -1,8 +1,11 @@
 #pragma once
 #include "car.h"
+#include "data.h"
+
 
 using namespace System;
 using namespace System::Collections::Generic;
+using namespace System::Data::OleDb;
 
 namespace GIBDDBase2024 {
 
@@ -134,10 +137,10 @@ namespace GIBDDBase2024 {
 
 		private: System::Void FillCarListView(ListView^ listView, List<Car^>^ cars)
 		{
-			listView->Items->Clear(); // Очищаем ListView перед добавлением новых элементов
-			listView->Columns->Clear(); // Очищаем столбцы ListView
+			listView->Items->Clear(); 
+			listView->Columns->Clear(); 
 
-			// Добавляем столбцы с заголовками
+			// Добавляю столбцы с заголовками
 			listView->Columns->Add("ID");
 			listView->Columns->Add("Brand");
 			listView->Columns->Add("Length");
@@ -149,7 +152,7 @@ namespace GIBDDBase2024 {
 			listView->Columns->Add("Region");
 			listView->Columns->Add("Car Color");
 
-			// Добавляем каждый автомобиль в ListView
+			// Добавляю каждый автомобиль в ListView
 			for each (Car ^ car in cars)
 			{
 				ListViewItem^ item = gcnew ListViewItem(Convert::ToString(car->id));
@@ -168,7 +171,35 @@ namespace GIBDDBase2024 {
 
 
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
-		// Создаем тестовый набор данных на три автомобиля
+		
+		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		OleDbConnection^ dbConnection = gcnew OleDbConnection(connectionString);
+
+		dbConnection->Open();
+		String^ query = "CREATE TABLE cars";
+		OleDbCommand^ dbCommand = gcnew OleDbCommand(query, dbConnection);
+		dbCommand->ExecuteNonQuery();
+
+
+
+		String^ queryFrom = "SELECT * FROM cars";
+		OleDbCommand^ dbCommandFrom = gcnew OleDbCommand(queryFrom, dbConnection);
+		OleDbDataReader^ reader = dbCommandFrom->ExecuteReader();
+
+		// Чтение данных из результата запроса
+		while (reader->Read())
+		{
+			// Пример чтения данных из колонок (предполагается, что в таблице есть поля "ID", "Make", "Model", "Year")
+			int id = reader->GetInt32(0); // индексация начинается с 0
+			String^ make = reader->GetString(1);
+			String^ model = reader->GetString(2);
+			int year = reader->GetInt32(3);
+
+			// Делайте что-то с прочитанными данными, например, выводите их
+			Console::WriteLine("ID: {0}, Make: {1}, Model: {2}, Year: {3}", id, make, model, year);
+		}
+
+
 		List<Car^>^ cars = gcnew List<Car^>();
 		for (int i = 1; i <= 3; ++i)
 		{
@@ -179,14 +210,17 @@ namespace GIBDDBase2024 {
 			cars->Add(car);
 		}
 
-		// Создаем ListView и заполняем его данными о автомобилях
-		//ListView^ listView = gcnew ListView();
-		this->CarsListView->View = View::Details; // Устанавливаем вид отображения в виде таблицы с деталями
-		this->CarsListView->FullRowSelect = true; // Разрешаем выделение целой строки
-
-		// Заполняем ListView данными о автомобилях
-		FillCarListView(this->CarsListView, cars);
 		
+		this->CarsListView->View = View::Details;
+		this->CarsListView->FullRowSelect = true;
+
+		// Заполняю ListView данными о автомобилях
+		FillCarListView(this->CarsListView, cars);
+
+		Car^ car = gcnew Car();
+
+		car->brand = "Бмв";
+		addCarToBase(car);		
 	}
 
 	};
