@@ -15,7 +15,7 @@ public:
 
 	short length = 0;
 	short clearance = 0;
-	short engineCapacity = 0;
+	double engineCapacity = 0;
 	short enginePower = 0;
 	short wheelDiameter = 0;
 

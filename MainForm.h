@@ -54,21 +54,10 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_capacity;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_power;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_deameter;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_diameter;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
-
-
-
-
-
-
-
-
-
-
-
 
 
 	private:
@@ -93,7 +82,7 @@ namespace GIBDDBase2024 {
 			this->clearance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->engine_capacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->engine_power = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->wheel_deameter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->wheel_diameter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -132,7 +121,7 @@ namespace GIBDDBase2024 {
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->id, this->brand,
-					this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_deameter, this->number, this->region, this->color
+					this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region, this->color
 			});
 			this->dataGridView1->Location = System::Drawing::Point(3, 85);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -170,10 +159,10 @@ namespace GIBDDBase2024 {
 			this->engine_power->HeaderText = L"Мощность (д./лс)";
 			this->engine_power->Name = L"engine_power";
 			// 
-			// wheel_deameter
+			// wheel_diameter
 			// 
-			this->wheel_deameter->HeaderText = L"Радиус (к.)";
-			this->wheel_deameter->Name = L"wheel_diameter";
+			this->wheel_diameter->HeaderText = L"Радиус (к.)";
+			this->wheel_diameter->Name = L"wheel_diameter";
 			// 
 			// number
 			// 
@@ -192,19 +181,20 @@ namespace GIBDDBase2024 {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(213, 56);
+			this->button1->Location = System::Drawing::Point(269, 26);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(471, 23);
 			this->button1->TabIndex = 1;
-			this->button1->Text = L"button1";
+			this->button1->Text = L"Сохранить";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
 			// PenaltiesTabPage
 			// 
 			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
 			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
 			this->PenaltiesTabPage->Padding = System::Windows::Forms::Padding(3);
-			this->PenaltiesTabPage->Size = System::Drawing::Size(1056, 659);
+			this->PenaltiesTabPage->Size = System::Drawing::Size(1052, 659);
 			this->PenaltiesTabPage->TabIndex = 1;
 			this->PenaltiesTabPage->Text = L"Штрафы";
 			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
@@ -252,11 +242,36 @@ namespace GIBDDBase2024 {
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-
 		CarRepository^ carRepos = gcnew CarRepository(connectionString);
 		List<Car^>^ cars = carRepos->GetAllCars();
 		FillCarListView(dataGridView1, cars);
-
 	}
-	};
+
+
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		CarRepository^ carRepos = gcnew CarRepository(connectionString);
+
+		List<Car^>^ cars = gcnew List<Car^>();
+
+		for each (DataGridViewRow^ row in dataGridView1->Rows){
+			Car^ car = gcnew Car();
+			car->id = Convert::ToInt16(row->Cells[0]->Value);
+			car->brand = row->Cells[1]->Value->ToString();			
+			car->length = Convert::ToInt16(row->Cells[2]->Value);
+			car->clearance = Convert::ToInt16(row->Cells[3]->Value);
+			car->engineCapacity = Convert::ToDouble(row->Cells[4]->Value);
+			car->enginePower = Convert::ToInt16(row->Cells[5]->Value);
+			car->wheelDiameter = Convert::ToInt16(row->Cells[6]->Value);
+			car->number = row->Cells[7]->Value->ToString();
+			car->region = Convert::ToInt16(row->Cells[8]->Value);
+			car->color = row->Cells[9]->Value->ToString();
+
+			cars->Add(car);
+			carRepos->AddCar(car);
+		}
+		
+	}
+};
 }
