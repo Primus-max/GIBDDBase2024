@@ -136,7 +136,8 @@ void CarRepository::DeleteCar(int carId)
 	try
 	{
 		connection->Open();
-		commandDelete->ExecuteNonQuery();
+		if (commandDelete->ExecuteNonQuery() != 1)
+			MessageBox::Show("Не удалось удалить авто из базы", "Ошибка!");
 	}
 	catch (OleDbException^ ex)
 	{

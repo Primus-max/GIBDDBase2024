@@ -225,7 +225,6 @@ namespace GIBDDBase2024 {
 
 	private: System::Void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
 	{
-
 		dataGridView->Rows->Clear();
 
 		for each (Car ^ car in cars)
@@ -246,7 +245,6 @@ namespace GIBDDBase2024 {
 			dataGridView->Rows->Add(rowData);
 		}
 	}
-
 
 
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
@@ -279,7 +277,7 @@ namespace GIBDDBase2024 {
 			car->color = row->Cells[9]->Value->ToString();
 
 			cars->Add(car);
-			carRepos->UpdateCar(car);
+			carRepos->DeleteCar(car->id);
 		}
 		
 	}
