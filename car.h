@@ -19,7 +19,7 @@ public:
 	short enginePower = 0;
 	short wheelDiameter = 0;
 
-	String^ number;
+	String^ reg_number;
 	short region = 0;
 
 	String^ color;

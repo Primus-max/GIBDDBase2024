@@ -48,6 +48,14 @@ namespace GIBDDBase2024 {
 
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
+
+
+
+
+
+
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reg_number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
@@ -58,6 +66,8 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+
+
 
 
 	private:
@@ -76,6 +86,8 @@ namespace GIBDDBase2024 {
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -86,8 +98,6 @@ namespace GIBDDBase2024 {
 			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
@@ -128,6 +138,26 @@ namespace GIBDDBase2024 {
 			this->dataGridView1->Size = System::Drawing::Size(1047, 572);
 			this->dataGridView1->TabIndex = 3;
 			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(269, 26);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(471, 23);
+			this->button1->TabIndex = 1;
+			this->button1->Text = L"Сохранить";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
+			// 
+			// PenaltiesTabPage
+			// 
+			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
+			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
+			this->PenaltiesTabPage->Padding = System::Windows::Forms::Padding(3);
+			this->PenaltiesTabPage->Size = System::Drawing::Size(1052, 659);
+			this->PenaltiesTabPage->TabIndex = 1;
+			this->PenaltiesTabPage->Text = L"Штрафы";
+			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
+			// 
 			// id
 			// 
 			this->id->HeaderText = L"id";
@@ -141,17 +171,17 @@ namespace GIBDDBase2024 {
 			// 
 			// length
 			// 
-			this->length->HeaderText = L"Длина";
+			this->length->HeaderText = L"Длина (см.)";
 			this->length->Name = L"length";
 			// 
 			// clearance
 			// 
-			this->clearance->HeaderText = L"Просвет";
+			this->clearance->HeaderText = L"Просвет (мм.)";
 			this->clearance->Name = L"clearance";
 			// 
 			// engine_capacity
 			// 
-			this->engine_capacity->HeaderText = L"Объём (д.)";
+			this->engine_capacity->HeaderText = L"Объём (д./л.)";
 			this->engine_capacity->Name = L"engine_capacity";
 			// 
 			// engine_power
@@ -178,26 +208,6 @@ namespace GIBDDBase2024 {
 			// 
 			this->color->HeaderText = L"Цвет";
 			this->color->Name = L"color";
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(269, 26);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(471, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Сохранить";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
-			// 
-			// PenaltiesTabPage
-			// 
-			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
-			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
-			this->PenaltiesTabPage->Padding = System::Windows::Forms::Padding(3);
-			this->PenaltiesTabPage->Size = System::Drawing::Size(1052, 659);
-			this->PenaltiesTabPage->TabIndex = 1;
-			this->PenaltiesTabPage->Text = L"Штрафы";
-			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -229,7 +239,7 @@ namespace GIBDDBase2024 {
 			rowData[4] = car->engineCapacity;
 			rowData[5] = car->enginePower;
 			rowData[6] = car->wheelDiameter;
-			rowData[7] = car->number;
+			rowData[7] = car->reg_number;
 			rowData[8] = car->region;
 			rowData[9] = car->color;
 
@@ -264,12 +274,12 @@ namespace GIBDDBase2024 {
 			car->engineCapacity = Convert::ToDouble(row->Cells[4]->Value);
 			car->enginePower = Convert::ToInt16(row->Cells[5]->Value);
 			car->wheelDiameter = Convert::ToInt16(row->Cells[6]->Value);
-			car->number = row->Cells[7]->Value->ToString();
+			car->reg_number = row->Cells[7]->Value->ToString();
 			car->region = Convert::ToInt16(row->Cells[8]->Value);
 			car->color = row->Cells[9]->Value->ToString();
 
 			cars->Add(car);
-			carRepos->AddCar(car);
+			carRepos->UpdateCar(car);
 		}
 		
 	}

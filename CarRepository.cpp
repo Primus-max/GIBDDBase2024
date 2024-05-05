@@ -24,18 +24,21 @@ void CarRepository::AddCar(Car^ car)
 	commandInsert->Parameters->AddWithValue("@engine_capacity", car->engineCapacity);
 	commandInsert->Parameters->AddWithValue("@engine_power", car->enginePower);
 	commandInsert->Parameters->AddWithValue("@wheel_diameter", car->wheelDiameter);
-	commandInsert->Parameters->AddWithValue("@reg_number", car->number);
+	commandInsert->Parameters->AddWithValue("@reg_number", car->reg_number);
 	commandInsert->Parameters->AddWithValue("@region", car->region);
 	commandInsert->Parameters->AddWithValue("@color", car->color);
 
 	try
 	{
 		connection->Open();
-		commandInsert->ExecuteNonQuery();
+
+		if (commandInsert->ExecuteNonQuery() != 1)
+			MessageBox::Show("Не удалось добавить авто в базу", "Ошибка!");
+
 	}
 	catch (const std::exception& ex) 
 	{
-		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		String^ errorMessage = "Ошибка при добавлении авто в базу данных: " + gcnew String(ex.what());
 		MessageBox::Show(errorMessage);
 	}
 	finally
@@ -66,7 +69,7 @@ List<Car^>^ CarRepository::GetAllCars()
 			car->engineCapacity = Convert::ToDouble(reader["engine_capacity"]);
 			car->enginePower = Convert::ToInt16(reader["engine_power"]);
 			car->wheelDiameter = Convert::ToInt16(reader["wheel_diameter"]);
-			car->number = reader["reg_number"]->ToString();
+			car->reg_number = reader["reg_number"]->ToString();
 			car->region = Convert::ToInt16(reader["region"]);
 			car->color = reader["color"]->ToString();
 
@@ -90,24 +93,25 @@ List<Car^>^ CarRepository::GetAllCars()
 void CarRepository::UpdateCar(Car^ car)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	String^ queryUpdate = "UPDATE [cars] SET brand='"+ car->brand +"', length="+ car->length +", clearance="+ car->clearance +", engine_capacity="+car->engineCapacity+",  engine_power="+ car->enginePower +", wheel_diameter="+ car->wheelDiameter +", number='"+ car->number +"', region="+ car->region +", color='"+ car->color +"'  WHERE id = " + car->id;
+	String^ queryUpdate = "UPDATE [cars] SET brand = @brand, length = @length, clearance = @clearance, engine_capacity = @engine_capacity, engine_power = @engine_power, wheel_diameter = @wheel_diameter, reg_number = @reg_number, region = @region, color = @color WHERE id = @id";	
 	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryUpdate, connection);
 
-	/*commandUpdate->Parameters->AddWithValue("?", car->brand);
-	commandUpdate->Parameters->AddWithValue("?", car->length);
-	commandUpdate->Parameters->AddWithValue("?", car->clearance);
-	commandUpdate->Parameters->AddWithValue("?", car->engineCapacity);
-	commandUpdate->Parameters->AddWithValue("?", car->enginePower);
-	commandUpdate->Parameters->AddWithValue("?", car->wheelDiameter);
-	commandUpdate->Parameters->AddWithValue("?", car->number);
-	commandUpdate->Parameters->AddWithValue("?", car->region);
-	commandUpdate->Parameters->AddWithValue("?", car->color);
-	commandUpdate->Parameters->AddWithValue("?", car->id);*/
+	commandUpdate->Parameters->AddWithValue("@brand", car->brand);
+	commandUpdate->Parameters->AddWithValue("@length", car->length);
+	commandUpdate->Parameters->AddWithValue("@clearance", car->clearance);
+	commandUpdate->Parameters->AddWithValue("@engine_capacity", car->engineCapacity);
+	commandUpdate->Parameters->AddWithValue("@engine_power", car->enginePower);
+	commandUpdate->Parameters->AddWithValue("@wheel_diameter", car->wheelDiameter);
+	commandUpdate->Parameters->AddWithValue("@reg_number", car->reg_number);
+	commandUpdate->Parameters->AddWithValue("@region", car->region);
+	commandUpdate->Parameters->AddWithValue("@color", car->color);
+	commandUpdate->Parameters->AddWithValue("@id", car->id);
 
 	try
 	{
 		connection->Open();
-		commandUpdate->ExecuteNonQuery();
+		if (commandUpdate->ExecuteNonQuery() != 1)
+			MessageBox::Show("Не удалось обновить авто в базе", "Ошибка!");
 	}
 	catch (OleDbException^ ex)
 	{
@@ -134,9 +138,9 @@ void CarRepository::DeleteCar(int carId)
 		connection->Open();
 		commandDelete->ExecuteNonQuery();
 	}
-	catch (const std::exception& ex)
+	catch (OleDbException^ ex)
 	{
-		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex.what());
+		String^ errorMessage = "Ошибка при удалении данных из базы: " + gcnew String(ex->Message);
 		MessageBox::Show(errorMessage);
 	}
 	finally
