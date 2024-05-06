@@ -100,5 +100,27 @@ void PenaltyRepository::Update(Penalty^ penalty)
 
 void PenaltyRepository::Delete(int id)
 {
-	throw gcnew System::NotImplementedException();
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryDelete = "DELETE [penalty] WHERE id = @id";
+	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryDelete, connection);
+
+	commandUpdate->Parameters->AddWithValue("@id", id);
+
+	try
+	{
+		connection->Open();
+
+		if (commandUpdate->ExecuteNonQuery() != 1)
+			MessageBox::Show("Не удалось удалить штраф в базе", "Ошибка!");
+
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при удалении штрафа из базы данных: " + gcnew String(ex->Message);
+		MessageBox::Show(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}
 }
