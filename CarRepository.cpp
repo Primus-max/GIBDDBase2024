@@ -75,6 +75,8 @@ List<Car^>^ CarRepository::GetAll()
 
 			cars->Add(car);
 		}
+
+		return cars;
 	}
 	catch (OleDbException^ ex)
 	{
@@ -85,9 +87,7 @@ List<Car^>^ CarRepository::GetAll()
 	finally
 	{
 		connection->Close();
-	}
-
-	return cars;
+	}	
 }
 
 void CarRepository::Update(Car^ car)

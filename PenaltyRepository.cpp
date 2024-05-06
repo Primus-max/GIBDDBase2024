@@ -49,22 +49,37 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryGet = "SELECT * FROM [penalty]";
 	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
-	OleDbDataReader^ reader = commandRead->ExecuteReader();
+	
 
-	while (reader->Read())
+	try
 	{
-		Penalty^ penalty = gcnew Penalty();
+		connection->Open();
+		OleDbDataReader^ reader = commandRead->ExecuteReader();
 
-		penalty->id = Convert::ToInt32( reader["id"]);
-		penalty->datP = Convert::ToInt64(reader["date_p"]);
-		penalty->amount = Convert::ToDouble(reader["amount"]);
-		penalty->penaltyType = Convert::ToInt16(reader["penalty_type"]);
-		penalty->carId = Convert::ToInt32(reader["car"]);
+		while (reader->Read())
+		{
+			Penalty^ penalty = gcnew Penalty();
 
-		penalties->Add(penalty);
+			penalty->id = Convert::ToInt32(reader["id"]);
+			penalty->datP = Convert::ToDateTime(reader["date_p"]);
+			penalty->amount = Convert::ToDouble(reader["amount"]);
+			penalty->penaltyType = Convert::ToInt16(reader["penalty_type"]);
+			penalty->carId = Convert::ToInt32(reader["car"]);
+
+			penalties->Add(penalty);
+		}
+
+		return penalties;
 	}
-
-	return penalties;
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
+		MessageBox::Show(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}	
 }
 
 void PenaltyRepository::Update(Penalty^ penalty)
