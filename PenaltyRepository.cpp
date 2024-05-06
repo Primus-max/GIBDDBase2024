@@ -33,7 +33,7 @@ void PenaltyRepository::Add(Penalty^ penalty)
 	}
 	catch (OleDbException^ ex)
 	{
-		String^ errorMessage = "Ошибка при добавлении авто в базу данных: " + gcnew String(ex->Message);
+		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
 		MessageBox::Show(errorMessage);
 	}
 	finally
@@ -48,8 +48,8 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryGet = "SELECT * FROM [penalty]";
-	OleDbCommand^ command = gcnew OleDbCommand(queryGet, connection);
-	OleDbDataReader^ reader = command->ExecuteReader();
+	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
+	OleDbDataReader^ reader = commandRead->ExecuteReader();
 
 	while (reader->Read())
 	{
@@ -69,7 +69,33 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 
 void PenaltyRepository::Update(Penalty^ penalty)
 {
-	throw gcnew System::NotImplementedException();
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryUpdate = "UPDATE [penalty] SET date_p = @date_p, amount = @amount, penalty_type = @penalty_type, car = @car WHERE id = @id";
+	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryUpdate, connection);
+
+	commandUpdate->Parameters->AddWithValue("@date_p", penalty->datP);
+	commandUpdate->Parameters->AddWithValue("@amount", penalty->amount);
+	commandUpdate->Parameters->AddWithValue("@penalty_type", penalty->penaltyType);
+	commandUpdate->Parameters->AddWithValue("@car", penalty->carId);
+	commandUpdate->Parameters->AddWithValue("@id", penalty->id);
+
+	try
+	{
+		connection->Open();
+
+		if (commandUpdate->ExecuteNonQuery() != 1)
+			MessageBox::Show("Не удалось обновить штраф в базе", "Ошибка!");
+
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
+		MessageBox::Show(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}
 }
 
 void PenaltyRepository::Delete(int id)
