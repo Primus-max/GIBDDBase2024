@@ -44,8 +44,27 @@ void PenaltyRepository::Add(Penalty^ penalty)
 
 List<Penalty^>^ PenaltyRepository::GetAll()
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: вставьте здесь оператор return
+	List<Penalty^>^ penalties = gcnew List<Penalty^>();
+
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT * FROM [penalty]";
+	OleDbCommand^ command = gcnew OleDbCommand(queryGet, connection);
+	OleDbDataReader^ reader = command->ExecuteReader();
+
+	while (reader->Read())
+	{
+		Penalty^ penalty = gcnew Penalty();
+
+		penalty->id = Convert::ToInt32( reader["id"]);
+		penalty->datP = Convert::ToInt64(reader["date_p"]);
+		penalty->amount = Convert::ToDouble(reader["amount"]);
+		penalty->penaltyType = Convert::ToInt16(reader["penalty_type"]);
+		penalty->carId = Convert::ToInt32(reader["car"]);
+
+		penalties->Add(penalty);
+	}
+
+	return penalties;
 }
 
 void PenaltyRepository::Update(Penalty^ penalty)
