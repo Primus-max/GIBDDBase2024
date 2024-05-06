@@ -31,6 +31,7 @@
     <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="data.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="PenaltyRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
@@ -42,6 +43,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="penalty.h" />
+    <ClInclude Include="Penaltyrepository.h" />
     <ClInclude Include="penaltyTypeStrings.h" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ CarRepository::CarRepository(String^ connStr)
 	_connectionString = connStr;
 }
 
-void CarRepository::AddCar(Car^ car)
+void CarRepository::Add(Car^ car)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryInsert = "INSERT INTO [cars] (brand, length, clearance, engine_capacity, engine_power, wheel_diameter, reg_number, region, color) VALUES (@brand, @length, @clearance, @engine_capacity, @engine_power, @wheel_diameter, @reg_number, @region, @color)";
@@ -47,7 +47,7 @@ void CarRepository::AddCar(Car^ car)
 	}
 }
 
-List<Car^>^ CarRepository::GetAllCars()
+List<Car^>^ CarRepository::GetAll()
 {
 	List<Car^>^ cars = gcnew List<Car^>();
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
@@ -90,7 +90,7 @@ List<Car^>^ CarRepository::GetAllCars()
 	return cars;
 }
 
-void CarRepository::UpdateCar(Car^ car)
+void CarRepository::Update(Car^ car)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryUpdate = "UPDATE [cars] SET brand = @brand, length = @length, clearance = @clearance, engine_capacity = @engine_capacity, engine_power = @engine_power, wheel_diameter = @wheel_diameter, reg_number = @reg_number, region = @region, color = @color WHERE id = @id";	
@@ -125,7 +125,7 @@ void CarRepository::UpdateCar(Car^ car)
 
 }
 
-void CarRepository::DeleteCar(int carId)
+void CarRepository::Delete(int carId)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryDelete = "DELETE FROM cars WHERE id=?";

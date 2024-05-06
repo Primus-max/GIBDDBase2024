@@ -251,7 +251,7 @@ namespace GIBDDBase2024 {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		CarRepository^ carRepos = gcnew CarRepository(connectionString);
-		List<Car^>^ cars = carRepos->GetAllCars();
+		List<Car^>^ cars = carRepos->GetAll();
 		FillCarListView(dataGridView1, cars);
 	}
 
@@ -277,7 +277,7 @@ namespace GIBDDBase2024 {
 			car->color = row->Cells[9]->Value->ToString();
 
 			cars->Add(car);
-			carRepos->DeleteCar(car->id);
+			carRepos->Delete(car->id);
 		}
 		
 	}
