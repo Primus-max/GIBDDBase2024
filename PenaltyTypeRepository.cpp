@@ -57,8 +57,8 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 			PenaltyType^ penaltyType = gcnew PenaltyType();
 
 			penaltyType->id = Convert::ToInt32(reader["id"]);
-			penaltyType->penaltyType = reader["date_p"]->ToString();
-			penaltyType->price = Convert::ToDouble(reader["amount"]);
+			penaltyType->penaltyType = reader["penalty_type"]->ToString();
+			penaltyType->price = Convert::ToDouble(reader["price"]);
 			
 			penaltiesTypes->Add(penaltyType);
 		}
