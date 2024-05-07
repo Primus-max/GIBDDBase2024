@@ -32,6 +32,7 @@
     <ClCompile Include="data.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
+    <ClCompile Include="PenaltyTypeRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
@@ -44,6 +45,8 @@
     </ClInclude>
     <ClInclude Include="penalty.h" />
     <ClInclude Include="Penaltyrepository.h" />
+    <ClInclude Include="PenaltyType.h" />
+    <ClInclude Include="PenaltyTypeRepository.h" />
     <ClInclude Include="penaltyTypeStrings.h" />
   </ItemGroup>
   <ItemGroup>

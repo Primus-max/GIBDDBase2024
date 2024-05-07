@@ -33,6 +33,9 @@
     <ClCompile Include="PenaltyRepository.cpp">
       <Filter>Исходные файлы\Repositories</Filter>
     </ClCompile>
+    <ClCompile Include="PenaltyTypeRepository.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">
@@ -60,6 +63,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Penaltyrepository.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyType.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyTypeRepository.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

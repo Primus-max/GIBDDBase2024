@@ -79,13 +79,11 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ carId;
-
-
-
-
-
-
-
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reason;
+	private: System::Windows::Forms::TabPage^ PenaltyTypes;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyTypeId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyType;
 
 	private:
 		/// <summary>
@@ -100,6 +98,7 @@ namespace GIBDDBase2024 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->CarsDataGridView = (gcnew System::Windows::Forms::DataGridView());
@@ -121,17 +120,25 @@ namespace GIBDDBase2024 {
 			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->amount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->carId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->reason = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PenaltyTypes = (gcnew System::Windows::Forms::TabPage());
+			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
 			this->PenaltiesTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltiesDataGridView))->BeginInit();
+			this->PenaltyTypes->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// CarTabControl
 			// 
 			this->CarTabControl->Controls->Add(this->CarTabPage);
 			this->CarTabControl->Controls->Add(this->PenaltiesTabPage);
+			this->CarTabControl->Controls->Add(this->PenaltyTypes);
 			this->CarTabControl->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->CarTabControl->Location = System::Drawing::Point(0, 0);
 			this->CarTabControl->Name = L"CarTabControl";
@@ -239,7 +246,7 @@ namespace GIBDDBase2024 {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(818, 267);
+			this->button2->Location = System::Drawing::Point(834, 6);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(212, 97);
 			this->button2->TabIndex = 1;
@@ -249,15 +256,16 @@ namespace GIBDDBase2024 {
 			// 
 			// PenaltiesDataGridView
 			// 
+			this->PenaltiesDataGridView->AllowUserToOrderColumns = true;
 			this->PenaltiesDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->PenaltiesDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->PenaltiesDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->penalty_type,
-					this->date_p, this->amount, this->carId
+					this->date_p, this->amount, this->carId, this->reason
 			});
 			this->PenaltiesDataGridView->Dock = System::Windows::Forms::DockStyle::Left;
 			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 3);
 			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
-			this->PenaltiesDataGridView->Size = System::Drawing::Size(593, 653);
+			this->PenaltiesDataGridView->Size = System::Drawing::Size(809, 653);
 			this->PenaltiesDataGridView->TabIndex = 0;
 			// 
 			// penalty_type
@@ -269,7 +277,9 @@ namespace GIBDDBase2024 {
 			// 
 			// date_p
 			// 
-			this->date_p->HeaderText = L"Дата";			
+			dataGridViewCellStyle2->NullValue = nullptr;
+			this->date_p->DefaultCellStyle = dataGridViewCellStyle2;
+			this->date_p->HeaderText = L"Дата";
 			this->date_p->Name = L"date_p";
 			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			this->date_p->Width = 150;
@@ -288,6 +298,47 @@ namespace GIBDDBase2024 {
 			this->carId->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			this->carId->Width = 150;
 			// 
+			// reason
+			// 
+			this->reason->HeaderText = L"Причина";
+			this->reason->Name = L"reason";
+			this->reason->Width = 200;
+			// 
+			// PenaltyTypes
+			// 
+			this->PenaltyTypes->Controls->Add(this->dataGridView1);
+			this->PenaltyTypes->Location = System::Drawing::Point(4, 22);
+			this->PenaltyTypes->Name = L"PenaltyTypes";
+			this->PenaltyTypes->Padding = System::Windows::Forms::Padding(3);
+			this->PenaltyTypes->Size = System::Drawing::Size(1052, 659);
+			this->PenaltyTypes->TabIndex = 2;
+			this->PenaltyTypes->Text = L"Виды нарушений";
+			this->PenaltyTypes->UseVisualStyleBackColor = true;
+			// 
+			// dataGridView1
+			// 
+			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+				this->penaltyTypeId,
+					this->penaltyType
+			});
+			this->dataGridView1->Location = System::Drawing::Point(3, 164);
+			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->Size = System::Drawing::Size(1049, 495);
+			this->dataGridView1->TabIndex = 0;
+			// 
+			// penaltyTypeId
+			// 
+			this->penaltyTypeId->HeaderText = L"Id";
+			this->penaltyTypeId->Name = L"penaltyTypeId";
+			this->penaltyTypeId->ReadOnly = true;
+			// 
+			// penaltyType
+			// 
+			this->penaltyType->HeaderText = L"Вид нарушения";
+			this->penaltyType->Name = L"penaltyType";
+			this->penaltyType->Width = 500;
+			// 
 			// MainForm
 			// 
 			this->ClientSize = System::Drawing::Size(1060, 685);
@@ -299,6 +350,8 @@ namespace GIBDDBase2024 {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->EndInit();
 			this->PenaltiesTabPage->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltiesDataGridView))->EndInit();
+			this->PenaltyTypes->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
@@ -340,7 +393,6 @@ namespace GIBDDBase2024 {
 			dataGridView->Rows->Add(rowData);
 		}
 	}
-
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
@@ -353,14 +405,12 @@ namespace GIBDDBase2024 {
 		List<Penalty^>^ penalties = penaltyRepos->GetAll();
 		FillPenaltiesListView(PenaltiesDataGridView, penalties);
 	}
-
-
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		CarRepository^ carRepos = gcnew CarRepository(connectionString);
 
-		List<Car^>^ cars = gcnew List<Car^>();
+		/*List<Car^>^ cars = gcnew List<Car^>();
 
 		for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
 			Car^ car = gcnew Car();
@@ -377,8 +427,24 @@ namespace GIBDDBase2024 {
 
 			cars->Add(car);
 			carRepos->Delete(car->id);
-		}
+		}*/
 
+		OleDbConnection^ conn = gcnew OleDbConnection(connectionString);		
+		String^ query = "CREATE TABLE [penalty_types] (id int , penalty_type Text not null)";
+		OleDbCommand^ comm = gcnew OleDbCommand(query, conn);
+
+		try
+		{
+			conn->Open();
+			comm->ExecuteNonQuery();
+		}
+		catch (OleDbException^ ex)
+		{
+			MessageBox::Show(ex->Message);
+		}
+		finally {
+			conn->Close();
+		}
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
