@@ -34,7 +34,7 @@
       <Filter>Исходные файлы\Repositories</Filter>
     </ClCompile>
     <ClCompile Include="PenaltyTypeRepository.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Repositories</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

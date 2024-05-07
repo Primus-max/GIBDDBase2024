@@ -1,27 +1,32 @@
 #include "PenaltyTypeRepository.h"
 
+using namespace System;
+using namespace System::Collections::Generic;
+
 PenaltyTypeRepository::PenaltyTypeRepository(String^ connStr)
 {
-	_connectionString = connStr;
+    _connectionString = connStr;
 }
 
 void PenaltyTypeRepository::Add(PenaltyType^ penaltyType)
 {
-	throw gcnew System::NotImplementedException();
+    // Реализация добавления
 }
 
 List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 {
-	throw gcnew System::NotImplementedException();
-	// TODO: вставьте здесь оператор return
+    List<PenaltyType^>^ penaltyTipes = gcnew List<PenaltyType^>();
+
+    return penaltyTipes;
+    // Реализация получения всех элементов
 }
 
 void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 {
-	throw gcnew System::NotImplementedException();
+    // Реализация обновления
 }
 
 void PenaltyTypeRepository::Delete(int penaltyTypeId)
 {
-	throw gcnew System::NotImplementedException();
+    // Реализация удаления
 }

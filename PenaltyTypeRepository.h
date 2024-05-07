@@ -1,6 +1,7 @@
 #pragma once
-#include "PenaltyType.h";
+#include "PenaltyType.h"
 
+using namespace System;
 using namespace System::Collections::Generic;
 
 public ref class PenaltyTypeRepository

@@ -407,8 +407,8 @@ namespace GIBDDBase2024 {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		CarRepository^ carRepos = gcnew CarRepository(connectionString);
+		//String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		//CarRepository^ carRepos = gcnew CarRepository(connectionString);
 
 		/*List<Car^>^ cars = gcnew List<Car^>();
 
@@ -429,7 +429,7 @@ namespace GIBDDBase2024 {
 			carRepos->Delete(car->id);
 		}*/
 
-		OleDbConnection^ conn = gcnew OleDbConnection(connectionString);		
+		/*OleDbConnection^ conn = gcnew OleDbConnection(connectionString);		
 		String^ query = "CREATE TABLE [penalty_types] (id int , penalty_type Text not null)";
 		OleDbCommand^ comm = gcnew OleDbCommand(query, conn);
 
@@ -444,7 +444,7 @@ namespace GIBDDBase2024 {
 		}
 		finally {
 			conn->Close();
-		}
+		}*/
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
