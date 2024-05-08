@@ -61,3 +61,15 @@ void updateCarAtDb(DataGridView^ dataGrid)
 		carRepos->Update(car);
 	}
 }
+
+void deleteCarAtDb(DataGridView^ dataGrid)
+{
+	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+	CarRepository^ carRepos = gcnew CarRepository(connectionString);
+
+	for each (DataGridViewRow ^ row in dataGrid->Rows) {
+		if (!row->Selected) continue;
+		carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));
+		dataGrid->Rows->Remove(row);
+	}
+}

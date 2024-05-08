@@ -507,14 +507,7 @@ namespace GIBDDBase2024 {
 	}
 
 	private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		CarRepository^ carRepos = gcnew CarRepository(connectionString);
-
-		for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
-			if (!row->Selected) continue;
-			carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));
-			CarsDataGridView->Rows->Remove(row);
-		}
+		deleteCarAtDb(CarsDataGridView);
 	}
 
 	};
