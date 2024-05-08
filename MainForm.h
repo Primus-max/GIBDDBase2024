@@ -5,6 +5,7 @@
 #include "Penaltyrepository.h"
 #include "PenaltyType.h"
 #include "PenaltyTypeRepository.h"
+#include "ÑarManager.h"
 
 
 using namespace System;
@@ -496,7 +497,8 @@ namespace GIBDDBase2024 {
 
 	}
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		addCarAtDb(CarsDataGridView);
+		/*String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		CarRepository^ carRepos = gcnew CarRepository(connectionString);
 
 		List<Car^>^ cars = gcnew List<Car^>();
@@ -518,12 +520,13 @@ namespace GIBDDBase2024 {
 			car->color = row->Cells[9]->Value->ToString();
 
 			cars->Add(car);
-			carRepos->Update(car);
-		}
+			carRepos->Add(car);
+		}*/
 	}
 
 private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+
 private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);	

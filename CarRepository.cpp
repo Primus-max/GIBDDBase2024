@@ -122,7 +122,6 @@ void CarRepository::Update(Car^ car)
 	{
 		connection->Close();
 	}
-
 }
 
 void CarRepository::Delete(int carId)

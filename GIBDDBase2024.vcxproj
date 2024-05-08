@@ -27,16 +27,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="carManager.cpp" />
+    <ClCompile Include="CarManager.cpp" />
     <ClCompile Include="CarRepository.cpp" />
-    <ClCompile Include="data.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
     <ClCompile Include="PenaltyTypeRepository.cpp" />
+    <ClCompile Include="СarManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
-    <ClInclude Include="carManager.h" />
+    <ClInclude Include="СarManager.h" />
     <ClInclude Include="CarRepository.h" />
     <ClInclude Include="data.h" />
     <ClInclude Include="enums.h" />

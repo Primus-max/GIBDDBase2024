@@ -2,7 +2,7 @@
 
 using namespace System;
 
-public ref class PenaltyType
+public ref struct PenaltyType
 {
 public:
 	int id;
