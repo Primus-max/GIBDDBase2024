@@ -3,3 +3,4 @@
 using namespace System::Windows::Forms;
 
 void addCarAtDb(DataGridView^ dataGrid);
+void updateCarAtDb(DataGridView^ dataGrid);

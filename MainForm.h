@@ -466,11 +466,12 @@ namespace GIBDDBase2024 {
 			array<Object^>^ rowData = gcnew array<Object^>(3);
 			rowData[0] = penaltyType->id;
 			rowData[1] = penaltyType->penaltyType;
-			rowData[2] = penaltyType->price;		
+			rowData[2] = penaltyType->price;
 
 			dataGridView->Rows->Add(rowData);
 		}
 	}
+
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
@@ -487,6 +488,7 @@ namespace GIBDDBase2024 {
 		FillPenaltyTypesListView(PenaltyTypesDataGridView, penaltyTypes);
 
 	}
+
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
@@ -498,45 +500,22 @@ namespace GIBDDBase2024 {
 	}
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		addCarAtDb(CarsDataGridView);
-		/*String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+	}
+
+	private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		updateCarAtDb(CarsDataGridView);
+	}
+
+	private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		CarRepository^ carRepos = gcnew CarRepository(connectionString);
 
-		List<Car^>^ cars = gcnew List<Car^>();
-
 		for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
-
 			if (!row->Selected) continue;
-
-			Car^ car = gcnew Car();
-			car->id = Convert::ToInt16(row->Cells[0]->Value);
-			car->brand = row->Cells[1]->Value->ToString();
-			car->length = Convert::ToInt16(row->Cells[2]->Value);
-			car->clearance = Convert::ToInt16(row->Cells[3]->Value);
-			car->engineCapacity = Convert::ToDouble(row->Cells[4]->Value);
-			car->enginePower = Convert::ToInt16(row->Cells[5]->Value);
-			car->wheelDiameter = Convert::ToInt16(row->Cells[6]->Value);
-			car->reg_number = row->Cells[7]->Value->ToString();
-			car->region = Convert::ToInt16(row->Cells[8]->Value);
-			car->color = row->Cells[9]->Value->ToString();
-
-			cars->Add(car);
-			carRepos->Add(car);
-		}*/
+			carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));
+			CarsDataGridView->Rows->Remove(row);
+		}
 	}
 
-private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-
-private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-	CarRepository^ carRepos = gcnew CarRepository(connectionString);	
-
-	for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
-		if (!row->Selected) continue;	
-		carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));		
-		CarsDataGridView->Rows->Remove(row);
-	}
-}
-
-};
+	};
 }
