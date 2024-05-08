@@ -30,12 +30,14 @@
     <ClCompile Include="CarManager.cpp" />
     <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MainFormHelper.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
     <ClCompile Include="PenaltyTypeRepository.cpp" />
     <ClCompile Include="СarManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
+    <ClInclude Include="MainFormHelper.h" />
     <ClInclude Include="СarManager.h" />
     <ClInclude Include="CarRepository.h" />
     <ClInclude Include="data.h" />

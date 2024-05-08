@@ -6,6 +6,7 @@
 #include "PenaltyType.h"
 #include "PenaltyTypeRepository.h"
 #include "ÑarManager.h"
+#include "MainFormHelper.h"
 
 
 using namespace System;
@@ -422,7 +423,7 @@ namespace GIBDDBase2024 {
 		}
 #pragma endregion	
 
-	private: System::Void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
+	/*private: System::Void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
 	{
 		dataGridView->Rows->Clear();
 
@@ -443,8 +444,8 @@ namespace GIBDDBase2024 {
 
 			dataGridView->Rows->Add(rowData);
 		}
-	}
-	private: System::Void FillPenaltiesListView(DataGridView^ dataGridView, List<Penalty^>^ penalties) {
+	}*/
+	/*private: System::Void FillPenaltiesListView(DataGridView^ dataGridView, List<Penalty^>^ penalties) {
 		dataGridView->Rows->Clear();
 
 		for each (Penalty ^ penalty in penalties)
@@ -457,55 +458,46 @@ namespace GIBDDBase2024 {
 
 			dataGridView->Rows->Add(rowData);
 		}
-	}
-	private: System::Void FillPenaltyTypesListView(DataGridView^ dataGridView, List<PenaltyType^>^ penaltyTypes) {
-		dataGridView->Rows->Clear();
+	}*/
 
-		for each (PenaltyType ^ penaltyType in penaltyTypes)
-		{
-			array<Object^>^ rowData = gcnew array<Object^>(3);
-			rowData[0] = penaltyType->id;
-			rowData[1] = penaltyType->penaltyType;
-			rowData[2] = penaltyType->price;
+	//private: System::Void FillPenaltyTypesListView(DataGridView^ dataGridView, List<PenaltyType^>^ penaltyTypes) {
+	//	dataGridView->Rows->Clear();
 
-			dataGridView->Rows->Add(rowData);
-		}
-	}
+	//	for each (PenaltyType ^ penaltyType in penaltyTypes)
+	//	{
+	//		array<Object^>^ rowData = gcnew array<Object^>(3);
+	//		rowData[0] = penaltyType->id;
+	//		rowData[1] = penaltyType->penaltyType;
+	//		rowData[2] = penaltyType->price;
+
+	//		dataGridView->Rows->Add(rowData);
+	//	}
+	//}
 
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
-
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		CarRepository^ carRepos = gcnew CarRepository(connectionString);
-		List<Car^>^ cars = carRepos->GetAll();
-		FillCarListView(CarsDataGridView, cars);
-
-		PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
-		List<Penalty^>^ penalties = penaltyRepos->GetAll();
-		FillPenaltiesListView(PenaltiesDataGridView, penalties);
-
-		PenaltyTypeRepository^ penaltyTypeRepos = gcnew PenaltyTypeRepository(connectionString);
-		List<PenaltyType^>^ penaltyTypes = penaltyTypeRepos->GetAll();
-		FillPenaltyTypesListView(PenaltyTypesDataGridView, penaltyTypes);
-
+		
+		FillCarListView(CarsDataGridView);		
+		FillPenaltiesListView(PenaltiesDataGridView);		
+		FillPenaltyTypesListView(PenaltyTypesDataGridView);
 	}
 
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+	/*	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 		PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
 
 		List<Penalty^>^ penalties = penaltyRepos->GetAll();
-		FillPenaltiesListView(PenaltiesDataGridView, penalties);
+		FillPenaltiesListView(PenaltiesDataGridView, penalties);*/
 
 	}
+
+
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		addCarAtDb(CarsDataGridView);
 	}
-
 	private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		updateCarAtDb(CarsDataGridView);
 	}
-
 	private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		deleteCarAtDb(CarsDataGridView);
 	}
