@@ -78,8 +78,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 
 void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 {
-	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	//@penalty_type, @price
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);	
 	String^ queryUpdate = "UPDATE [penalty_types] SET penalty_type = @penalty_type, price = @price WHERE id = @id";
 	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryUpdate, connection);
 

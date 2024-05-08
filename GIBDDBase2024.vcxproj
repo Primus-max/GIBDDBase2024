@@ -55,6 +55,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\GIBDDBase_2024_C\Task.MD" />
     <None Include="sqlite3.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

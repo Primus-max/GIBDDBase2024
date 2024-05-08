@@ -48,8 +48,9 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::TabControl^ CarTabControl;
 	private: System::Windows::Forms::TabPage^ CarTabPage;
 	private: System::Windows::Forms::TabPage^ PenaltiesTabPage;
+	private: System::Windows::Forms::Button^ AddCarBatton;
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::DataGridView^ CarsDataGridView;
 
 
@@ -88,12 +89,22 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyTypeId;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type_price;
+	private: System::Windows::Forms::ToolTip^ toolTip1;
+	private: System::Windows::Forms::Button^ DeleteCarBtn;
+
+	private: System::Windows::Forms::Button^ UpdateCarBtn;
+	private: System::Windows::Forms::Label^ label1;
+
+
+
+
+	private: System::ComponentModel::IContainer^ components;
 
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -102,9 +113,14 @@ namespace GIBDDBase2024 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			this->components = (gcnew System::ComponentModel::Container());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->DeleteCarBtn = (gcnew System::Windows::Forms::Button());
+			this->UpdateCarBtn = (gcnew System::Windows::Forms::Button());
 			this->CarsDataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -116,7 +132,7 @@ namespace GIBDDBase2024 {
 			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->AddCarBatton = (gcnew System::Windows::Forms::Button());
 			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->PenaltiesDataGridView = (gcnew System::Windows::Forms::DataGridView());
@@ -130,6 +146,7 @@ namespace GIBDDBase2024 {
 			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -153,8 +170,11 @@ namespace GIBDDBase2024 {
 			// 
 			// CarTabPage
 			// 
+			this->CarTabPage->Controls->Add(this->label1);
+			this->CarTabPage->Controls->Add(this->DeleteCarBtn);
+			this->CarTabPage->Controls->Add(this->UpdateCarBtn);
 			this->CarTabPage->Controls->Add(this->CarsDataGridView);
-			this->CarTabPage->Controls->Add(this->button1);
+			this->CarTabPage->Controls->Add(this->AddCarBatton);
 			this->CarTabPage->Location = System::Drawing::Point(4, 22);
 			this->CarTabPage->Name = L"CarTabPage";
 			this->CarTabPage->Padding = System::Windows::Forms::Padding(3);
@@ -162,6 +182,35 @@ namespace GIBDDBase2024 {
 			this->CarTabPage->TabIndex = 0;
 			this->CarTabPage->Text = L"Авто";
 			this->CarTabPage->UseVisualStyleBackColor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(520, 6);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(526, 39);
+			this->label1->TabIndex = 6;
+			this->label1->Text = resources->GetString(L"label1.Text");
+			// 
+			// DeleteCarBtn
+			// 
+			this->DeleteCarBtn->Location = System::Drawing::Point(285, 6);
+			this->DeleteCarBtn->Name = L"DeleteCarBtn";
+			this->DeleteCarBtn->Size = System::Drawing::Size(135, 23);
+			this->DeleteCarBtn->TabIndex = 5;
+			this->DeleteCarBtn->Text = L"Удалить";
+			this->DeleteCarBtn->UseVisualStyleBackColor = true;
+			this->DeleteCarBtn->Click += gcnew System::EventHandler(this, &MainForm::DeleteCarBtn_Click);
+			// 
+			// UpdateCarBtn
+			// 
+			this->UpdateCarBtn->Location = System::Drawing::Point(144, 6);
+			this->UpdateCarBtn->Name = L"UpdateCarBtn";
+			this->UpdateCarBtn->Size = System::Drawing::Size(135, 23);
+			this->UpdateCarBtn->TabIndex = 4;
+			this->UpdateCarBtn->Text = L"Обновить";
+			this->UpdateCarBtn->UseVisualStyleBackColor = true;
+			this->UpdateCarBtn->Click += gcnew System::EventHandler(this, &MainForm::UpdateCarBtn_Click);
 			// 
 			// CarsDataGridView
 			// 
@@ -171,9 +220,9 @@ namespace GIBDDBase2024 {
 					this->brand, this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region,
 					this->color
 			});
-			this->CarsDataGridView->Location = System::Drawing::Point(3, 85);
+			this->CarsDataGridView->Location = System::Drawing::Point(3, 48);
 			this->CarsDataGridView->Name = L"CarsDataGridView";
-			this->CarsDataGridView->Size = System::Drawing::Size(1047, 572);
+			this->CarsDataGridView->Size = System::Drawing::Size(1047, 609);
 			this->CarsDataGridView->TabIndex = 3;
 			// 
 			// id
@@ -227,15 +276,15 @@ namespace GIBDDBase2024 {
 			this->color->HeaderText = L"Цвет";
 			this->color->Name = L"color";
 			// 
-			// button1
+			// AddCarBatton
 			// 
-			this->button1->Location = System::Drawing::Point(269, 26);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(471, 23);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"Сохранить";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
+			this->AddCarBatton->Location = System::Drawing::Point(3, 6);
+			this->AddCarBatton->Name = L"AddCarBatton";
+			this->AddCarBatton->Size = System::Drawing::Size(135, 23);
+			this->AddCarBatton->TabIndex = 1;
+			this->AddCarBatton->Text = L"Сохранить";
+			this->AddCarBatton->UseVisualStyleBackColor = true;
+			this->AddCarBatton->Click += gcnew System::EventHandler(this, &MainForm::AddCarButton_Click);
 			// 
 			// PenaltiesTabPage
 			// 
@@ -282,8 +331,8 @@ namespace GIBDDBase2024 {
 			// 
 			// date_p
 			// 
-			dataGridViewCellStyle2->NullValue = nullptr;
-			this->date_p->DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle1->NullValue = nullptr;
+			this->date_p->DefaultCellStyle = dataGridViewCellStyle1;
 			this->date_p->HeaderText = L"Дата";
 			this->date_p->Name = L"date_p";
 			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
@@ -349,6 +398,10 @@ namespace GIBDDBase2024 {
 			this->penalty_type_price->HeaderText = L"Стоимость";
 			this->penalty_type_price->Name = L"penalty_type_price";
 			// 
+			// toolTip1
+			// 
+			this->toolTip1->ToolTipTitle = L"ЛОРДЛОРДЛОРДЛОР";
+			// 
 			// MainForm
 			// 
 			this->ClientSize = System::Drawing::Size(1060, 685);
@@ -357,6 +410,7 @@ namespace GIBDDBase2024 {
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Loaded);
 			this->CarTabControl->ResumeLayout(false);
 			this->CarTabPage->ResumeLayout(false);
+			this->CarTabPage->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->EndInit();
 			this->PenaltiesTabPage->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltiesDataGridView))->EndInit();
@@ -403,7 +457,6 @@ namespace GIBDDBase2024 {
 			dataGridView->Rows->Add(rowData);
 		}
 	}
-
 	private: System::Void FillPenaltyTypesListView(DataGridView^ dataGridView, List<PenaltyType^>^ penaltyTypes) {
 		dataGridView->Rows->Clear();
 
@@ -433,14 +486,25 @@ namespace GIBDDBase2024 {
 		FillPenaltyTypesListView(PenaltyTypesDataGridView, penaltyTypes);
 
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		//String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		//CarRepository^ carRepos = gcnew CarRepository(connectionString);
+		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
 
-		/*List<Car^>^ cars = gcnew List<Car^>();
+		List<Penalty^>^ penalties = penaltyRepos->GetAll();
+		FillPenaltiesListView(PenaltiesDataGridView, penalties);
+
+	}
+	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+		CarRepository^ carRepos = gcnew CarRepository(connectionString);
+
+		List<Car^>^ cars = gcnew List<Car^>();
 
 		for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
+
+			if (!row->Selected) continue;
+
 			Car^ car = gcnew Car();
 			car->id = Convert::ToInt16(row->Cells[0]->Value);
 			car->brand = row->Cells[1]->Value->ToString();
@@ -454,35 +518,22 @@ namespace GIBDDBase2024 {
 			car->color = row->Cells[9]->Value->ToString();
 
 			cars->Add(car);
-			carRepos->Delete(car->id);
-		}*/
-
-		/*OleDbConnection^ conn = gcnew OleDbConnection(connectionString);
-		String^ query = "CREATE TABLE [penalty_types] (id int , penalty_type Text not null)";
-		OleDbCommand^ comm = gcnew OleDbCommand(query, conn);
-
-		try
-		{
-			conn->Open();
-			comm->ExecuteNonQuery();
+			carRepos->Update(car);
 		}
-		catch (OleDbException^ ex)
-		{
-			MessageBox::Show(ex->Message);
-		}
-		finally {
-			conn->Close();
-		}*/
-	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
-
-		List<Penalty^>^ penalties = penaltyRepos->GetAll();
-		FillPenaltiesListView(PenaltiesDataGridView, penalties);
-
 	}
 
-	};
+private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
+	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+	CarRepository^ carRepos = gcnew CarRepository(connectionString);	
+
+	for each (DataGridViewRow ^ row in CarsDataGridView->Rows) {
+		if (!row->Selected) continue;	
+		carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));		
+		CarsDataGridView->Rows->Remove(row);
+	}
+}
+
+};
 }

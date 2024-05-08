@@ -76,5 +76,6 @@
     <None Include="sqlite3.def">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="..\GIBDDBase_2024_C\Task.MD" />
   </ItemGroup>
 </Project>
