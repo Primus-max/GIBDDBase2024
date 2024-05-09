@@ -27,10 +27,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CarManager.cpp" />
     <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="MainFormHelper.cpp" />
+    <ClCompile Include="PenaltyManager.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
     <ClCompile Include="PenaltyTypeRepository.cpp" />
     <ClCompile Include="СarManager.cpp" />
@@ -38,9 +38,9 @@
   <ItemGroup>
     <ClInclude Include="car.h" />
     <ClInclude Include="MainFormHelper.h" />
+    <ClInclude Include="PenaltyManager.h" />
     <ClInclude Include="СarManager.h" />
     <ClInclude Include="CarRepository.h" />
-    <ClInclude Include="data.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
@@ -58,7 +58,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GIBDDBase_2024_C\Task.MD" />
-    <None Include="sqlite3.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

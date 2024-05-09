@@ -2,6 +2,6 @@
 
 using namespace System::Windows::Forms;
 
-void addCarAtDb(DataGridView^ dataGrid);
-void updateCarAtDb(DataGridView^ dataGrid);
-void deleteCarAtDb(DataGridView^ dataGrid);
+void AddCarAtDb(DataGridView^ dataGrid);
+void UpdateCarAtDb(DataGridView^ dataGrid);
+void DeleteCarAtDb(DataGridView^ dataGrid);

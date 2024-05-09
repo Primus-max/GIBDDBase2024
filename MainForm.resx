@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="DescriptionControlsCars.Text" xml:space="preserve">
     <value>1. Для добавления авто, заполнить ячейки, выделить всю строку и нажать кнопку "сохранить"
 2. Для обновления авто, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"
 3. Для удаления авто, выделить всю строку и нажать "удалить"   </value>
@@ -146,6 +146,11 @@
   <metadata name="color.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="DescriptionControlsPenalties.Text" xml:space="preserve">
+    <value>1. Для добавления авто, заполнить ячейки, выделить всю строку и нажать кнопку "сохранить"
+2. Для обновления авто, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"
+3. Для удаления авто, выделить всю строку и нажать "удалить"   </value>
+  </data>
   <metadata name="penalty_type.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -169,8 +174,5 @@
   </metadata>
   <metadata name="penalty_type_price.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
   </metadata>
 </root>

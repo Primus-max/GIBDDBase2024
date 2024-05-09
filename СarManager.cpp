@@ -4,7 +4,7 @@
 using namespace System;
 using namespace System::Collections::Generic;
 
-void addCarAtDb(DataGridView^ dataGrid)
+void AddCarAtDb(DataGridView^ dataGrid)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);	
@@ -13,7 +13,7 @@ void addCarAtDb(DataGridView^ dataGrid)
 
 		if (!row->Selected) continue;
 		if (row->Cells[2] == nullptr) {
-			MessageBox::Show("Для добавлении машины в базу данных, необходимо указать марку", "Ошибка");
+			MessageBox::Show("Для добавления машины в базу данных, необходимо указать марку", "Ошибка");
 			return;
 		}
 			
@@ -33,7 +33,7 @@ void addCarAtDb(DataGridView^ dataGrid)
 	}
 }
 
-void updateCarAtDb(DataGridView^ dataGrid)
+void UpdateCarAtDb(DataGridView^ dataGrid)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
@@ -42,7 +42,7 @@ void updateCarAtDb(DataGridView^ dataGrid)
 
 		if (!row->Selected) continue;
 		if (row->Cells[2] == nullptr) {
-			MessageBox::Show("Для добавлении машины в базу данных, необходимо указать марку", "Ошибка");
+			MessageBox::Show("Для добавления машины в базу данных, необходимо указать марку", "Ошибка");
 			return;
 		}
 
@@ -62,7 +62,7 @@ void updateCarAtDb(DataGridView^ dataGrid)
 	}
 }
 
-void deleteCarAtDb(DataGridView^ dataGrid)
+void DeleteCarAtDb(DataGridView^ dataGrid)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);

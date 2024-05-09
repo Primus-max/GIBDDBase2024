@@ -1,17 +1,6 @@
 #pragma once
-#include "car.h"
-#include "CarRepository.h"
-#include "penalty.h"
-#include "Penaltyrepository.h"
-#include "PenaltyType.h"
-#include "PenaltyTypeRepository.h"
-#include "ÑarManager.h"
 #include "MainFormHelper.h"
-
-
-using namespace System;
-using namespace System::Collections::Generic;
-using namespace System::Data::OleDb;
+#include "ÑarManager.h"
 
 namespace GIBDDBase2024 {
 
@@ -54,14 +43,6 @@ namespace GIBDDBase2024 {
 
 
 	private: System::Windows::Forms::DataGridView^ CarsDataGridView;
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reg_number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
@@ -76,9 +57,6 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridView^ PenaltiesDataGridView;
 
 
-
-
-
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
@@ -91,11 +69,12 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyTypeId;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyType;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type_price;
-	private: System::Windows::Forms::ToolTip^ toolTip1;
+
 	private: System::Windows::Forms::Button^ DeleteCarBtn;
 
 	private: System::Windows::Forms::Button^ UpdateCarBtn;
-	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::Label^ DescriptionControlsCars;
+	private: System::Windows::Forms::Label^ DescriptionControlsPenalties;
 
 
 
@@ -115,12 +94,11 @@ namespace GIBDDBase2024 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->DescriptionControlsCars = (gcnew System::Windows::Forms::Label());
 			this->DeleteCarBtn = (gcnew System::Windows::Forms::Button());
 			this->UpdateCarBtn = (gcnew System::Windows::Forms::Button());
 			this->CarsDataGridView = (gcnew System::Windows::Forms::DataGridView());
@@ -148,7 +126,7 @@ namespace GIBDDBase2024 {
 			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
+			this->DescriptionControlsPenalties = (gcnew System::Windows::Forms::Label());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -172,7 +150,7 @@ namespace GIBDDBase2024 {
 			// 
 			// CarTabPage
 			// 
-			this->CarTabPage->Controls->Add(this->label1);
+			this->CarTabPage->Controls->Add(this->DescriptionControlsCars);
 			this->CarTabPage->Controls->Add(this->DeleteCarBtn);
 			this->CarTabPage->Controls->Add(this->UpdateCarBtn);
 			this->CarTabPage->Controls->Add(this->CarsDataGridView);
@@ -185,14 +163,14 @@ namespace GIBDDBase2024 {
 			this->CarTabPage->Text = L"Àâòî";
 			this->CarTabPage->UseVisualStyleBackColor = true;
 			// 
-			// label1
+			// DescriptionControlsCars
 			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(520, 6);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(526, 39);
-			this->label1->TabIndex = 6;
-			this->label1->Text = resources->GetString(L"label1.Text");
+			this->DescriptionControlsCars->AutoSize = true;
+			this->DescriptionControlsCars->Location = System::Drawing::Point(523, 11);
+			this->DescriptionControlsCars->Name = L"DescriptionControlsCars";
+			this->DescriptionControlsCars->Size = System::Drawing::Size(526, 39);
+			this->DescriptionControlsCars->TabIndex = 6;
+			this->DescriptionControlsCars->Text = resources->GetString(L"DescriptionControlsCars.Text");
 			// 
 			// DeleteCarBtn
 			// 
@@ -222,9 +200,9 @@ namespace GIBDDBase2024 {
 					this->brand, this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region,
 					this->color
 			});
-			this->CarsDataGridView->Location = System::Drawing::Point(3, 48);
+			this->CarsDataGridView->Location = System::Drawing::Point(3, 59);
 			this->CarsDataGridView->Name = L"CarsDataGridView";
-			this->CarsDataGridView->Size = System::Drawing::Size(1047, 609);
+			this->CarsDataGridView->Size = System::Drawing::Size(1047, 598);
 			this->CarsDataGridView->TabIndex = 3;
 			// 
 			// id
@@ -290,6 +268,7 @@ namespace GIBDDBase2024 {
 			// 
 			// PenaltiesTabPage
 			// 
+			this->PenaltiesTabPage->Controls->Add(this->DescriptionControlsPenalties);
 			this->PenaltiesTabPage->Controls->Add(this->button2);
 			this->PenaltiesTabPage->Controls->Add(this->PenaltiesDataGridView);
 			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
@@ -302,9 +281,9 @@ namespace GIBDDBase2024 {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(834, 6);
+			this->button2->Location = System::Drawing::Point(8, 89);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(212, 97);
+			this->button2->Size = System::Drawing::Size(212, 24);
 			this->button2->TabIndex = 1;
 			this->button2->Text = L"Ïîèñê";
 			this->button2->UseVisualStyleBackColor = true;
@@ -318,10 +297,9 @@ namespace GIBDDBase2024 {
 				this->penalty_type,
 					this->date_p, this->amount, this->carId, this->reason
 			});
-			this->PenaltiesDataGridView->Dock = System::Windows::Forms::DockStyle::Left;
-			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 3);
+			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 119);
 			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
-			this->PenaltiesDataGridView->Size = System::Drawing::Size(809, 653);
+			this->PenaltiesDataGridView->Size = System::Drawing::Size(1046, 537);
 			this->PenaltiesDataGridView->TabIndex = 0;
 			// 
 			// penalty_type
@@ -400,9 +378,14 @@ namespace GIBDDBase2024 {
 			this->penalty_type_price->HeaderText = L"Ñòîèìîñòü";
 			this->penalty_type_price->Name = L"penalty_type_price";
 			// 
-			// toolTip1
+			// DescriptionControlsPenalties
 			// 
-			this->toolTip1->ToolTipTitle = L"ËÎÐÄËÎÐÄËÎÐÄËÎÐ";
+			this->DescriptionControlsPenalties->AutoSize = true;
+			this->DescriptionControlsPenalties->Location = System::Drawing::Point(523, 18);
+			this->DescriptionControlsPenalties->Name = L"DescriptionControlsPenalties";
+			this->DescriptionControlsPenalties->Size = System::Drawing::Size(526, 39);
+			this->DescriptionControlsPenalties->TabIndex = 7;
+			this->DescriptionControlsPenalties->Text = resources->GetString(L"DescriptionControlsPenalties.Text");
 			// 
 			// MainForm
 			// 
@@ -415,6 +398,7 @@ namespace GIBDDBase2024 {
 			this->CarTabPage->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->EndInit();
 			this->PenaltiesTabPage->ResumeLayout(false);
+			this->PenaltiesTabPage->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltiesDataGridView))->EndInit();
 			this->PenaltyTypes->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltyTypesDataGridView))->EndInit();
@@ -423,84 +407,38 @@ namespace GIBDDBase2024 {
 		}
 #pragma endregion	
 
-	/*private: System::Void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
-	{
-		dataGridView->Rows->Clear();
-
-		for each (Car ^ car in cars)
-		{
-			array<Object^>^ rowData = gcnew array<Object^>(10);
-
-			rowData[0] = car->id;
-			rowData[1] = car->brand;
-			rowData[2] = car->length;
-			rowData[3] = car->clearance;
-			rowData[4] = car->engineCapacity;
-			rowData[5] = car->enginePower;
-			rowData[6] = car->wheelDiameter;
-			rowData[7] = car->reg_number;
-			rowData[8] = car->region;
-			rowData[9] = car->color;
-
-			dataGridView->Rows->Add(rowData);
-		}
-	}*/
-	/*private: System::Void FillPenaltiesListView(DataGridView^ dataGridView, List<Penalty^>^ penalties) {
-		dataGridView->Rows->Clear();
-
-		for each (Penalty ^ penalty in penalties)
-		{
-			array<Object^>^ rowData = gcnew array<Object^>(4);
-			rowData[0] = penalty->penaltyType;
-			rowData[1] = penalty->datP;
-			rowData[2] = penalty->amount;
-			rowData[3] = penalty->carId;
-
-			dataGridView->Rows->Add(rowData);
-		}
-	}*/
-
-	//private: System::Void FillPenaltyTypesListView(DataGridView^ dataGridView, List<PenaltyType^>^ penaltyTypes) {
-	//	dataGridView->Rows->Clear();
-
-	//	for each (PenaltyType ^ penaltyType in penaltyTypes)
-	//	{
-	//		array<Object^>^ rowData = gcnew array<Object^>(3);
-	//		rowData[0] = penaltyType->id;
-	//		rowData[1] = penaltyType->penaltyType;
-	//		rowData[2] = penaltyType->price;
-
-	//		dataGridView->Rows->Add(rowData);
-	//	}
-	//}
-
 	private: System::Void MainForm_Loaded(System::Object^ sender, System::EventArgs^ e) {
-		
-		FillCarListView(CarsDataGridView);		
-		FillPenaltiesListView(PenaltiesDataGridView);		
+
+		FillCarListView(CarsDataGridView);
+		FillPenaltiesListView(PenaltiesDataGridView);
 		FillPenaltyTypesListView(PenaltyTypesDataGridView);
 	}
-
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	/*	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-		PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
+		/*	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+			PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
 
-		List<Penalty^>^ penalties = penaltyRepos->GetAll();
-		FillPenaltiesListView(PenaltiesDataGridView, penalties);*/
+			List<Penalty^>^ penalties = penaltyRepos->GetAll();
+			FillPenaltiesListView(PenaltiesDataGridView, penalties);*/
 
 	}
 
-
+#pragma region CRUD àâòî
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		addCarAtDb(CarsDataGridView);
+		AddCarAtDb(CarsDataGridView);
 	}
 	private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		updateCarAtDb(CarsDataGridView);
+		UpdateCarAtDb(CarsDataGridView);
 	}
 	private: System::Void DeleteCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
-		deleteCarAtDb(CarsDataGridView);
+		DeleteCarAtDb(CarsDataGridView);
 	}
+#pragma endregion
+
+#pragma region CRUD Øòðàôû
+
+#pragma endregion
+
 
 	};
 }

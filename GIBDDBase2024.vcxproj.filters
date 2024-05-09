@@ -36,14 +36,14 @@
     <ClCompile Include="PenaltyTypeRepository.cpp">
       <Filter>Исходные файлы\Repositories</Filter>
     </ClCompile>
-    <ClCompile Include="СarManager.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="CarManager.cpp">
-      <Filter>Исходные файлы\Managers</Filter>
-    </ClCompile>
     <ClCompile Include="MainFormHelper.cpp">
       <Filter>Исходные файлы\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="PenaltyManager.cpp">
+      <Filter>Исходные файлы\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="СarManager.cpp">
+      <Filter>Исходные файлы\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +65,6 @@
     <ClInclude Include="СarManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="data.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="CarRepository.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -83,11 +80,11 @@
     <ClInclude Include="MainFormHelper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="PenaltyManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="sqlite3.def">
-      <Filter>Исходные файлы</Filter>
-    </None>
     <None Include="..\GIBDDBase_2024_C\Task.MD" />
   </ItemGroup>
 </Project>

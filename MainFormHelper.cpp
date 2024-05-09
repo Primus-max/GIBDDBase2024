@@ -30,7 +30,6 @@ void FillCarListView(DataGridView^ dataGridView)
 		dataGridView->Rows->Add(rowData);
 	}
 }
-
 void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
@@ -50,7 +49,6 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 		PenaltiesDataGridView->Rows->Add(rowData);
 	}
 }
-
 void FillPenaltyTypesListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
@@ -69,3 +67,5 @@ void FillPenaltyTypesListView(DataGridView^ dataGridView)
 		dataGridView->Rows->Add(rowData);
 	}
 }
+
+
