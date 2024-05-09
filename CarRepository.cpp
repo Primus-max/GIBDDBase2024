@@ -251,14 +251,60 @@ List<Car^>^ CarRepository::FindByColor(String^ color)
 	}
 }
 
-List<Car^>^ CarRepository::FindByEngineVolume(String^ volume)
+List<Car^>^ CarRepository::FindByEngineVolume(double volume)
 {
 	List<Car^>^ cars = gcnew List<Car^>();
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	String^ queryGet = "SELECT * FROM cars WHERE cars.volume = @volume";
+	String^ queryGet = "SELECT * FROM cars WHERE cars.engine_capacity = @volume";
 	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
 
 	commandGet->Parameters->AddWithValue("@volume", volume);
+
+	try
+	{
+		connection->Open();
+		OleDbDataReader^ reader = commandGet->ExecuteReader();
+
+		while (reader->Read())
+		{
+			Car^ car = gcnew Car();
+			car->id = Convert::ToInt32(reader["id"]);
+			car->brand = reader["brand"]->ToString();
+			car->length = Convert::ToInt16(reader["length"]);
+			car->clearance = Convert::ToInt16(reader["clearance"]);
+			car->engineCapacity = Convert::ToDouble(reader["engine_capacity"]);
+			car->enginePower = Convert::ToInt16(reader["engine_power"]);
+			car->wheelDiameter = Convert::ToInt16(reader["wheel_diameter"]);
+			car->reg_number = reader["reg_number"]->ToString();
+			car->region = Convert::ToInt16(reader["region"]);
+			car->color = reader["color"]->ToString();
+
+			cars->Add(car);
+		}
+
+		return cars;
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+	}
+
+	finally
+	{
+		connection->Close();
+	}
+}
+
+List<Car^>^ CarRepository::FindByNumbersPenalties(int quantity)
+{
+
+	List<Car^>^ cars = gcnew List<Car^>();
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT * FROM cars WHERE id IN (SELECT car FROM penalty GROUP BY car HAVING COUNT(*) = @quantity)";
+	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
+
+	commandGet->Parameters->AddWithValue("@quantity", quantity);
 
 	try
 	{

@@ -17,6 +17,7 @@ public: CarRepository(String^ connStr);
 
 	  List<Car^>^ FindByNumber(String^ number);
 	  List<Car^>^ FindByColor(String^ color);
-	  List<Car^>^ FindByEngineVolume(String^ volume);
+	  List<Car^>^ FindByEngineVolume(double volume);
+	  List<Car^>^ FindByNumbersPenalties(int quantity);
 };
 

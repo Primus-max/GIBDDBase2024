@@ -93,8 +93,9 @@ void FillSearchParameters(ComboBox^ comboBox)
 {
 	array<String^>^ searchParameters = gcnew array<String^> {
 		"Номер машины",
-			"Цвет машины",
-			"Объем двигателя"
+		"Цвет машины",
+		"Объем двигателя",
+		"С кол-вом штрафов X"
 	};
 
 	comboBox->DropDownStyle = ComboBoxStyle::DropDownList;

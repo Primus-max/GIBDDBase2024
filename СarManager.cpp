@@ -88,8 +88,9 @@ List<Car^>^ Find(String^ searchValue, int searchType)
 	case 1:
 		return carRepos->FindByColor(searchValue);
 	case 2:
-		return carRepos->FindByEngineVolume(searchValue);
-		// ƒобавь другие варианты поиска
+		return carRepos->FindByEngineVolume(Convert::ToDouble( searchValue));
+	case 3:
+		return carRepos->FindByNumbersPenalties(Convert::ToInt16(searchValue));		
 	default:
 		// ≈сли тип поиска не определен, возвращаем пустой список
 		return gcnew List<Car^>();
