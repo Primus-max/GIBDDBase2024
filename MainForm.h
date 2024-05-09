@@ -45,16 +45,16 @@ namespace GIBDDBase2024 {
 
 	private: System::Windows::Forms::DataGridView^ CarsDataGridView;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reg_number;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_capacity;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_power;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_diameter;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::DataGridView^ PenaltiesDataGridView;
 
 
@@ -83,6 +83,28 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ carId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_capacity;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_power;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_diameter;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+	private: System::Windows::Forms::DataGridViewComboBoxColumn^ PenaltiesCombobox;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -104,13 +126,29 @@ namespace GIBDDBase2024 {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->DescriptionControlsCars = (gcnew System::Windows::Forms::Label());
 			this->DeleteCarBtn = (gcnew System::Windows::Forms::Button());
 			this->UpdateCarBtn = (gcnew System::Windows::Forms::Button());
 			this->CarsDataGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->AddCarBatton = (gcnew System::Windows::Forms::Button());
+			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
+			this->DeletePenaltyButton = (gcnew System::Windows::Forms::Button());
+			this->UpdatePenaltyBatton = (gcnew System::Windows::Forms::Button());
+			this->AddPenaltyBatton = (gcnew System::Windows::Forms::Button());
+			this->DescriptionControlsPenalties = (gcnew System::Windows::Forms::Label());
+			this->PenaltiesDataGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->penalty_type = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->amount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->carId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PenaltyTypes = (gcnew System::Windows::Forms::TabPage());
+			this->PenaltyTypesDataGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -121,22 +159,7 @@ namespace GIBDDBase2024 {
 			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->AddCarBatton = (gcnew System::Windows::Forms::Button());
-			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
-			this->DeletePenaltyButton = (gcnew System::Windows::Forms::Button());
-			this->UpdatePenaltyBatton = (gcnew System::Windows::Forms::Button());
-			this->AddPenaltyBatton = (gcnew System::Windows::Forms::Button());
-			this->DescriptionControlsPenalties = (gcnew System::Windows::Forms::Label());
-			this->PenaltiesDataGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->PenaltyTypes = (gcnew System::Windows::Forms::TabPage());
-			this->PenaltyTypesDataGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->penalty_type = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->amount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->carId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PenaltiesCombobox = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -205,66 +228,15 @@ namespace GIBDDBase2024 {
 			// CarsDataGridView
 			// 
 			this->CarsDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->CarsDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
+			this->CarsDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(11) {
 				this->id,
 					this->brand, this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region,
-					this->color
+					this->color, this->PenaltiesCombobox
 			});
 			this->CarsDataGridView->Location = System::Drawing::Point(3, 59);
 			this->CarsDataGridView->Name = L"CarsDataGridView";
 			this->CarsDataGridView->Size = System::Drawing::Size(1264, 598);
 			this->CarsDataGridView->TabIndex = 3;
-			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			// 
-			// brand
-			// 
-			this->brand->HeaderText = L"Марка";
-			this->brand->Name = L"brand";
-			// 
-			// length
-			// 
-			this->length->HeaderText = L"Длина (см.)";
-			this->length->Name = L"length";
-			// 
-			// clearance
-			// 
-			this->clearance->HeaderText = L"Просвет (мм.)";
-			this->clearance->Name = L"clearance";
-			// 
-			// engine_capacity
-			// 
-			this->engine_capacity->HeaderText = L"Объём (д./л.)";
-			this->engine_capacity->Name = L"engine_capacity";
-			// 
-			// engine_power
-			// 
-			this->engine_power->HeaderText = L"Мощность (д./лс)";
-			this->engine_power->Name = L"engine_power";
-			// 
-			// wheel_diameter
-			// 
-			this->wheel_diameter->HeaderText = L"Радиус (к.)";
-			this->wheel_diameter->Name = L"wheel_diameter";
-			// 
-			// number
-			// 
-			this->number->HeaderText = L"Номер";
-			this->number->Name = L"number";
-			// 
-			// region
-			// 
-			this->region->HeaderText = L"Регион";
-			this->region->Name = L"region";
-			// 
-			// color
-			// 
-			this->color->HeaderText = L"Цвет";
-			this->color->Name = L"color";
 			// 
 			// AddCarBatton
 			// 
@@ -343,6 +315,36 @@ namespace GIBDDBase2024 {
 			this->PenaltiesDataGridView->Size = System::Drawing::Size(1046, 537);
 			this->PenaltiesDataGridView->TabIndex = 0;
 			// 
+			// penalty_type
+			// 
+			this->penalty_type->HeaderText = L"id штрафа";
+			this->penalty_type->Name = L"penalty_type";
+			this->penalty_type->ReadOnly = true;
+			this->penalty_type->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			// 
+			// date_p
+			// 
+			dataGridViewCellStyle2->NullValue = nullptr;
+			this->date_p->DefaultCellStyle = dataGridViewCellStyle2;
+			this->date_p->HeaderText = L"Дата";
+			this->date_p->Name = L"date_p";
+			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->date_p->Width = 150;
+			// 
+			// amount
+			// 
+			this->amount->HeaderText = L"Сумма";
+			this->amount->Name = L"amount";
+			this->amount->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->amount->Width = 150;
+			// 
+			// carId
+			// 
+			this->carId->HeaderText = L"Авто";
+			this->carId->Name = L"carId";
+			this->carId->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->carId->Width = 150;
+			// 
 			// PenaltyTypes
 			// 
 			this->PenaltyTypes->Controls->Add(this->PenaltyTypesDataGridView);
@@ -383,35 +385,61 @@ namespace GIBDDBase2024 {
 			this->penalty_type_price->HeaderText = L"Стоимость";
 			this->penalty_type_price->Name = L"penalty_type_price";
 			// 
-			// penalty_type
+			// id
 			// 
-			this->penalty_type->HeaderText = L"id штрафа";
-			this->penalty_type->Name = L"penalty_type";
-			this->penalty_type->ReadOnly = true;
-			this->penalty_type->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
 			// 
-			// date_p
+			// brand
 			// 
-			dataGridViewCellStyle4->NullValue = nullptr;
-			this->date_p->DefaultCellStyle = dataGridViewCellStyle4;
-			this->date_p->HeaderText = L"Дата";
-			this->date_p->Name = L"date_p";
-			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->date_p->Width = 150;
+			this->brand->HeaderText = L"Марка";
+			this->brand->Name = L"brand";
 			// 
-			// amount
+			// length
 			// 
-			this->amount->HeaderText = L"Сумма";
-			this->amount->Name = L"amount";
-			this->amount->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->amount->Width = 150;
+			this->length->HeaderText = L"Длина (см.)";
+			this->length->Name = L"length";
 			// 
-			// carId
+			// clearance
 			// 
-			this->carId->HeaderText = L"Авто";
-			this->carId->Name = L"carId";
-			this->carId->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-			this->carId->Width = 150;
+			this->clearance->HeaderText = L"Просвет (мм.)";
+			this->clearance->Name = L"clearance";
+			// 
+			// engine_capacity
+			// 
+			this->engine_capacity->HeaderText = L"Объём (д./л.)";
+			this->engine_capacity->Name = L"engine_capacity";
+			// 
+			// engine_power
+			// 
+			this->engine_power->HeaderText = L"Мощность (д./лс)";
+			this->engine_power->Name = L"engine_power";
+			// 
+			// wheel_diameter
+			// 
+			this->wheel_diameter->HeaderText = L"Радиус (к.)";
+			this->wheel_diameter->Name = L"wheel_diameter";
+			// 
+			// number
+			// 
+			this->number->HeaderText = L"Номер";
+			this->number->Name = L"number";
+			// 
+			// region
+			// 
+			this->region->HeaderText = L"Регион";
+			this->region->Name = L"region";
+			// 
+			// color
+			// 
+			this->color->HeaderText = L"Цвет";
+			this->color->Name = L"color";
+			// 
+			// PenaltiesCombobox
+			// 
+			this->PenaltiesCombobox->HeaderText = L"Штрафы";
+			this->PenaltiesCombobox->Name = L"PenaltiesCombobox";
 			// 
 			// MainForm
 			// 

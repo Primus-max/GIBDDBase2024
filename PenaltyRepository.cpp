@@ -126,6 +126,34 @@ List<Penalty^>^ PenaltyRepository::GetAllForCar(int cardId)
 	}
 }
 
+double PenaltyRepository::GetAmountPenaltiesByCarId(int cardId)
+{
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT SUM(amount) AS a FROM [penalty] WHERE car=@car";
+	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
+
+	commandGet->Parameters->AddWithValue("@car", cardId);
+
+	try
+	{
+		connection->Open();
+		OleDbDataReader^ reader = commandGet->ExecuteReader();		
+
+		double sumPenalties = Convert::ToDouble(reader);
+		return sumPenalties;
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при получении всех штрафов для авто: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+		return -1;
+	}
+	finally
+	{
+		connection->Close();
+	}
+}
+
 void PenaltyRepository::Update(Penalty^ penalty)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);

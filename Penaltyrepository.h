@@ -13,6 +13,7 @@ public: PenaltyRepository(String^ connStr);
 	  void Add(Penalty^ penalty);
 	  List<Penalty^>^ GetAll();
 	  List<Penalty^>^ GetAllForCar(int cardId);
+	  double GetAmountPenaltiesByCarId(int cardId);
 	  void Update(Penalty^ penalty);
 	  bool Delete(int id);
 };

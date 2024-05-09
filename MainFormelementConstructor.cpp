@@ -1,19 +1,16 @@
 #include "MainFormelementConstructor.h"
 
-void AddCarPenaltiesColumn(DataGridView^ dataGridView, List<PenaltyType^>^ penaltyTypes)
+void FillCarPenaltiesComboBox(DataGridViewComboBoxCell^ comboBoxCell, List<PenaltyType^>^ carPenaltyTypes)
 {
-	DataGridViewComboBoxColumn^ comboBox = gcnew DataGridViewComboBoxColumn();
-
-	comboBox->HeaderText = "Штрафы";
-	comboBox->Width = 200;
-
-	for each (PenaltyType^ penType in penaltyTypes)	{
-		comboBox->Items->Add(penType->penaltyType);
-	}
-	
-	// Отображение первого элемента	
-	if (comboBox->Items->Count > 0)	
-		comboBox->DefaultCellStyle->NullValue = comboBox->Items[0];
-	
-	dataGridView->Columns->Add(comboBox);	
+    // Очищаем предыдущие элементы комбобокса
+    comboBoxCell->Items->Clear();
+       
+    // Добавляем типы штрафов в комбобокс
+    for each (PenaltyType ^ penType in carPenaltyTypes)    
+        comboBoxCell->Items->Add(penType->penaltyType);
+    
+    // Отображаем первый элемент, если он есть
+    if (comboBoxCell->Items->Count > 0)
+        comboBoxCell->Value = comboBoxCell->Items[0];
 }
+

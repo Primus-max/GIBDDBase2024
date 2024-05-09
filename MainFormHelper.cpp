@@ -10,8 +10,6 @@ void FillCarListView(DataGridView^ dataGridView)
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 
 	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);
-	List<PenaltyType^>^ penaltyTypes = penaltyTypesRepos->GetAll();
-	AddCarPenaltiesColumn(dataGridView, penaltyTypes);
 
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Car^>^ cars = carRepos->GetAll();
@@ -33,9 +31,14 @@ void FillCarListView(DataGridView^ dataGridView)
 		rowData[8] = car->region;
 		rowData[9] = car->color;
 
-		dataGridView->Rows->Add(rowData);
+		int rowIndex = dataGridView->Rows->Add(rowData); 
+		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);
+
+		List<PenaltyType^>^ carPenaltyTypes = penaltyTypesRepos->GetAllTypesByCarId(car->id);
+		FillCarPenaltiesComboBox(comboBoxCell, carPenaltyTypes);
 	}
 }
+
 void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
