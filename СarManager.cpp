@@ -75,3 +75,84 @@ void DeleteCarAtDb(DataGridView^ dataGrid)
 			dataGrid->Rows->Remove(row);
 	}
 }
+
+List<Car^>^ Find(String^ searchValue, int searchType)
+{
+	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+	CarRepository^ carRepos = gcnew CarRepository(connectionString);
+
+	switch (searchType)
+	{
+	case 0:
+		return carRepos->FindByNumber(searchValue);
+	case 1:
+		return carRepos->FindByColor(searchValue);
+	case 2:
+		return carRepos->FindByEngineVolume(searchValue);
+		// Добавь другие варианты поиска
+	default:
+		// Если тип поиска не определен, возвращаем пустой список
+		return gcnew List<Car^>();
+	}
+}
+
+//
+//List<Car^>^ FindByNumber(DataGridView^ dataGrid, String^ number)
+//{
+//	List<Car^>^ foundCars = gcnew List<Car^>();
+//	for each (DataGridViewRow ^ row in dataGrid->Rows)
+//	{
+//		if (row->Cells["number"]->Value != nullptr && row->Cells["number"]->Value->ToString() == number)
+//		{
+//			Car^ car = gcnew Car();
+//			car->id = Convert::ToInt32( row->Cells["id"]);
+//			car->reg_number = number;			
+//			car->color = row->Cells["color"]->Value->ToString();
+//			car->engineVolume = Convert::ToInt32(row->Cells["EngineVolume"]->Value);
+//
+//
+//			foundCars->Add(car);
+//		}
+//	}
+//	return foundCars;
+//}
+//
+//List<Car^>^ FindByColor(DataGridView^ dataGrid, String^ color)
+//{
+//	List<Car^>^ foundCars = gcnew List<Car^>();
+//	for each (DataGridViewRow ^ row in dataGrid->Rows)
+//	{
+//		if (row->Cells["Color"]->Value != nullptr && row->Cells["Color"]->Value->ToString() == color)
+//		{
+//			Car^ car = gcnew Car();
+//			car->Color = color;
+//			// Заполните остальные поля машины на основе данных из DataGridView
+//			// Например:
+//			car->Number = row->Cells["Number"]->Value->ToString();
+//			car->EngineVolume = Convert::ToInt32(row->Cells["EngineVolume"]->Value);
+//			// Добавляем найденную машину в список
+//			foundCars->Add(car);
+//		}
+//	}
+//	return foundCars;
+//}
+//
+//List<Car^>^ FindByEngineVolume(DataGridView^ dataGrid, int volume)
+//{
+//	List<Car^>^ foundCars = gcnew List<Car^>();
+//	for each (DataGridViewRow ^ row in dataGrid->Rows)
+//	{
+//		if (row->Cells["EngineVolume"]->Value != nullptr && Convert::ToInt32(row->Cells["EngineVolume"]->Value) == volume)
+//		{
+//			Car^ car = gcnew Car();
+//			car->EngineVolume = volume;
+//			// Заполните остальные поля машины на основе данных из DataGridView
+//			// Например:
+//			car->Number = row->Cells["Number"]->Value->ToString();
+//			car->Color = row->Cells["Color"]->Value->ToString();
+//			// Добавляем найденную машину в список
+//			foundCars->Add(car);
+//		}
+//	}
+//	return foundCars;
+//}

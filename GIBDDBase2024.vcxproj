@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
+    <ClInclude Include="ICarSearchable.h" />
     <ClInclude Include="InfoMessageService.h" />
     <ClInclude Include="MainFormelementConstructor.h" />
     <ClInclude Include="MainFormHelper.h" />

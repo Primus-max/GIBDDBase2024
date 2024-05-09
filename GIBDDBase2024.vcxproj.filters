@@ -101,6 +101,9 @@
     <ClInclude Include="MainFormelementConstructor.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="ICarSearchable.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GIBDDBase_2024_C\Task.MD" />

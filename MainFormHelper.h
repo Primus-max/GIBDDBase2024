@@ -9,3 +9,4 @@ using namespace System::Collections::Generic;
 void FillCarListView(DataGridView^ dataGridView); 
 void FillPenaltiesListView(DataGridView^ dataGridView);
 void FillPenaltyTypesListView(DataGridView^ dataGridView);
+void FillSearchParameters(ComboBox^ comboBox);

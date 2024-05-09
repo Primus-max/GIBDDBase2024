@@ -14,5 +14,9 @@ public: CarRepository(String^ connStr);
 	  List<Car^>^ GetAll();
 	  void Update(Car^ car);
 	  bool Delete(int carId);
+
+	  List<Car^>^ FindByNumber(String^ number);
+	  List<Car^>^ FindByColor(String^ color);
+	  List<Car^>^ FindByEngineVolume(String^ volume);
 };
 

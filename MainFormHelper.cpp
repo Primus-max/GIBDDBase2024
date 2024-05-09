@@ -1,15 +1,17 @@
-#include "MainFormHelper.h"
 #include "CarRepository.h"
+#include "MainFormelementConstructor.h"
+#include "MainFormHelper.h"
 #include "Penaltyrepository.h"
 #include "PenaltyType.h"
 #include "PenaltyTypeRepository.h"
-#include "MainFormelementConstructor.h"
+
+
 
 void FillCarListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 
-	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);	
+	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);
 
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Car^>^ cars = carRepos->GetAll();
@@ -38,8 +40,8 @@ void FillCarListView(DataGridView^ dataGridView)
 		rowData[9] = car->color;
 		rowData[rowData->Length - 1] = sumPenalties;
 
-		int rowIndex = dataGridView->Rows->Add(rowData); 
-		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);		
+		int rowIndex = dataGridView->Rows->Add(rowData);
+		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);
 		FillCarPenaltiesComboBox(comboBoxCell, carPenaltyTypes);
 
 	}
@@ -52,7 +54,7 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 	PenaltiesDataGridView->Rows->Clear();
 
 	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
-	List<Penalty^>^ penalties = penaltyRepos->GetAll();	
+	List<Penalty^>^ penalties = penaltyRepos->GetAll();
 	// Заполняем остальные столбцы
 	for each (Penalty ^ penalty in penalties)
 	{
@@ -60,7 +62,7 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 		rowData[0] = penalty->penaltyType;
 		rowData[1] = penalty->datP;
 		rowData[2] = penalty->amount;
-		rowData[3] = penalty->carId;		
+		rowData[3] = penalty->carId;
 
 		PenaltiesDataGridView->Rows->Add(rowData);
 	}
@@ -83,6 +85,20 @@ void FillPenaltyTypesListView(DataGridView^ dataGridView)
 
 		dataGridView->Rows->Add(rowData);
 	}
+}
+
+void FillSearchParameters(ComboBox^ comboBox)
+{
+	array<String^>^ searchParameters = gcnew array<String^> {
+		"Номер машины",
+		"Цвет машины",
+		"Объем двигателя"			
+	};
+
+	comboBox->DropDownStyle = ComboBoxStyle::DropDownList;
+	comboBox->Items->Clear();
+	comboBox->Items->AddRange(searchParameters);
+	comboBox->SelectedIndex = 0;
 }
 
 
