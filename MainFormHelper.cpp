@@ -7,14 +7,17 @@
 
 
 
-void FillCarListView(DataGridView^ dataGridView)
+void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 
 	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);
 
-	CarRepository^ carRepos = gcnew CarRepository(connectionString);
-	List<Car^>^ cars = carRepos->GetAll();
+	if (cars == nullptr)
+	{
+		CarRepository^ carRepos = gcnew CarRepository(connectionString);
+		cars = carRepos->GetAll();
+	}
 
 	dataGridView->Rows->Clear();
 
@@ -43,22 +46,21 @@ void FillCarListView(DataGridView^ dataGridView)
 		int rowIndex = dataGridView->Rows->Add(rowData);
 		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);
 		FillCarPenaltiesComboBox(comboBoxCell, carPenaltyTypes);
-
 	}
 }
 
 void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-	// Очищаем существующие данные в DataGridView
+
 	PenaltiesDataGridView->Rows->Clear();
 
 	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
 	List<Penalty^>^ penalties = penaltyRepos->GetAll();
-	// Заполняем остальные столбцы
+
 	for each (Penalty ^ penalty in penalties)
 	{
-		array<Object^>^ rowData = gcnew array<Object^>(5); // Учитываем новую колонку
+		array<Object^>^ rowData = gcnew array<Object^>(5);
 		rowData[0] = penalty->penaltyType;
 		rowData[1] = penalty->datP;
 		rowData[2] = penalty->amount;
@@ -91,8 +93,8 @@ void FillSearchParameters(ComboBox^ comboBox)
 {
 	array<String^>^ searchParameters = gcnew array<String^> {
 		"Номер машины",
-		"Цвет машины",
-		"Объем двигателя"			
+			"Цвет машины",
+			"Объем двигателя"
 	};
 
 	comboBox->DropDownStyle = ComboBoxStyle::DropDownList;

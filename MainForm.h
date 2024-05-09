@@ -1,7 +1,8 @@
 #pragma once
+#include "car.h"
 #include "MainFormHelper.h"
-#include "СarManager.h"
 #include "PenaltyManager.h"
+#include "СarManager.h"
 
 namespace GIBDDBase2024 {
 
@@ -83,18 +84,18 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ carId;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_capacity;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engine_power;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheel_diameter;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
-	private: System::Windows::Forms::DataGridViewComboBoxColumn^ PenaltiesCombobox;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SumPenaltiesColumn;
+
+
+
+
+
+
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ SearchInput;
@@ -102,6 +103,19 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::ComboBox^ SearchParametersComboBox;
 
 	private: System::Windows::Forms::Button^ SearchButton;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ length;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ clearance;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ engineCapacity;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ enginePower;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ wheelDiameter;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ number;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+	private: System::Windows::Forms::DataGridViewComboBoxColumn^ PenaltiesCombobox;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SumPenaltiesColumn;
+	private: System::Windows::Forms::Button^ ResetSearchButton;
 
 
 
@@ -137,10 +151,28 @@ namespace GIBDDBase2024 {
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
+			this->ResetSearchButton = (gcnew System::Windows::Forms::Button());
+			this->SearchButton = (gcnew System::Windows::Forms::Button());
+			this->SearchParametersComboBox = (gcnew System::Windows::Forms::ComboBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->SearchInput = (gcnew System::Windows::Forms::TextBox());
 			this->DescriptionControlsCars = (gcnew System::Windows::Forms::Label());
 			this->DeleteCarBtn = (gcnew System::Windows::Forms::Button());
 			this->UpdateCarBtn = (gcnew System::Windows::Forms::Button());
 			this->CarsDataGridView = (gcnew System::Windows::Forms::DataGridView());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->clearance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->engineCapacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->enginePower = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->wheelDiameter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->PenaltiesCombobox = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+			this->SumPenaltiesColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->AddCarBatton = (gcnew System::Windows::Forms::Button());
 			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->DeletePenaltyButton = (gcnew System::Windows::Forms::Button());
@@ -157,23 +189,6 @@ namespace GIBDDBase2024 {
 			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->length = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->clearance = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->engine_capacity = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->engine_power = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->wheel_diameter = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->PenaltiesCombobox = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
-			this->SumPenaltiesColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->SearchInput = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->SearchParametersComboBox = (gcnew System::Windows::Forms::ComboBox());
-			this->SearchButton = (gcnew System::Windows::Forms::Button());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -197,6 +212,7 @@ namespace GIBDDBase2024 {
 			// 
 			// CarTabPage
 			// 
+			this->CarTabPage->Controls->Add(this->ResetSearchButton);
 			this->CarTabPage->Controls->Add(this->SearchButton);
 			this->CarTabPage->Controls->Add(this->SearchParametersComboBox);
 			this->CarTabPage->Controls->Add(this->label2);
@@ -214,6 +230,63 @@ namespace GIBDDBase2024 {
 			this->CarTabPage->TabIndex = 0;
 			this->CarTabPage->Text = L"Авто";
 			this->CarTabPage->UseVisualStyleBackColor = true;
+			// 
+			// ResetSearchButton
+			// 
+			this->ResetSearchButton->Location = System::Drawing::Point(554, 42);
+			this->ResetSearchButton->Name = L"ResetSearchButton";
+			this->ResetSearchButton->Size = System::Drawing::Size(136, 22);
+			this->ResetSearchButton->TabIndex = 12;
+			this->ResetSearchButton->Text = L"Сбросить";
+			this->ResetSearchButton->UseVisualStyleBackColor = true;
+			this->ResetSearchButton->Click += gcnew System::EventHandler(this, &MainForm::ResetSearchButton_Click);
+			// 
+			// SearchButton
+			// 
+			this->SearchButton->Location = System::Drawing::Point(412, 43);
+			this->SearchButton->Name = L"SearchButton";
+			this->SearchButton->Size = System::Drawing::Size(136, 21);
+			this->SearchButton->TabIndex = 11;
+			this->SearchButton->Text = L"Искать";
+			this->SearchButton->UseVisualStyleBackColor = true;
+			this->SearchButton->Click += gcnew System::EventHandler(this, &MainForm::SearchButton_Click);
+			// 
+			// SearchParametersComboBox
+			// 
+			this->SearchParametersComboBox->FormattingEnabled = true;
+			this->SearchParametersComboBox->Location = System::Drawing::Point(264, 42);
+			this->SearchParametersComboBox->Name = L"SearchParametersComboBox";
+			this->SearchParametersComboBox->Size = System::Drawing::Size(121, 21);
+			this->SearchParametersComboBox->TabIndex = 10;
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(235, 45);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(23, 16);
+			this->label2->TabIndex = 9;
+			this->label2->Text = L"по";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(24, 45);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(47, 16);
+			this->label1->TabIndex = 8;
+			this->label1->Text = L"Поиск";
+			// 
+			// SearchInput
+			// 
+			this->SearchInput->Location = System::Drawing::Point(77, 41);
+			this->SearchInput->Name = L"SearchInput";
+			this->SearchInput->Size = System::Drawing::Size(152, 20);
+			this->SearchInput->TabIndex = 7;
 			// 
 			// DescriptionControlsCars
 			// 
@@ -249,13 +322,74 @@ namespace GIBDDBase2024 {
 			this->CarsDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->CarsDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(12) {
 				this->id,
-					this->brand, this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region,
+					this->brand, this->length, this->clearance, this->engineCapacity, this->enginePower, this->wheelDiameter, this->number, this->region,
 					this->color, this->PenaltiesCombobox, this->SumPenaltiesColumn
 			});
 			this->CarsDataGridView->Location = System::Drawing::Point(3, 128);
 			this->CarsDataGridView->Name = L"CarsDataGridView";
 			this->CarsDataGridView->Size = System::Drawing::Size(1264, 529);
 			this->CarsDataGridView->TabIndex = 3;
+			// 
+			// id
+			// 
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			// 
+			// brand
+			// 
+			this->brand->HeaderText = L"Марка";
+			this->brand->Name = L"brand";
+			// 
+			// length
+			// 
+			this->length->HeaderText = L"Длина (см.)";
+			this->length->Name = L"length";
+			// 
+			// clearance
+			// 
+			this->clearance->HeaderText = L"Просвет (мм.)";
+			this->clearance->Name = L"clearance";
+			// 
+			// engineCapacity
+			// 
+			this->engineCapacity->HeaderText = L"Объём (д./л.)";
+			this->engineCapacity->Name = L"engineCapacity";
+			// 
+			// enginePower
+			// 
+			this->enginePower->HeaderText = L"Мощность (д./лс)";
+			this->enginePower->Name = L"enginePower";
+			// 
+			// wheelDiameter
+			// 
+			this->wheelDiameter->HeaderText = L"Радиус (к.)";
+			this->wheelDiameter->Name = L"wheelDiameter";
+			// 
+			// number
+			// 
+			this->number->HeaderText = L"Номер";
+			this->number->Name = L"number";
+			// 
+			// region
+			// 
+			this->region->HeaderText = L"Регион";
+			this->region->Name = L"region";
+			// 
+			// color
+			// 
+			this->color->HeaderText = L"Цвет";
+			this->color->Name = L"color";
+			// 
+			// PenaltiesCombobox
+			// 
+			this->PenaltiesCombobox->HeaderText = L"Штрафы";
+			this->PenaltiesCombobox->Name = L"PenaltiesCombobox";
+			// 
+			// SumPenaltiesColumn
+			// 
+			this->SumPenaltiesColumn->HeaderText = L"Сумма";
+			this->SumPenaltiesColumn->Name = L"SumPenaltiesColumn";
 			// 
 			// AddCarBatton
 			// 
@@ -404,114 +538,6 @@ namespace GIBDDBase2024 {
 			this->penalty_type_price->HeaderText = L"Стоимость";
 			this->penalty_type_price->Name = L"penalty_type_price";
 			// 
-			// id
-			// 
-			this->id->HeaderText = L"id";
-			this->id->Name = L"id";
-			this->id->ReadOnly = true;
-			// 
-			// brand
-			// 
-			this->brand->HeaderText = L"Марка";
-			this->brand->Name = L"brand";
-			// 
-			// length
-			// 
-			this->length->HeaderText = L"Длина (см.)";
-			this->length->Name = L"length";
-			// 
-			// clearance
-			// 
-			this->clearance->HeaderText = L"Просвет (мм.)";
-			this->clearance->Name = L"clearance";
-			// 
-			// engine_capacity
-			// 
-			this->engine_capacity->HeaderText = L"Объём (д./л.)";
-			this->engine_capacity->Name = L"engine_capacity";
-			// 
-			// engine_power
-			// 
-			this->engine_power->HeaderText = L"Мощность (д./лс)";
-			this->engine_power->Name = L"engine_power";
-			// 
-			// wheel_diameter
-			// 
-			this->wheel_diameter->HeaderText = L"Радиус (к.)";
-			this->wheel_diameter->Name = L"wheel_diameter";
-			// 
-			// number
-			// 
-			this->number->HeaderText = L"Номер";
-			this->number->Name = L"number";
-			// 
-			// region
-			// 
-			this->region->HeaderText = L"Регион";
-			this->region->Name = L"region";
-			// 
-			// color
-			// 
-			this->color->HeaderText = L"Цвет";
-			this->color->Name = L"color";
-			// 
-			// PenaltiesCombobox
-			// 
-			this->PenaltiesCombobox->HeaderText = L"Штрафы";
-			this->PenaltiesCombobox->Name = L"PenaltiesCombobox";
-			// 
-			// SumPenaltiesColumn
-			// 
-			this->SumPenaltiesColumn->HeaderText = L"Сумма";
-			this->SumPenaltiesColumn->Name = L"SumPenaltiesColumn";
-			// 
-			// SearchInput
-			// 
-			this->SearchInput->Location = System::Drawing::Point(77, 41);
-			this->SearchInput->Name = L"SearchInput";
-			this->SearchInput->Size = System::Drawing::Size(152, 20);
-			this->SearchInput->TabIndex = 7;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(24, 45);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(47, 16);
-			this->label1->TabIndex = 8;
-			this->label1->Text = L"Поиск";
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label2->Location = System::Drawing::Point(235, 45);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(23, 16);
-			this->label2->TabIndex = 9;
-			this->label2->Text = L"по";
-			// 
-			// SearchParametersComboBox
-			// 
-			this->SearchParametersComboBox->FormattingEnabled = true;
-			this->SearchParametersComboBox->Location = System::Drawing::Point(264, 42);
-			this->SearchParametersComboBox->Name = L"SearchParametersComboBox";
-			this->SearchParametersComboBox->Size = System::Drawing::Size(121, 21);
-			this->SearchParametersComboBox->TabIndex = 10;
-			// 
-			// SearchButton
-			// 
-			this->SearchButton->Location = System::Drawing::Point(412, 41);
-			this->SearchButton->Name = L"SearchButton";
-			this->SearchButton->Size = System::Drawing::Size(136, 21);
-			this->SearchButton->TabIndex = 11;
-			this->SearchButton->Text = L"Искать";
-			this->SearchButton->UseVisualStyleBackColor = true;
-			this->SearchButton->Click += gcnew System::EventHandler(this, &MainForm::SearchButton_Click);
-			// 
 			// MainForm
 			// 
 			this->ClientSize = System::Drawing::Size(1278, 685);
@@ -539,11 +565,11 @@ namespace GIBDDBase2024 {
 		FillPenaltyTypesListView(PenaltyTypesDataGridView);
 		FillSearchParameters(SearchParametersComboBox);
 	}
-	
+
 
 #pragma region CRUD авто
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		AddCarAtDb(CarsDataGridView);		
+		AddCarAtDb(CarsDataGridView);
 	}
 	private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		UpdateCarAtDb(CarsDataGridView);
@@ -567,9 +593,19 @@ namespace GIBDDBase2024 {
 	}
 #pragma endregion
 
+#pragma region Поиск
 	private: System::Void SearchButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		int selectedIndex = SearchParametersComboBox->SelectedIndex;
-		CarsDataGridView->DataSource =  Find(SearchInput->Text, selectedIndex);
+		List<Car^>^ searchedCars = Find(SearchInput->Text, selectedIndex);
+		//CarsDataGridView->DataSource = 
+		FillCarListView(CarsDataGridView, searchedCars);
 	}
-};
+	private: System::Void ResetSearchButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		FillCarListView(CarsDataGridView);
+	}
+#pragma endregion
+
+
+
+	};
 }
