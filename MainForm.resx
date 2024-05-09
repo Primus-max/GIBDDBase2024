@@ -149,6 +149,9 @@
   <metadata name="PenaltiesCombobox.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="SumPenaltiesColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="DescriptionControlsPenalties.Text" xml:space="preserve">
     <value>1. Для добавления штрафа, заполнить ячейки, выделить всю строку и нажать кнопку "добавить"
 2. Для обновления штрафа, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"

@@ -9,7 +9,7 @@ void FillCarListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 
-	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);
+	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);	
 
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Car^>^ cars = carRepos->GetAll();
@@ -18,7 +18,13 @@ void FillCarListView(DataGridView^ dataGridView)
 
 	for each (Car ^ car in cars)
 	{
-		array<Object^>^ rowData = gcnew array<Object^>(10);
+		List<PenaltyType^>^ carPenaltyTypes = penaltyTypesRepos->GetAllTypesByCarId(car->id);
+		array<Object^>^ rowData = gcnew array<Object^>(12);
+
+		double sumPenalties = 0.0;
+
+		for each (PenaltyType ^ penaltyType in carPenaltyTypes)
+			sumPenalties += penaltyType->price;
 
 		rowData[0] = car->id;
 		rowData[1] = car->brand;
@@ -30,12 +36,12 @@ void FillCarListView(DataGridView^ dataGridView)
 		rowData[7] = car->reg_number;
 		rowData[8] = car->region;
 		rowData[9] = car->color;
+		rowData[rowData->Length - 1] = sumPenalties;
 
 		int rowIndex = dataGridView->Rows->Add(rowData); 
-		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);
-
-		List<PenaltyType^>^ carPenaltyTypes = penaltyTypesRepos->GetAllTypesByCarId(car->id);
+		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);		
 		FillCarPenaltiesComboBox(comboBoxCell, carPenaltyTypes);
+
 	}
 }
 

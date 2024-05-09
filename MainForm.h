@@ -94,6 +94,7 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ region;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
 	private: System::Windows::Forms::DataGridViewComboBoxColumn^ PenaltiesCombobox;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SumPenaltiesColumn;
 
 
 
@@ -126,7 +127,7 @@ namespace GIBDDBase2024 {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->DescriptionControlsCars = (gcnew System::Windows::Forms::Label());
@@ -160,6 +161,7 @@ namespace GIBDDBase2024 {
 			this->region = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PenaltiesCombobox = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+			this->SumPenaltiesColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -228,10 +230,10 @@ namespace GIBDDBase2024 {
 			// CarsDataGridView
 			// 
 			this->CarsDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->CarsDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(11) {
+			this->CarsDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(12) {
 				this->id,
 					this->brand, this->length, this->clearance, this->engine_capacity, this->engine_power, this->wheel_diameter, this->number, this->region,
-					this->color, this->PenaltiesCombobox
+					this->color, this->PenaltiesCombobox, this->SumPenaltiesColumn
 			});
 			this->CarsDataGridView->Location = System::Drawing::Point(3, 59);
 			this->CarsDataGridView->Name = L"CarsDataGridView";
@@ -324,8 +326,8 @@ namespace GIBDDBase2024 {
 			// 
 			// date_p
 			// 
-			dataGridViewCellStyle2->NullValue = nullptr;
-			this->date_p->DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle3->NullValue = nullptr;
+			this->date_p->DefaultCellStyle = dataGridViewCellStyle3;
 			this->date_p->HeaderText = L"Äàòà";
 			this->date_p->Name = L"date_p";
 			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
@@ -440,6 +442,11 @@ namespace GIBDDBase2024 {
 			// 
 			this->PenaltiesCombobox->HeaderText = L"Øòðàôû";
 			this->PenaltiesCombobox->Name = L"PenaltiesCombobox";
+			// 
+			// SumPenaltiesColumn
+			// 
+			this->SumPenaltiesColumn->HeaderText = L"Ñóììà";
+			this->SumPenaltiesColumn->Name = L"SumPenaltiesColumn";
 			// 
 			// MainForm
 			// 
