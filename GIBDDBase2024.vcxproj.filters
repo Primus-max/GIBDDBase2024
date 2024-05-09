@@ -25,6 +25,9 @@
     <Filter Include="Исходные файлы\Services">
       <UniqueIdentifier>{e9b353ec-2205-4b7a-a0be-d232d6cc47f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Constructor">
+      <UniqueIdentifier>{9610fcfc-cf6b-45c1-ac5b-dae7837cf1b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
@@ -50,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="InfoMessageService.cpp">
       <Filter>Исходные файлы\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFormelementConstructor.cpp">
+      <Filter>Исходные файлы\Constructor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +96,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="InfoMessageService.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFormelementConstructor.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

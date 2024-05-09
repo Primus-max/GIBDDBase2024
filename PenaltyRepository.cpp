@@ -76,7 +76,48 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 	}
 	catch (OleDbException^ ex)
 	{
-		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
+		String^ errorMessage = "Ошибка при получении всех авто: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}
+}
+
+List<Penalty^>^ PenaltyRepository::GetAllForCar(int cardId)
+{
+	List<Penalty^>^ penalties = gcnew List<Penalty^>();
+
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT * FROM [penalty] WHERE car=@car";
+	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
+
+	commandGet->Parameters->AddWithValue("@car", cardId);
+
+	try
+	{
+		connection->Open();
+		OleDbDataReader^ reader = commandGet->ExecuteReader();
+
+		while (reader->Read())
+		{
+			Penalty^ penalty = gcnew Penalty();
+
+			penalty->id = Convert::ToInt32(reader["id"]);
+			penalty->datP = Convert::ToDateTime(reader["date_p"]);
+			penalty->amount = Convert::ToDouble(reader["amount"]);
+			penalty->penaltyType = Convert::ToInt16(reader["penalty_type"]);
+			penalty->carId = Convert::ToInt32(reader["car"]);
+
+			penalties->Add(penalty);
+		}
+
+		return penalties;
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при получении всех штрафов для авто: " + gcnew String(ex->Message);
 		ErrorMessage(errorMessage);
 	}
 	finally

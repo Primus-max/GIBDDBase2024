@@ -3,10 +3,16 @@
 #include "Penaltyrepository.h"
 #include "PenaltyType.h"
 #include "PenaltyTypeRepository.h"
+#include "MainFormelementConstructor.h"
 
 void FillCarListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
+
+	PenaltyTypeRepository^ penaltyTypesRepos = gcnew PenaltyTypeRepository(connectionString);
+	List<PenaltyType^>^ penaltyTypes = penaltyTypesRepos->GetAll();
+	AddCarPenaltiesColumn(dataGridView, penaltyTypes);
+
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Car^>^ cars = carRepos->GetAll();
 
@@ -33,22 +39,24 @@ void FillCarListView(DataGridView^ dataGridView)
 void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
-	List<Penalty^>^ penalties = penaltyRepos->GetAll();
-
+	// Очищаем существующие данные в DataGridView
 	PenaltiesDataGridView->Rows->Clear();
 
+	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
+	List<Penalty^>^ penalties = penaltyRepos->GetAll();	
+	// Заполняем остальные столбцы
 	for each (Penalty ^ penalty in penalties)
 	{
-		array<Object^>^ rowData = gcnew array<Object^>(4);
+		array<Object^>^ rowData = gcnew array<Object^>(5); // Учитываем новую колонку
 		rowData[0] = penalty->penaltyType;
 		rowData[1] = penalty->datP;
 		rowData[2] = penalty->amount;
-		rowData[3] = penalty->carId;
+		rowData[3] = penalty->carId;		
 
 		PenaltiesDataGridView->Rows->Add(rowData);
 	}
 }
+
 void FillPenaltyTypesListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";

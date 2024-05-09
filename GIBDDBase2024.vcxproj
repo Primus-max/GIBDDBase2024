@@ -30,6 +30,7 @@
     <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="InfoMessageService.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MainFormelementConstructor.cpp" />
     <ClCompile Include="MainFormHelper.cpp" />
     <ClCompile Include="PenaltyManager.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClInclude Include="car.h" />
     <ClInclude Include="InfoMessageService.h" />
+    <ClInclude Include="MainFormelementConstructor.h" />
     <ClInclude Include="MainFormHelper.h" />
     <ClInclude Include="PenaltyManager.h" />
     <ClInclude Include="СarManager.h" />
