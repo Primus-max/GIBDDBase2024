@@ -13,6 +13,6 @@ public: PenaltyRepository(String^ connStr);
 	  void Add(Penalty^ penalty);
 	  List<Penalty^>^ GetAll();
 	  void Update(Penalty^ penalty);
-	  void Delete(int id);
+	  bool Delete(int id);
 };
 

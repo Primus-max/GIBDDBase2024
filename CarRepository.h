@@ -13,6 +13,6 @@ public: CarRepository(String^ connStr);
 	  void Add(Car^ car);
 	  List<Car^>^ GetAll();
 	  void Update(Car^ car);
-	  void Delete(int carId);
+	  bool Delete(int carId);
 };
 

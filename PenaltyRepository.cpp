@@ -118,28 +118,34 @@ void PenaltyRepository::Update(Penalty^ penalty)
 	}
 }
 
-void PenaltyRepository::Delete(int id)
+bool PenaltyRepository::Delete(int id)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	String^ queryDelete = "DELETE [penalty] WHERE id = @id";
-	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryDelete, connection);
+	String^ queryDelete = "DELETE FROM penalty WHERE id=?";
+	OleDbCommand^ commandDelete = gcnew OleDbCommand(queryDelete, connection);
 
-	commandUpdate->Parameters->AddWithValue("@id", id);
+	commandDelete->Parameters->AddWithValue("?", id);
 
 	try
 	{
 		connection->Open();
 
-		if (commandUpdate->ExecuteNonQuery() != 1)
+		if (commandDelete->ExecuteNonQuery() != 1) {
 			ErrorMessage("Не удалось удалить штраф в базе");
-		else
+			return false;
+		}			
+		else {
 			SuccessMessage("Данные успешно удалены из базы");
+			return true;
+		}
+			
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при удалении штрафа из базы данных: " + gcnew String(ex->Message);
 		ErrorMessage(errorMessage);
+		return false;
 	}
 	finally
 	{

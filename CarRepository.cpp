@@ -128,7 +128,7 @@ void CarRepository::Update(Car^ car)
 	}
 }
 
-void CarRepository::Delete(int carId)
+bool CarRepository::Delete(int carId)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryDelete = "DELETE FROM cars WHERE id=?";
@@ -139,15 +139,21 @@ void CarRepository::Delete(int carId)
 	try
 	{
 		connection->Open();
-		if (commandDelete->ExecuteNonQuery() != 1)
+		if (commandDelete->ExecuteNonQuery() != 1) {
 			ErrorMessage("Не удалось удалить авто из базы");
-		else
+			return false;
+		}			
+		else {
 			SuccessMessage("Данные успешно удалены из базы");
+			return true;
+		}
+		
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при удалении данных из базы: " + gcnew String(ex->Message);
 		ErrorMessage(errorMessage);
+		return false;
 	}
 	finally
 	{

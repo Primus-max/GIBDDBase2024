@@ -1,5 +1,5 @@
-#include "СarManager.h"
 #include "CarRepository.h"
+#include "СarManager.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -7,7 +7,7 @@ using namespace System::Collections::Generic;
 void AddCarAtDb(DataGridView^ dataGrid)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-	CarRepository^ carRepos = gcnew CarRepository(connectionString);	
+	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 
 	for each (DataGridViewRow ^ row in dataGrid->Rows) {
 
@@ -16,7 +16,7 @@ void AddCarAtDb(DataGridView^ dataGrid)
 			MessageBox::Show("Для добавления машины в базу данных, необходимо указать марку", "Ошибка");
 			return;
 		}
-			
+
 		Car^ car = gcnew Car();
 		car->id = Convert::ToInt16(row->Cells[0]->Value);
 		car->brand = row->Cells[1]->Value->ToString();
@@ -28,7 +28,7 @@ void AddCarAtDb(DataGridView^ dataGrid)
 		car->reg_number = row->Cells[7]->Value->ToString();
 		car->region = Convert::ToInt16(row->Cells[8]->Value);
 		car->color = row->Cells[9]->Value->ToString();
-		
+
 		carRepos->Add(car);
 	}
 }
@@ -57,7 +57,7 @@ void UpdateCarAtDb(DataGridView^ dataGrid)
 		car->reg_number = row->Cells[7]->Value->ToString();
 		car->region = Convert::ToInt16(row->Cells[8]->Value);
 		car->color = row->Cells[9]->Value->ToString();
-		
+
 		carRepos->Update(car);
 	}
 }
@@ -69,7 +69,9 @@ void DeleteCarAtDb(DataGridView^ dataGrid)
 
 	for each (DataGridViewRow ^ row in dataGrid->Rows) {
 		if (!row->Selected) continue;
-		carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));
-		dataGrid->Rows->Remove(row);
+		bool isSuccess = carRepos->Delete(Convert::ToInt16(row->Cells[0]->Value));
+
+		if (isSuccess)
+			dataGrid->Rows->Remove(row);
 	}
 }
