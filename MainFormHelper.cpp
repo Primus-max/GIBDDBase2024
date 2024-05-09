@@ -62,7 +62,7 @@ void FillPenaltyTypesListView(DataGridView^ dataGridView)
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	PenaltyTypeRepository^ penaltyTypeRepos = gcnew PenaltyTypeRepository(connectionString);
 	List<PenaltyType^>^ penaltyTypes = penaltyTypeRepos->GetAll();
-
+	List<PenaltyType^>^ asdf = penaltyTypeRepos->GetAllTypesByCarId(3);
 	dataGridView->Rows->Clear();
 
 	for each (PenaltyType ^ penaltyType in penaltyTypes)

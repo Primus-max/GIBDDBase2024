@@ -76,6 +76,46 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 	}
 }
 
+List<PenaltyType^>^ PenaltyTypeRepository::GetAllTypesByCarId(int carId)
+{
+	List<PenaltyType^>^ penaltiesTypes = gcnew List<PenaltyType^>();
+
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT pt.id, pt.penalty_type, pt.price FROM penalty AS p INNER JOIN penalty_types AS pt ON p.penalty_type = pt.id WHERE p.car = @carId";
+	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
+
+	commandRead->Parameters->AddWithValue("@carId", carId);
+	try
+	{
+		connection->Open();
+		OleDbDataReader^ reader = commandRead->ExecuteReader();
+
+		while (reader->Read())
+		{
+			PenaltyType^ penaltyType = gcnew PenaltyType();
+
+			penaltyType->id = Convert::ToInt32(reader["id"]);
+			penaltyType->penaltyType = reader["penalty_type"]->ToString();
+			penaltyType->price = Convert::ToDouble(reader["price"]);
+
+			penaltiesTypes->Add(penaltyType);
+		}
+
+		return penaltiesTypes;
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при получении данных: " + gcnew String(ex->Message);
+		MessageBox::Show(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}
+}
+
+
+
 void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);	
