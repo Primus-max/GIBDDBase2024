@@ -81,7 +81,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAllTypesByCarId(int carId)
 	List<PenaltyType^>^ penaltiesTypes = gcnew List<PenaltyType^>();
 
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	String^ queryGet = "SELECT pt.id, pt.penalty_type, pt.price FROM penalty AS p INNER JOIN penalty_types AS pt ON p.penalty_type = pt.id WHERE p.car = @carId";
+	String^ queryGet = "SELECT pt.id, pt.penalty_type, pt.price FROM penalty_types AS pt INNER JOIN penalty AS p ON pt.id = p.penalty_type  WHERE p.car = @carId";
 	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
 
 	commandRead->Parameters->AddWithValue("@carId", carId);
