@@ -22,6 +22,9 @@
     <Filter Include="Исходные файлы\Helpers">
       <UniqueIdentifier>{ece813fb-e124-4517-b355-bf76f75a6e06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Services">
+      <UniqueIdentifier>{e9b353ec-2205-4b7a-a0be-d232d6cc47f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="СarManager.cpp">
       <Filter>Исходные файлы\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoMessageService.cpp">
+      <Filter>Исходные файлы\Services</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +87,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="PenaltyManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoMessageService.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

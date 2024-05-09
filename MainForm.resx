@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DescriptionControlsCars.Text" xml:space="preserve">
-    <value>1. Для добавления авто, заполнить ячейки, выделить всю строку и нажать кнопку "сохранить"
+    <value>1. Для добавления авто, заполнить ячейки, выделить всю строку и нажать кнопку "добавить"
 2. Для обновления авто, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"
 3. Для удаления авто, выделить всю строку и нажать "удалить"   </value>
   </data>
@@ -147,9 +147,9 @@
     <value>True</value>
   </metadata>
   <data name="DescriptionControlsPenalties.Text" xml:space="preserve">
-    <value>1. Для добавления авто, заполнить ячейки, выделить всю строку и нажать кнопку "сохранить"
-2. Для обновления авто, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"
-3. Для удаления авто, выделить всю строку и нажать "удалить"   </value>
+    <value>1. Для добавления штрафа, заполнить ячейки, выделить всю строку и нажать кнопку "добавить"
+2. Для обновления штрафа, отредактировать нужные ячейки, выделить всю строку и нажать "обновить"
+3. Для удаления штрафа, выделить всю строку и нажать "удалить"   </value>
   </data>
   <metadata name="penalty_type.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

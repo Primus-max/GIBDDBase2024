@@ -1,6 +1,7 @@
 #pragma once
 #include "MainFormHelper.h"
 #include "СarManager.h"
+#include "PenaltyManager.h"
 
 namespace GIBDDBase2024 {
 
@@ -57,7 +58,7 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridView^ PenaltiesDataGridView;
 
 
-	private: System::Windows::Forms::Button^ button2;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
@@ -75,6 +76,9 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::Button^ UpdateCarBtn;
 	private: System::Windows::Forms::Label^ DescriptionControlsCars;
 	private: System::Windows::Forms::Label^ DescriptionControlsPenalties;
+	private: System::Windows::Forms::Button^ DeletePenaltyButton;
+	private: System::Windows::Forms::Button^ UpdatePenaltyBatton;
+	private: System::Windows::Forms::Button^ AddPenaltyBatton;
 
 
 
@@ -114,7 +118,10 @@ namespace GIBDDBase2024 {
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->AddCarBatton = (gcnew System::Windows::Forms::Button());
 			this->PenaltiesTabPage = (gcnew System::Windows::Forms::TabPage());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->DeletePenaltyButton = (gcnew System::Windows::Forms::Button());
+			this->UpdatePenaltyBatton = (gcnew System::Windows::Forms::Button());
+			this->AddPenaltyBatton = (gcnew System::Windows::Forms::Button());
+			this->DescriptionControlsPenalties = (gcnew System::Windows::Forms::Label());
 			this->PenaltiesDataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->penalty_type = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -126,7 +133,6 @@ namespace GIBDDBase2024 {
 			this->penaltyTypeId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penaltyType = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->penalty_type_price = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->DescriptionControlsPenalties = (gcnew System::Windows::Forms::Label());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -174,7 +180,7 @@ namespace GIBDDBase2024 {
 			// 
 			// DeleteCarBtn
 			// 
-			this->DeleteCarBtn->Location = System::Drawing::Point(285, 6);
+			this->DeleteCarBtn->Location = System::Drawing::Point(292, 11);
 			this->DeleteCarBtn->Name = L"DeleteCarBtn";
 			this->DeleteCarBtn->Size = System::Drawing::Size(135, 23);
 			this->DeleteCarBtn->TabIndex = 5;
@@ -184,7 +190,7 @@ namespace GIBDDBase2024 {
 			// 
 			// UpdateCarBtn
 			// 
-			this->UpdateCarBtn->Location = System::Drawing::Point(144, 6);
+			this->UpdateCarBtn->Location = System::Drawing::Point(151, 11);
 			this->UpdateCarBtn->Name = L"UpdateCarBtn";
 			this->UpdateCarBtn->Size = System::Drawing::Size(135, 23);
 			this->UpdateCarBtn->TabIndex = 4;
@@ -258,18 +264,20 @@ namespace GIBDDBase2024 {
 			// 
 			// AddCarBatton
 			// 
-			this->AddCarBatton->Location = System::Drawing::Point(3, 6);
+			this->AddCarBatton->Location = System::Drawing::Point(10, 11);
 			this->AddCarBatton->Name = L"AddCarBatton";
 			this->AddCarBatton->Size = System::Drawing::Size(135, 23);
 			this->AddCarBatton->TabIndex = 1;
-			this->AddCarBatton->Text = L"Сохранить";
+			this->AddCarBatton->Text = L"Добавить";
 			this->AddCarBatton->UseVisualStyleBackColor = true;
 			this->AddCarBatton->Click += gcnew System::EventHandler(this, &MainForm::AddCarButton_Click);
 			// 
 			// PenaltiesTabPage
 			// 
+			this->PenaltiesTabPage->Controls->Add(this->DeletePenaltyButton);
+			this->PenaltiesTabPage->Controls->Add(this->UpdatePenaltyBatton);
+			this->PenaltiesTabPage->Controls->Add(this->AddPenaltyBatton);
 			this->PenaltiesTabPage->Controls->Add(this->DescriptionControlsPenalties);
-			this->PenaltiesTabPage->Controls->Add(this->button2);
 			this->PenaltiesTabPage->Controls->Add(this->PenaltiesDataGridView);
 			this->PenaltiesTabPage->Location = System::Drawing::Point(4, 22);
 			this->PenaltiesTabPage->Name = L"PenaltiesTabPage";
@@ -279,15 +287,44 @@ namespace GIBDDBase2024 {
 			this->PenaltiesTabPage->Text = L"Штрафы";
 			this->PenaltiesTabPage->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// DeletePenaltyButton
 			// 
-			this->button2->Location = System::Drawing::Point(8, 89);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(212, 24);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Поиск";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MainForm::button2_Click);
+			this->DeletePenaltyButton->Location = System::Drawing::Point(290, 18);
+			this->DeletePenaltyButton->Name = L"DeletePenaltyButton";
+			this->DeletePenaltyButton->Size = System::Drawing::Size(135, 23);
+			this->DeletePenaltyButton->TabIndex = 10;
+			this->DeletePenaltyButton->Text = L"Удалить";
+			this->DeletePenaltyButton->UseVisualStyleBackColor = true;
+			this->DeletePenaltyButton->Click += gcnew System::EventHandler(this, &MainForm::DeletePenaltyButton_Click);
+			// 
+			// UpdatePenaltyBatton
+			// 
+			this->UpdatePenaltyBatton->Location = System::Drawing::Point(149, 18);
+			this->UpdatePenaltyBatton->Name = L"UpdatePenaltyBatton";
+			this->UpdatePenaltyBatton->Size = System::Drawing::Size(135, 23);
+			this->UpdatePenaltyBatton->TabIndex = 9;
+			this->UpdatePenaltyBatton->Text = L"Обновить";
+			this->UpdatePenaltyBatton->UseVisualStyleBackColor = true;
+			this->UpdatePenaltyBatton->Click += gcnew System::EventHandler(this, &MainForm::UpdatePenaltyBatton_Click);
+			// 
+			// AddPenaltyBatton
+			// 
+			this->AddPenaltyBatton->Location = System::Drawing::Point(8, 18);
+			this->AddPenaltyBatton->Name = L"AddPenaltyBatton";
+			this->AddPenaltyBatton->Size = System::Drawing::Size(135, 23);
+			this->AddPenaltyBatton->TabIndex = 8;
+			this->AddPenaltyBatton->Text = L"Добавить";
+			this->AddPenaltyBatton->UseVisualStyleBackColor = true;
+			this->AddPenaltyBatton->Click += gcnew System::EventHandler(this, &MainForm::AddPenaltyBatton_Click);
+			// 
+			// DescriptionControlsPenalties
+			// 
+			this->DescriptionControlsPenalties->AutoSize = true;
+			this->DescriptionControlsPenalties->Location = System::Drawing::Point(507, 3);
+			this->DescriptionControlsPenalties->Name = L"DescriptionControlsPenalties";
+			this->DescriptionControlsPenalties->Size = System::Drawing::Size(542, 39);
+			this->DescriptionControlsPenalties->TabIndex = 7;
+			this->DescriptionControlsPenalties->Text = resources->GetString(L"DescriptionControlsPenalties.Text");
 			// 
 			// PenaltiesDataGridView
 			// 
@@ -378,15 +415,6 @@ namespace GIBDDBase2024 {
 			this->penalty_type_price->HeaderText = L"Стоимость";
 			this->penalty_type_price->Name = L"penalty_type_price";
 			// 
-			// DescriptionControlsPenalties
-			// 
-			this->DescriptionControlsPenalties->AutoSize = true;
-			this->DescriptionControlsPenalties->Location = System::Drawing::Point(523, 18);
-			this->DescriptionControlsPenalties->Name = L"DescriptionControlsPenalties";
-			this->DescriptionControlsPenalties->Size = System::Drawing::Size(526, 39);
-			this->DescriptionControlsPenalties->TabIndex = 7;
-			this->DescriptionControlsPenalties->Text = resources->GetString(L"DescriptionControlsPenalties.Text");
-			// 
 			// MainForm
 			// 
 			this->ClientSize = System::Drawing::Size(1060, 685);
@@ -413,19 +441,11 @@ namespace GIBDDBase2024 {
 		FillPenaltiesListView(PenaltiesDataGridView);
 		FillPenaltyTypesListView(PenaltyTypesDataGridView);
 	}
-	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-
-		/*	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
-			PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
-
-			List<Penalty^>^ penalties = penaltyRepos->GetAll();
-			FillPenaltiesListView(PenaltiesDataGridView, penalties);*/
-
-	}
+	
 
 #pragma region CRUD авто
 	private: System::Void AddCarButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		AddCarAtDb(CarsDataGridView);
+		AddCarAtDb(CarsDataGridView);		
 	}
 	private: System::Void UpdateCarBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 		UpdateCarAtDb(CarsDataGridView);
@@ -436,9 +456,18 @@ namespace GIBDDBase2024 {
 #pragma endregion
 
 #pragma region CRUD Штрафы
+	private: System::Void AddPenaltyBatton_Click(System::Object^ sender, System::EventArgs^ e) {
+		AddPenaltyAtDb(PenaltiesDataGridView);
+	}
 
+	private: System::Void UpdatePenaltyBatton_Click(System::Object^ sender, System::EventArgs^ e) {
+		UpdatePenaltyAtDb(PenaltiesDataGridView);
+	}
+
+	private: System::Void DeletePenaltyButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		DeletePenaltyAtDb(PenaltiesDataGridView);
+	}
 #pragma endregion
-
 
 	};
 }

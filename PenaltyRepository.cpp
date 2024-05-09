@@ -1,3 +1,4 @@
+#include "InfoMessageService.h"
 #include "Penaltyrepository.h"
 #include <exception>
 #include <iostream>
@@ -28,13 +29,15 @@ void PenaltyRepository::Add(Penalty^ penalty)
 		connection->Open();
 
 		if (commandAdd->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось добавить штраф в базу", "Ошибка!");
+			ErrorMessage("Не удалось добавить штраф в базу");
+		else
+			SuccessMessage("Данные успешно добавлены в базу");
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -49,7 +52,7 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryGet = "SELECT * FROM [penalty]";
 	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
-	
+
 
 	try
 	{
@@ -74,12 +77,12 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
 		connection->Close();
-	}	
+	}
 }
 
 void PenaltyRepository::Update(Penalty^ penalty)
@@ -99,13 +102,15 @@ void PenaltyRepository::Update(Penalty^ penalty)
 		connection->Open();
 
 		if (commandUpdate->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось обновить штраф в базе", "Ошибка!");
+			ErrorMessage("Не удалось обновить штраф в базе");
+		else
+			SuccessMessage("Данные успешно обновлены в базе");
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -126,13 +131,15 @@ void PenaltyRepository::Delete(int id)
 		connection->Open();
 
 		if (commandUpdate->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось удалить штраф в базе", "Ошибка!");
+			ErrorMessage("Не удалось удалить штраф в базе");
+		else
+			SuccessMessage("Данные успешно удалены из базы");
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при удалении штрафа из базы данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{

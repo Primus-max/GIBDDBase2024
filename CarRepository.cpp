@@ -1,4 +1,5 @@
 #include "CarRepository.h"
+#include "InfoMessageService.h"
 #include <exception>
 #include <iostream>
 
@@ -33,13 +34,14 @@ void CarRepository::Add(Car^ car)
 		connection->Open();
 
 		if (commandInsert->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось добавить авто в базу", "Ошибка!");
-
+			ErrorMessage("Не удалось добавить авто в базу");
+		else
+			SuccessMessage("Данные успешно добавлены в базу");
 	}
 	catch (const std::exception& ex) 
 	{
 		String^ errorMessage = "Ошибка при добавлении авто в базу данных: " + gcnew String(ex.what());
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -81,7 +83,7 @@ List<Car^>^ CarRepository::GetAll()
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 
 	finally
@@ -111,12 +113,14 @@ void CarRepository::Update(Car^ car)
 	{
 		connection->Open();
 		if (commandUpdate->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось обновить авто в базе", "Ошибка!");
+			ErrorMessage("Не удалось обновить авто в базе");
+		else
+			SuccessMessage("Данные успешно обновлены в базе");
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при обновлении данных в базе: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -136,12 +140,14 @@ void CarRepository::Delete(int carId)
 	{
 		connection->Open();
 		if (commandDelete->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось удалить авто из базы", "Ошибка!");
+			ErrorMessage("Не удалось удалить авто из базы");
+		else
+			SuccessMessage("Данные успешно удалены из базы");
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при удалении данных из базы: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
