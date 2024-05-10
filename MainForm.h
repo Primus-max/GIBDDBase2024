@@ -26,7 +26,7 @@ namespace GIBDDBase2024 {
 			InitializeComponent();
 		}
 
-	public: property int SelectedCarId;
+	public: property int SelectedRowIndex;
 
 	protected:
 		/// <summary>
@@ -687,14 +687,17 @@ namespace GIBDDBase2024 {
 	private: Void OpenDialogChooseCar_Click(Object^ sender, DataGridViewCellEventArgs^ e) {
 		ChooseCarDialog^ dialog = gcnew ChooseCarDialog();
 		dialog->Show();
-
 		dialog->CarSelected += gcnew ChooseCarDialog::CarSelectedEventHandler(this, &MainForm::OnCarSelected);
-
-		//dialog->Close();
+		SelectedRowIndex = e->RowIndex;
 	}
 
 	private: Void OnCarSelected(int carId) {
-		int asdf = carId;
+		if (SelectedRowIndex == -1) return;
+
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedRowIndex];
+		selectedRow->Cells[4]->Value = carId;
+		selectedRow->Selected = true;
+		UpdatePenaltyAtDb(PenaltiesDataGridView);
 	}
 
 	};
