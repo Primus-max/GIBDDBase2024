@@ -1,6 +1,7 @@
 #pragma once
 #include "car.h"
 #include "CarRepository.h"
+#include "ChooseCarDialogHelper.h"
 
 
 namespace GIBDDBase2024 {
@@ -20,11 +21,12 @@ namespace GIBDDBase2024 {
 	public:
 		ChooseCarDialog(void)
 		{
-			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			InitializeComponent();			
 		}
+
+	public: 
+		delegate void CarSelectedEventHandler(int carId);
+		event CarSelectedEventHandler^ CarSelected;
 
 	protected:
 		/// <summary>
@@ -43,15 +45,19 @@ namespace GIBDDBase2024 {
 	protected:
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reg_number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+
+
+
 
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -63,6 +69,7 @@ namespace GIBDDBase2024 {
 			this->ChooseCarDialogDataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->reg_number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -72,15 +79,16 @@ namespace GIBDDBase2024 {
 			// ChooseCarDialogDataGridView
 			// 
 			this->ChooseCarDialogDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ChooseCarDialogDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
-				this->brand,
-					this->reg_number, this->color
+			this->ChooseCarDialogDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+				this->id,
+					this->brand, this->reg_number, this->color
 			});
 			this->ChooseCarDialogDataGridView->Dock = System::Windows::Forms::DockStyle::Bottom;
 			this->ChooseCarDialogDataGridView->Location = System::Drawing::Point(0, 38);
 			this->ChooseCarDialogDataGridView->Name = L"ChooseCarDialogDataGridView";
 			this->ChooseCarDialogDataGridView->Size = System::Drawing::Size(349, 423);
 			this->ChooseCarDialogDataGridView->TabIndex = 0;
+			this->ChooseCarDialogDataGridView->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ChooseCarDialog::ChooseCarDialogDataGridView_CellDoubleClick);
 			// 
 			// textBox1
 			// 
@@ -98,12 +106,22 @@ namespace GIBDDBase2024 {
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
 			// 
+			// id
+			// 
+			this->id->Frozen = true;
+			this->id->HeaderText = L"id";
+			this->id->Name = L"id";
+			this->id->ReadOnly = true;
+			this->id->Width = 50;
+			// 
 			// brand
 			// 
-			this->brand->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->brand->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::None;
+			this->brand->Frozen = true;
 			this->brand->HeaderText = L"Марка";
 			this->brand->Name = L"brand";
 			this->brand->ReadOnly = true;
+			this->brand->Width = 102;
 			// 
 			// reg_number
 			// 
@@ -141,7 +159,15 @@ namespace GIBDDBase2024 {
 #pragma endregion
 
 	private: System::Void Dialog_Loaded(System::Object^ sender, System::EventArgs^ e) {
-		//ChooseCarDialogDataGridView->DataSource = 
+		FillCarListViewAtChooseDialog(ChooseCarDialogDataGridView);		
 	}
-};
+
+	private: Void ChooseCarDialogDataGridView_CellDoubleClick(Object^ sender, DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex < 0) return;
+		int carId = System::Convert::ToInt32(ChooseCarDialogDataGridView->Rows[e->RowIndex]->Cells["id"]->Value);
+		CarSelected(carId);
+		this->Close();
+	}
+
+	};
 }

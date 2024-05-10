@@ -26,6 +26,8 @@ namespace GIBDDBase2024 {
 			InitializeComponent();
 		}
 
+	public: property int SelectedCarId;
+
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -685,6 +687,14 @@ namespace GIBDDBase2024 {
 	private: Void OpenDialogChooseCar_Click(Object^ sender, DataGridViewCellEventArgs^ e) {
 		ChooseCarDialog^ dialog = gcnew ChooseCarDialog();
 		dialog->Show();
+
+		dialog->CarSelected += gcnew ChooseCarDialog::CarSelectedEventHandler(this, &MainForm::OnCarSelected);
+
+		//dialog->Close();
+	}
+
+	private: Void OnCarSelected(int carId) {
+		int asdf = carId;
 	}
 
 	};
