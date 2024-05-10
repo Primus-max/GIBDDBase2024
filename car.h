@@ -2,7 +2,6 @@
 
 #include "penalty.h"
 
-
 using namespace System;
 using namespace System::Collections::Generic;
 
@@ -11,25 +10,21 @@ public ref class Car
 {
 public:
 
-    int id;
-    String^ brand;
-    // Характеристики автомобиля
-    short length = 0;
-    short clearance = 0;
-    short engineCapacity = 0;
-    short enginePower = 0;
-    short wheelDiameter = 0;
+	int id;
+	String^ brand;
 
-    // Регистрационные данные
-    String^ number;
-    short region = 0;
+	short length = 0;
+	short clearance = 0;
+	double engineCapacity = 0;
+	short enginePower = 0;
+	short wheelDiameter = 0;
 
-    // Цвет автомобиля
-    String^ carColor;
+	String^ reg_number;
+	short region = 0;
 
-    // Список штрафов
+	String^ color;
 
-   List<Penalty^>^ penalties;
+	//List<Penalty^>^ penalties;
 };
 
 

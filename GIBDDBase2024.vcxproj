@@ -27,21 +27,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CarRepository.cpp" />
+    <ClCompile Include="ChooseCarDialog.cpp" />
+    <ClCompile Include="ChooseCarDialogHelper.cpp" />
+    <ClCompile Include="InfoMessageService.cpp" />
     <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="MainFormelementConstructor.cpp" />
+    <ClCompile Include="MainFormHelper.cpp" />
+    <ClCompile Include="PenaltyManager.cpp" />
+    <ClCompile Include="PenaltyRepository.cpp" />
+    <ClCompile Include="PenaltyTypeManager.cpp" />
+    <ClCompile Include="PenaltyTypeRepository.cpp" />
+    <ClCompile Include="СarManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
+    <ClInclude Include="ChooseCarDialog.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ChooseCarDialogHelper.h" />
+    <ClInclude Include="ICarSearchable.h" />
+    <ClInclude Include="InfoMessageService.h" />
+    <ClInclude Include="MainFormelementConstructor.h" />
+    <ClInclude Include="MainFormHelper.h" />
+    <ClInclude Include="PenaltyManager.h" />
+    <ClInclude Include="PenaltyTypeManager.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="СarManager.h" />
+    <ClInclude Include="CarRepository.h" />
     <ClInclude Include="enums.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="penalty.h" />
+    <ClInclude Include="Penaltyrepository.h" />
+    <ClInclude Include="PenaltyType.h" />
+    <ClInclude Include="PenaltyTypeRepository.h" />
     <ClInclude Include="penaltyTypeStrings.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ChooseCarDialog.resx">
+      <DependentUpon>ChooseCarDialog.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\GIBDDBase_2024_C\Task.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GIBDDBase2024.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -106,6 +142,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <AdditionalLibraryDirectories>D:\vcpckg\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -133,6 +170,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <AdditionalLibraryDirectories>D:\vcpckg\vcpkg\installed\x64-windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,10 +13,58 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\Repositories">
+      <UniqueIdentifier>{98cedbab-c091-4916-a968-7105c8d5526d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Managers">
+      <UniqueIdentifier>{291141e0-30e3-468e-9516-c08643201579}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Helpers">
+      <UniqueIdentifier>{ece813fb-e124-4517-b355-bf76f75a6e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Services">
+      <UniqueIdentifier>{e9b353ec-2205-4b7a-a0be-d232d6cc47f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Constructor">
+      <UniqueIdentifier>{9610fcfc-cf6b-45c1-ac5b-dae7837cf1b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainForm.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="CarRepository.cpp">
+      <Filter>Исходные файлы\Repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="PenaltyRepository.cpp">
+      <Filter>Исходные файлы\Repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="PenaltyTypeRepository.cpp">
+      <Filter>Исходные файлы\Repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFormHelper.cpp">
+      <Filter>Исходные файлы\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="PenaltyManager.cpp">
+      <Filter>Исходные файлы\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="СarManager.cpp">
+      <Filter>Исходные файлы\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoMessageService.cpp">
+      <Filter>Исходные файлы\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFormelementConstructor.cpp">
+      <Filter>Исходные файлы\Constructor</Filter>
+    </ClCompile>
+    <ClCompile Include="PenaltyTypeManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ChooseCarDialog.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ChooseCarDialogHelper.cpp">
+      <Filter>Исходные файлы\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,5 +83,55 @@
     <ClInclude Include="penaltyTypeStrings.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="СarManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="CarRepository.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Penaltyrepository.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyType.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyTypeRepository.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFormHelper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoMessageService.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFormelementConstructor.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ICarSearchable.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyTypeManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ChooseCarDialog.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ChooseCarDialogHelper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\GIBDDBase_2024_C\Task.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GIBDDBase2024.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
