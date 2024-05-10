@@ -1,4 +1,5 @@
 #include "PenaltyTypeRepository.h"
+#include "InfoMessageService.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -24,13 +25,15 @@ void PenaltyTypeRepository::Add(PenaltyType^ penaltyType)
 		connection->Open();
 
 		if (commandAdd->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось добавить описание штрафа в базу", "Ошибка!");
+			ErrorMessage("Не удалось добавить тип штрафа в базу");
+		else
+			SuccessMessage("Данные успешно добавлены в базу");
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении описания штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -68,7 +71,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении описания штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -106,7 +109,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAllTypesByCarId(int carId)
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при получении данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -129,13 +132,15 @@ void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 		connection->Open();
 
 		if (commandUpdate->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось обновить описание штрафа в базе", "Ошибка!");
+			ErrorMessage("Не удалось обновить тип штрафа в базе");
+		else
+			SuccessMessage("Данные успешно обновлены в базе");
 
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при добавлении описания штрафа в базу данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
 	}
 	finally
 	{
@@ -143,26 +148,32 @@ void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 	}
 }
 
-void PenaltyTypeRepository::Delete(int penaltyTypeId)
+bool PenaltyTypeRepository::Delete(int penaltyTypeId)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
-	String^ queryDelete = "DELETE [penalty] WHERE id = @id";
-	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryDelete, connection);
+	String^ queryDelete = "DELETE FROM [penalty_types] WHERE id = @id";
+	OleDbCommand^ commandDelete = gcnew OleDbCommand(queryDelete, connection);
 
-	commandUpdate->Parameters->AddWithValue("@id", penaltyTypeId);
+	commandDelete->Parameters->AddWithValue("@id", penaltyTypeId);
 
 	try
 	{
 		connection->Open();
 
-		if (commandUpdate->ExecuteNonQuery() != 1)
-			MessageBox::Show("Не удалось удалить описание штрафа в базе", "Ошибка!");
-
+		if (commandDelete->ExecuteNonQuery() != 1) {
+			ErrorMessage("Не удалось удалить тип штрафа в базе");
+			return false;
+		}
+		else {
+			SuccessMessage("Данные успешно удалены из базы");
+			return true;
+		}
 	}
 	catch (OleDbException^ ex)
 	{
 		String^ errorMessage = "Ошибка при удалении описания штрафа из базы данных: " + gcnew String(ex->Message);
-		MessageBox::Show(errorMessage);
+		ErrorMessage(errorMessage);
+		return false;
 	}
 	finally
 	{

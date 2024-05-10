@@ -12,6 +12,7 @@ public: CarRepository(String^ connStr);
 
 	  void Add(Car^ car);
 	  List<Car^>^ GetAll();
+	  Car^ GetById(int carId);
 	  void Update(Car^ car);
 	  bool Delete(int carId);
 

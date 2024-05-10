@@ -4,6 +4,7 @@
 #include <iostream>
 
 using namespace System;
+using namespace System::Globalization;
 using namespace System::Collections::Generic;
 using namespace System::Data::OleDb;
 using namespace System::Windows::Forms;
@@ -51,8 +52,7 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryGet = "SELECT * FROM [penalty]";
-	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
-
+	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);	
 
 	try
 	{

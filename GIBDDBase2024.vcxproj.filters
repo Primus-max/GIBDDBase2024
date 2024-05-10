@@ -57,6 +57,9 @@
     <ClCompile Include="MainFormelementConstructor.cpp">
       <Filter>Исходные файлы\Constructor</Filter>
     </ClCompile>
+    <ClCompile Include="PenaltyTypeManager.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">
@@ -102,6 +105,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ICarSearchable.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="PenaltyTypeManager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

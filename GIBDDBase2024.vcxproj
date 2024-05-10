@@ -34,6 +34,7 @@
     <ClCompile Include="MainFormHelper.cpp" />
     <ClCompile Include="PenaltyManager.cpp" />
     <ClCompile Include="PenaltyRepository.cpp" />
+    <ClCompile Include="PenaltyTypeManager.cpp" />
     <ClCompile Include="PenaltyTypeRepository.cpp" />
     <ClCompile Include="СarManager.cpp" />
   </ItemGroup>
@@ -44,6 +45,7 @@
     <ClInclude Include="MainFormelementConstructor.h" />
     <ClInclude Include="MainFormHelper.h" />
     <ClInclude Include="PenaltyManager.h" />
+    <ClInclude Include="PenaltyTypeManager.h" />
     <ClInclude Include="СarManager.h" />
     <ClInclude Include="CarRepository.h" />
     <ClInclude Include="enums.h" />

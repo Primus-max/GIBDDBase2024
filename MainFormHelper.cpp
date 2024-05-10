@@ -55,15 +55,20 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 	PenaltiesDataGridView->Rows->Clear();
 
 	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
+	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Penalty^>^ penalties = penaltyRepos->GetAll();
-
+	Car^ car = gcnew Car();
 	for each (Penalty ^ penalty in penalties)
 	{
+		car = carRepos->GetById(penalty->carId);
+		String^ carBuilder = "Марка: " + car->brand + " " + "номер: " + car ->reg_number;
+		String^ formattedAmount = String::Format("{0:0.000}", penalty->amount);
 		array<Object^>^ rowData = gcnew array<Object^>(5);
+
 		rowData[0] = penalty->penaltyType;
 		rowData[1] = penalty->datP;
-		rowData[2] = penalty->amount;
-		rowData[3] = penalty->carId;
+		rowData[2] = formattedAmount;
+		rowData[3] = carBuilder;
 
 		PenaltiesDataGridView->Rows->Add(rowData);
 	}
@@ -73,16 +78,17 @@ void FillPenaltyTypesListView(DataGridView^ dataGridView)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
 	PenaltyTypeRepository^ penaltyTypeRepos = gcnew PenaltyTypeRepository(connectionString);
-	List<PenaltyType^>^ penaltyTypes = penaltyTypeRepos->GetAll();
-	List<PenaltyType^>^ asdf = penaltyTypeRepos->GetAllTypesByCarId(3);
+	List<PenaltyType^>^ penaltyTypes = penaltyTypeRepos->GetAll();	
 	dataGridView->Rows->Clear();
 
 	for each (PenaltyType ^ penaltyType in penaltyTypes)
 	{
+		String^ formattedAmount = String::Format("{0:0.000}", penaltyType->price);
+
 		array<Object^>^ rowData = gcnew array<Object^>(3);
 		rowData[0] = penaltyType->id;
 		rowData[1] = penaltyType->penaltyType;
-		rowData[2] = penaltyType->price;
+		rowData[2] = formattedAmount;
 
 		dataGridView->Rows->Add(rowData);
 	}

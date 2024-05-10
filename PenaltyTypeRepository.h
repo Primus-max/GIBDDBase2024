@@ -13,5 +13,5 @@ public:	PenaltyTypeRepository(String^ connStr);
 	  List<PenaltyType^>^ GetAll();
 	  List<PenaltyType^>^ GetAllTypesByCarId(int carId);
 	  void Update(PenaltyType^ penaltyType);
-	  void Delete(int penaltyTypeId);
+	  bool Delete(int penaltyTypeId);
 };

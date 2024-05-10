@@ -92,6 +92,48 @@ List<Car^>^ CarRepository::GetAll()
 	}	
 }
 
+Car^ CarRepository::GetById(int carId)
+{	
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT * FROM cars WHERE id=@carId";
+	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
+
+	commandGet->Parameters->AddWithValue("@carId", carId);
+
+	try
+	{
+		connection->Open();
+		OleDbDataReader^ reader = commandGet->ExecuteReader();
+
+		Car^ car = gcnew Car();
+
+		while (reader->Read())
+		{			
+			car->id = Convert::ToInt32(reader["id"]);
+			car->brand = reader["brand"]->ToString();
+			car->length = Convert::ToInt16(reader["length"]);
+			car->clearance = Convert::ToInt16(reader["clearance"]);
+			car->engineCapacity = Convert::ToDouble(reader["engine_capacity"]);
+			car->enginePower = Convert::ToInt16(reader["engine_power"]);
+			car->wheelDiameter = Convert::ToInt16(reader["wheel_diameter"]);
+			car->reg_number = reader["reg_number"]->ToString();
+			car->region = Convert::ToInt16(reader["region"]);
+			car->color = reader["color"]->ToString();			
+		}
+
+		return car;
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при чтении данных из базы данных: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+	}
+	finally
+	{
+		connection->Close();
+	}
+}
+
 void CarRepository::Update(Car^ car)
 {
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
