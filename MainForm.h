@@ -1,5 +1,6 @@
 #pragma once
 #include "car.h"
+#include "ChooseCarDialog.h"
 #include "MainFormHelper.h"
 #include "PenaltyManager.h"
 #include "PenaltyTypeManager.h"
@@ -103,7 +104,11 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ carId;
+	private: System::Windows::Forms::DataGridViewButtonColumn^ carId;
+
+
+
+
 
 
 	private: System::ComponentModel::IContainer^ components;
@@ -168,7 +173,8 @@ namespace GIBDDBase2024 {
 			this->penalty_type = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->amount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->carId = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->carId = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+			this->PenaltiesDataGridView->CellContentClick += gcnew DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -590,6 +596,7 @@ namespace GIBDDBase2024 {
 			this->carId->HeaderText = L"Авто";
 			this->carId->Name = L"carId";
 			this->carId->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+			this->carId->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
 			// 
 			// MainForm
 			// 
@@ -662,7 +669,6 @@ namespace GIBDDBase2024 {
 	}
 #pragma endregion
 
-
 #pragma region Поиск
 	private: System::Void SearchButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		int selectedIndex = SearchParametersComboBox->SelectedIndex;
@@ -674,6 +680,12 @@ namespace GIBDDBase2024 {
 		FillCarListView(CarsDataGridView);
 	}
 #pragma endregion
+
+
+	private: Void OpenDialogChooseCar_Click(Object^ sender, DataGridViewCellEventArgs^ e) {
+		ChooseCarDialog^ dialog = gcnew ChooseCarDialog();
+		dialog->Show();
+	}
 
 	};
 }

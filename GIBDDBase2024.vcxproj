@@ -28,6 +28,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CarRepository.cpp" />
+    <ClCompile Include="ChooseCarDialog.cpp" />
+    <ClCompile Include="ChooseCarDialogHelper.cpp" />
     <ClCompile Include="InfoMessageService.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="MainFormelementConstructor.cpp" />
@@ -40,12 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="car.h" />
+    <ClInclude Include="ChooseCarDialog.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ChooseCarDialogHelper.h" />
     <ClInclude Include="ICarSearchable.h" />
     <ClInclude Include="InfoMessageService.h" />
     <ClInclude Include="MainFormelementConstructor.h" />
     <ClInclude Include="MainFormHelper.h" />
     <ClInclude Include="PenaltyManager.h" />
     <ClInclude Include="PenaltyTypeManager.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="СarManager.h" />
     <ClInclude Include="CarRepository.h" />
     <ClInclude Include="enums.h" />
@@ -59,12 +66,18 @@
     <ClInclude Include="penaltyTypeStrings.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ChooseCarDialog.resx">
+      <DependentUpon>ChooseCarDialog.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\GIBDDBase_2024_C\Task.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GIBDDBase2024.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
