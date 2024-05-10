@@ -24,7 +24,7 @@ public:
 
 	String^ color;
 
-	List<Penalty^>^ penalties;
+	//List<Penalty^>^ penalties;
 };
 
 

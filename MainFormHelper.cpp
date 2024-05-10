@@ -6,7 +6,6 @@
 #include "PenaltyTypeRepository.h"
 
 
-
 void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
 {
 	String^ connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=gibdd_base.accdb";
