@@ -26,7 +26,7 @@ namespace GIBDDBase2024 {
 			InitializeComponent();
 		}
 
-	public: property int SelectedCarId;
+	public: property int SelectedRowIndex;
 
 	protected:
 		/// <summary>
@@ -106,7 +106,19 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penalty_type;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ date_p;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyTypeColumn;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ carId;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ car_id;
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -175,8 +187,9 @@ namespace GIBDDBase2024 {
 			this->penalty_type = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->date_p = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->amount = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->carId = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-			this->PenaltiesDataGridView->CellContentClick += gcnew DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
+			this->penaltyTypeColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->carId = (gcnew System::Windows::Forms::DataGridViewButtonColumn());			
+			this->car_id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->CarTabControl->SuspendLayout();
 			this->CarTabPage->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->CarsDataGridView))->BeginInit();
@@ -458,9 +471,9 @@ namespace GIBDDBase2024 {
 			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
 			this->PenaltiesDataGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->PenaltiesDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->PenaltiesDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(4) {
+			this->PenaltiesDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {
 				this->penalty_type,
-					this->date_p, this->amount, this->carId
+					this->date_p, this->amount, this->penaltyTypeColumn, this->carId, this->car_id
 			});
 			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
 			dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Window;
@@ -473,6 +486,7 @@ namespace GIBDDBase2024 {
 			this->PenaltiesDataGridView->DefaultCellStyle = dataGridViewCellStyle3;
 			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 78);
 			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
+			this->PenaltiesDataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
 			dataGridViewCellStyle4->BackColor = System::Drawing::SystemColors::Control;
 			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
@@ -581,6 +595,7 @@ namespace GIBDDBase2024 {
 			this->date_p->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
 			dataGridViewCellStyle2->NullValue = nullptr;
 			this->date_p->DefaultCellStyle = dataGridViewCellStyle2;
+			this->date_p->FillWeight = 42.55319F;
 			this->date_p->HeaderText = L"Дата";
 			this->date_p->Name = L"date_p";
 			this->date_p->Resizable = System::Windows::Forms::DataGridViewTriState::False;
@@ -588,17 +603,34 @@ namespace GIBDDBase2024 {
 			// amount
 			// 
 			this->amount->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->amount->FillWeight = 42.55319F;
 			this->amount->HeaderText = L"Сумма";
 			this->amount->Name = L"amount";
 			this->amount->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			// 
+			// penaltyTypeColumn
+			// 
+			this->penaltyTypeColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->penaltyTypeColumn->FillWeight = 42.55319F;
+			this->penaltyTypeColumn->HeaderText = L"Штраф";
+			this->penaltyTypeColumn->Name = L"penaltyTypeColumn";
+			// 
 			// carId
 			// 
-			this->carId->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->carId->FillWeight = 272.3404F;
 			this->carId->HeaderText = L"Авто";
 			this->carId->Name = L"carId";
 			this->carId->Resizable = System::Windows::Forms::DataGridViewTriState::False;
 			this->carId->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
+			this->carId->Width = 200;
+			// 
+			// car_id
+			// 
+			this->car_id->HeaderText = L"id авто";
+			this->car_id->Name = L"car_id";
+			this->car_id->ReadOnly = true;
+			this->car_id->Visible = false;
+			this->car_id->Width = 50;
 			// 
 			// MainForm
 			// 
@@ -689,12 +721,16 @@ namespace GIBDDBase2024 {
 		dialog->Show();
 
 		dialog->CarSelected += gcnew ChooseCarDialog::CarSelectedEventHandler(this, &MainForm::OnCarSelected);
-
-		//dialog->Close();
+		SelectedRowIndex = e->RowIndex;
 	}
 
 	private: Void OnCarSelected(int carId) {
-		int asdf = carId;
+		if (SelectedRowIndex == -1) return;
+
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedRowIndex];
+		selectedRow->Cells[4]->Value = carId;
+		selectedRow->Selected = true;
+		UpdatePenaltyAtDb(PenaltiesDataGridView);
 	}
 
 	};
