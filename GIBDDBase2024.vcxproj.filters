@@ -69,6 +69,9 @@
     <ClCompile Include="ChoosePenaltyDialog.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="ChoosePenaltyDialogHelper.cpp">
+      <Filter>Исходные файлы\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">

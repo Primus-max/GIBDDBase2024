@@ -1,5 +1,5 @@
 #pragma once
-
+#include "ChoosePenaltyDialogHelper.h"
 namespace GIBDDBase2024 {
 
 	using namespace System;
@@ -69,9 +69,9 @@ namespace GIBDDBase2024 {
 					this->PenaltyTypeColumn
 			});
 			this->ChoosePenaltyDialogDataGridView->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->ChoosePenaltyDialogDataGridView->Location = System::Drawing::Point(0, 38);
+			this->ChoosePenaltyDialogDataGridView->Location = System::Drawing::Point(0, 53);
 			this->ChoosePenaltyDialogDataGridView->Name = L"ChoosePenaltyDialogDataGridView";
-			this->ChoosePenaltyDialogDataGridView->Size = System::Drawing::Size(349, 423);
+			this->ChoosePenaltyDialogDataGridView->Size = System::Drawing::Size(484, 508);
 			this->ChoosePenaltyDialogDataGridView->TabIndex = 1;
 			// 
 			// PenaltyTypeIdColumn
@@ -93,20 +93,21 @@ namespace GIBDDBase2024 {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(349, 461);
+			this->ClientSize = System::Drawing::Size(484, 561);
 			this->Controls->Add(this->ChoosePenaltyDialogDataGridView);
 			this->MaximizeBox = false;
-			this->MaximumSize = System::Drawing::Size(365, 500);
+			this->MaximumSize = System::Drawing::Size(500, 600);
 			this->MinimizeBox = false;
-			this->MinimumSize = System::Drawing::Size(365, 500);
+			this->MinimumSize = System::Drawing::Size(500, 600);
 			this->Name = L"ChoosePenaltyDialog";
 			this->Text = L"Выбор штрафа";
+			this->Load += gcnew System::EventHandler(this, &ChoosePenaltyDialog::Dialog_Loaded);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChoosePenaltyDialogDataGridView))->EndInit();
 			this->ResumeLayout(false);
-			//
-			// Слушатели
-			//
+
+			// Handlers
 			this->ChoosePenaltyDialogDataGridView->CellDoubleClick += gcnew DataGridViewCellEventHandler(this, &ChoosePenaltyDialog::ChoosePenaltyCell_DoubleClick);
+
 		}
 #pragma endregion
 
@@ -116,5 +117,9 @@ namespace GIBDDBase2024 {
 		SelectedPenaltyType(penaltyTypeId);
 		this->Close();
 	}
-	};
+
+	private: System::Void Dialog_Loaded(System::Object^ sender, System::EventArgs^ e) {
+		FillPenaltyTypeListViewAtChooseDialog(ChoosePenaltyDialogDataGridView);
+	}
+};
 }

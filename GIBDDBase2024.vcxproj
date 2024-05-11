@@ -31,6 +31,7 @@
     <ClCompile Include="ChooseCarDialog.cpp" />
     <ClCompile Include="ChooseCarDialogHelper.cpp" />
     <ClCompile Include="ChoosePenaltyDialog.cpp" />
+    <ClCompile Include="ChoosePenaltyDialogHelper.cpp" />
     <ClCompile Include="InfoMessageService.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="MainFormelementConstructor.cpp" />
