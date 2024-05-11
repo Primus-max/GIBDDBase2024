@@ -63,12 +63,12 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 		car = carRepos->GetById(penalty->carId);
 		String^ carBuilder = "Марка: " + car->brand + " " + "номер: " + car ->reg_number;
 		String^ formattedAmount = String::Format("{0:0.000}", penalty->amount);
-		array<Object^>^ rowData = gcnew array<Object^>(5);
+		array<Object^>^ rowData = gcnew array<Object^>(7);
 
-		rowData[0] = penalty->penaltyType;
-		rowData[1] = penalty->datP;
-		rowData[2] = formattedAmount;
-		rowData[3] = carBuilder;
+		rowData[0] = penalty->id;
+		rowData[2] = penalty->datP;
+		rowData[4] = formattedAmount;
+		rowData[6] = carBuilder;
 
 		PenaltiesDataGridView->Rows->Add(rowData);
 	}

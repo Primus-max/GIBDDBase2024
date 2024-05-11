@@ -88,7 +88,7 @@ namespace GIBDDBase2024 {
 			this->ChooseCarDialogDataGridView->Name = L"ChooseCarDialogDataGridView";
 			this->ChooseCarDialogDataGridView->Size = System::Drawing::Size(349, 423);
 			this->ChooseCarDialogDataGridView->TabIndex = 0;
-			this->ChooseCarDialogDataGridView->CellDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &ChooseCarDialog::ChooseCarDialogDataGridView_CellDoubleClick);
+			this->ChooseCarDialogDataGridView->CellDoubleClick += gcnew DataGridViewCellEventHandler(this, &ChooseCarDialog::ChooseCarDialogDataGridView_CellDoubleClick);
 			// 
 			// textBox1
 			// 

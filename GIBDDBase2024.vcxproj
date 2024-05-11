@@ -30,6 +30,7 @@
     <ClCompile Include="CarRepository.cpp" />
     <ClCompile Include="ChooseCarDialog.cpp" />
     <ClCompile Include="ChooseCarDialogHelper.cpp" />
+    <ClCompile Include="ChoosePenaltyDialog.cpp" />
     <ClCompile Include="InfoMessageService.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="MainFormelementConstructor.cpp" />
@@ -46,6 +47,10 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ChooseCarDialogHelper.h" />
+    <ClInclude Include="ChoosePenaltyDialog.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ChoosePenaltyDialogHelper.h" />
     <ClInclude Include="ICarSearchable.h" />
     <ClInclude Include="InfoMessageService.h" />
     <ClInclude Include="MainFormelementConstructor.h" />
@@ -68,6 +73,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ChooseCarDialog.resx">
       <DependentUpon>ChooseCarDialog.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChoosePenaltyDialog.resx">
+      <DependentUpon>ChoosePenaltyDialog.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>

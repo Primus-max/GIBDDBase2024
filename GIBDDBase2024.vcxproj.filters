@@ -66,6 +66,9 @@
     <ClCompile Include="ChooseCarDialogHelper.cpp">
       <Filter>Исходные файлы\Helpers</Filter>
     </ClCompile>
+    <ClCompile Include="ChoosePenaltyDialog.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">
@@ -123,6 +126,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="ChooseCarDialogHelper.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ChoosePenaltyDialog.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ChoosePenaltyDialogHelper.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

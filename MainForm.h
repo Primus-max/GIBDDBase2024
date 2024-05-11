@@ -1,6 +1,7 @@
 #pragma once
 #include "car.h"
 #include "ChooseCarDialog.h"
+#include "ChoosePenaltyDialog.h"
 #include "MainFormHelper.h"
 #include "PenaltyManager.h"
 #include "PenaltyTypeManager.h"
@@ -26,7 +27,7 @@ namespace GIBDDBase2024 {
 			InitializeComponent();
 		}
 
-	public: property int SelectedRowIndex;
+	public: property int SelectedColumnIndex;
 
 	protected:
 		/// <summary>
@@ -48,9 +49,6 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridView^ PenaltiesDataGridView;
 	private: System::Windows::Forms::TabPage^ PenaltyTypes;
 	private: System::Windows::Forms::DataGridView^ PenaltyTypesDataGridView;
-
-
-
 	private: System::Windows::Forms::Button^ DeleteCarBtn;
 	private: System::Windows::Forms::Button^ UpdateCarBtn;
 	private: System::Windows::Forms::Label^ DescriptionControlsCars;
@@ -58,27 +56,11 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::Button^ DeletePenaltyButton;
 	private: System::Windows::Forms::Button^ UpdatePenaltyBatton;
 	private: System::Windows::Forms::Button^ AddPenaltyBatton;
-
-
-
-
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::TextBox^ SearchInput;
 	private: System::Windows::Forms::ComboBox^ SearchParametersComboBox;
 	private: System::Windows::Forms::Button^ SearchButton;
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::Button^ ResetSearchButton;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
@@ -92,10 +74,6 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
 	private: System::Windows::Forms::DataGridViewComboBoxColumn^ PenaltiesCombobox;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ SumPenaltiesColumn;
-
-
-
-
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyTypeId;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ penaltyType;
@@ -110,30 +88,6 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ carId;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ CarDesctiptionColumn;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::ComponentModel::IContainer^ components;
 	private:
 		/// <summary>
@@ -496,6 +450,7 @@ namespace GIBDDBase2024 {
 			this->PenaltiesDataGridView->DefaultCellStyle = dataGridViewCellStyle3;
 			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 78);
 			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
+			this->PenaltiesDataGridView->CellClick += gcnew DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
 			dataGridViewCellStyle4->BackColor = System::Drawing::SystemColors::Control;
 			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
@@ -722,7 +677,6 @@ namespace GIBDDBase2024 {
 	private: System::Void SearchButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		int selectedIndex = SearchParametersComboBox->SelectedIndex;
 		List<Car^>^ searchedCars = Find(SearchInput->Text, selectedIndex);
-		//CarsDataGridView->DataSource = 
 		FillCarListView(CarsDataGridView, searchedCars);
 	}
 	private: System::Void ResetSearchButton_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -732,17 +686,34 @@ namespace GIBDDBase2024 {
 
 
 	private: Void OpenDialogChooseCar_Click(Object^ sender, DataGridViewCellEventArgs^ e) {
-		ChooseCarDialog^ dialog = gcnew ChooseCarDialog();
-		dialog->Show();
-		dialog->CarSelected += gcnew ChooseCarDialog::CarSelectedEventHandler(this, &MainForm::OnCarSelected);
-		SelectedRowIndex = e->RowIndex;
+		SelectedColumnIndex = e->ColumnIndex;
+		if (SelectedColumnIndex == 6) {
+			ChooseCarDialog^ dialog = gcnew ChooseCarDialog();
+			dialog->Show();
+			dialog->CarSelected += gcnew ChooseCarDialog::CarSelectedEventHandler(this, &MainForm::OnCarSelected);
+			return;
+		}
+		if (SelectedColumnIndex == 3) {
+			ChoosePenaltyDialog^ penaltyDialog = gcnew ChoosePenaltyDialog();
+			penaltyDialog->Show();
+			penaltyDialog->SelectedPenaltyType += gcnew ChoosePenaltyDialog::PenaltyTypeSelectedEventHandler(this, &MainForm::OnPenaltyTypeSelected);
+		}
 	}
 
 	private: Void OnCarSelected(int carId) {
-		if (SelectedRowIndex == -1) return;
+		if (SelectedColumnIndex == -1) return;
 
-		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedRowIndex];
-		selectedRow->Cells[4]->Value = carId;
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedColumnIndex];
+		selectedRow->Cells[5]->Value = carId;
+		selectedRow->Selected = true;
+		UpdatePenaltyAtDb(PenaltiesDataGridView);
+	}
+
+	private: Void OnPenaltyTypeSelected(int penaltyTypeId) {
+		if (SelectedColumnIndex == -1) return;
+
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedColumnIndex];
+		selectedRow->Cells[1]->Value = penaltyTypeId;
 		selectedRow->Selected = true;
 		UpdatePenaltyAtDb(PenaltiesDataGridView);
 	}
