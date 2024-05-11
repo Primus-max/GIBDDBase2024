@@ -701,22 +701,23 @@ namespace GIBDDBase2024 {
 	}
 
 	private: Void OnCarSelected(int carId) {
-		if (SelectedColumnIndex == -1) return;
+		if (PenaltiesDataGridView->SelectedCells->Count == 0) return;
 
-		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedColumnIndex];
+		DataGridViewCell^ selectedCell = PenaltiesDataGridView->SelectedCells[0];
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[selectedCell->RowIndex];
 		selectedRow->Cells[5]->Value = carId;
 		selectedRow->Selected = true;
-		UpdatePenaltyAtDb(PenaltiesDataGridView);
 	}
 
 	private: Void OnPenaltyTypeSelected(int penaltyTypeId) {
-		if (SelectedColumnIndex == -1) return;
+		if (PenaltiesDataGridView->SelectedCells->Count == 0) return;
 
-		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[SelectedColumnIndex];
+		DataGridViewCell^ selectedCell = PenaltiesDataGridView->SelectedCells[0];
+		DataGridViewRow^ selectedRow = PenaltiesDataGridView->Rows[selectedCell->RowIndex];
 		selectedRow->Cells[1]->Value = penaltyTypeId;
 		selectedRow->Selected = true;
-		UpdatePenaltyAtDb(PenaltiesDataGridView);
 	}
+
 
 	};
 }

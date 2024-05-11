@@ -1,5 +1,5 @@
-#include "PenaltyTypeRepository.h"
 #include "InfoMessageService.h"
+#include "PenaltyTypeRepository.h"
 
 using namespace System;
 using namespace System::Collections::Generic;
@@ -8,7 +8,7 @@ using namespace System::Windows::Forms;
 
 PenaltyTypeRepository::PenaltyTypeRepository(String^ connStr)
 {
-    _connectionString = connStr;
+	_connectionString = connStr;
 }
 
 void PenaltyTypeRepository::Add(PenaltyType^ penaltyType)
@@ -18,7 +18,7 @@ void PenaltyTypeRepository::Add(PenaltyType^ penaltyType)
 	OleDbCommand^ commandAdd = gcnew OleDbCommand(queryAdd, connection);
 
 	commandAdd->Parameters->AddWithValue("@penalty_type", penaltyType->penaltyType);
-	commandAdd->Parameters->AddWithValue("@price", penaltyType->price);	
+	commandAdd->Parameters->AddWithValue("@price", penaltyType->price);
 
 	try
 	{
@@ -62,7 +62,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 			penaltyType->id = Convert::ToInt32(reader["id"]);
 			penaltyType->penaltyType = reader["penalty_type"]->ToString();
 			penaltyType->price = Convert::ToDouble(reader["price"]);
-			
+
 			penaltiesTypes->Add(penaltyType);
 		}
 
@@ -77,6 +77,43 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAll()
 	{
 		connection->Close();
 	}
+}
+
+PenaltyType^ PenaltyTypeRepository::GetById(int id)
+{
+	PenaltyType^ penaltyType = nullptr;
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ query = "SELECT * FROM penalty_types WHERE id = @id";
+	
+
+	try
+	{
+		OleDbCommand^ command = gcnew OleDbCommand(query, connection);
+		command->Parameters->AddWithValue("@id", id);
+		
+		connection->Open();
+		OleDbDataReader^ reader = command->ExecuteReader();
+				
+		if (reader->Read())
+		{			
+			penaltyType = gcnew PenaltyType();
+			penaltyType->id = Convert::ToInt32(reader["id"]);
+			penaltyType->penaltyType = reader["penalty_type"]->ToString();
+			penaltyType->price = Convert::ToDouble(reader["price"]);
+		}
+
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при добавлении описания штрафа в базу данных: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+	}
+	finally 
+	{
+		connection->Close();
+	}
+
+	return penaltyType;
 }
 
 List<PenaltyType^>^ PenaltyTypeRepository::GetAllTypesByCarId(int carId)
@@ -119,7 +156,7 @@ List<PenaltyType^>^ PenaltyTypeRepository::GetAllTypesByCarId(int carId)
 
 void PenaltyTypeRepository::Update(PenaltyType^ penaltyType)
 {
-	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);	
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryUpdate = "UPDATE [penalty_types] SET penalty_type = @penalty_type, price = @price WHERE id = @id";
 	OleDbCommand^ commandUpdate = gcnew OleDbCommand(queryUpdate, connection);
 

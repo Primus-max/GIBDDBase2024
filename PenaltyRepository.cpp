@@ -52,7 +52,7 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 
 	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
 	String^ queryGet = "SELECT * FROM [penalty]";
-	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);	
+	OleDbCommand^ commandRead = gcnew OleDbCommand(queryGet, connection);
 
 	try
 	{
@@ -84,6 +84,51 @@ List<Penalty^>^ PenaltyRepository::GetAll()
 		connection->Close();
 	}
 }
+
+Penalty^ PenaltyRepository::GetById(int id)
+{
+	OleDbConnection^ connection = gcnew OleDbConnection(_connectionString);
+	String^ queryGet = "SELECT * FROM [penalty] WHERE id = @id";
+	OleDbCommand^ commandGet = gcnew OleDbCommand(queryGet, connection);
+
+	Penalty^ penalty = gcnew Penalty(); 
+
+	try
+	{
+		connection->Open();
+		commandGet->Parameters->AddWithValue("@id", id);
+
+		OleDbDataReader^ reader = commandGet->ExecuteReader(); // Выполняем запрос и получаем reader
+
+		// Проверяем, есть ли результаты
+		if (reader->Read())
+		{
+			// Создаем экземпляр Penalty и заполняем его данными из результата запроса
+			penalty = gcnew Penalty();
+			penalty->id = id;
+			penalty->datP = Convert::ToDateTime(reader["datP"]); // Предположим, что это имя столбца с датой
+			penalty->penaltyType = Convert::ToInt32(reader["penaltyType"]); // Предположим, что это имя столбца с типом штрафа
+			penalty->amount = Convert::ToDouble(reader["amount"]); // Предположим, что это имя столбца с суммой
+			penalty->carId = Convert::ToInt32(reader["carId"]); // Предположим, что это имя столбца с идентификатором автомобиля
+		}
+
+		return penalty;
+		reader->Close(); // Закрываем reader после использования
+	}
+	catch (OleDbException^ ex)
+	{
+		String^ errorMessage = "Ошибка при получении информации о штрафе: " + gcnew String(ex->Message);
+		ErrorMessage(errorMessage);
+		return penalty;
+	}
+	finally
+	{
+		connection->Close();
+	}
+
+	return penalty; // Возвращаем объект Penalty
+}
+
 
 List<Penalty^>^ PenaltyRepository::GetAllForCar(int cardId)
 {
@@ -137,7 +182,7 @@ double PenaltyRepository::GetAmountPenaltiesByCarId(int cardId)
 	try
 	{
 		connection->Open();
-		OleDbDataReader^ reader = commandGet->ExecuteReader();		
+		OleDbDataReader^ reader = commandGet->ExecuteReader();
 
 		double sumPenalties = Convert::ToDouble(reader);
 		return sumPenalties;
@@ -202,12 +247,12 @@ bool PenaltyRepository::Delete(int id)
 		if (commandDelete->ExecuteNonQuery() != 1) {
 			ErrorMessage("Не удалось удалить штраф в базе");
 			return false;
-		}			
+		}
 		else {
 			SuccessMessage("Данные успешно удалены из базы");
 			return true;
 		}
-			
+
 
 	}
 	catch (OleDbException^ ex)
