@@ -43,12 +43,13 @@ namespace GIBDDBase2024 {
 	protected:
 
 	protected:
-	private: System::Windows::Forms::TextBox^ textBox1;
-	private: System::Windows::Forms::Button^ button1;
+
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ id;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ brand;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ reg_number;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ color;
+	private: System::Windows::Forms::Label^ label1;
 
 
 
@@ -67,12 +68,11 @@ namespace GIBDDBase2024 {
 		void InitializeComponent(void)
 		{
 			this->ChooseCarDialogDataGridView = (gcnew System::Windows::Forms::DataGridView());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->id = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->brand = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->reg_number = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->color = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChooseCarDialogDataGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -84,27 +84,10 @@ namespace GIBDDBase2024 {
 					this->brand, this->reg_number, this->color
 			});
 			this->ChooseCarDialogDataGridView->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->ChooseCarDialogDataGridView->Location = System::Drawing::Point(0, 38);
+			this->ChooseCarDialogDataGridView->Location = System::Drawing::Point(0, 25);
 			this->ChooseCarDialogDataGridView->Name = L"ChooseCarDialogDataGridView";
-			this->ChooseCarDialogDataGridView->Size = System::Drawing::Size(349, 423);
+			this->ChooseCarDialogDataGridView->Size = System::Drawing::Size(349, 436);
 			this->ChooseCarDialogDataGridView->TabIndex = 0;
-			this->ChooseCarDialogDataGridView->CellDoubleClick += gcnew DataGridViewCellEventHandler(this, &ChooseCarDialog::ChooseCarDialogDataGridView_CellDoubleClick);
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(68, 10);
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(100, 20);
-			this->textBox1->TabIndex = 1;
-			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(241, 9);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"button1";
-			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// id
 			// 
@@ -137,13 +120,21 @@ namespace GIBDDBase2024 {
 			this->color->Name = L"color";
 			this->color->ReadOnly = true;
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 9);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(188, 13);
+			this->label1->TabIndex = 1;
+			this->label1->Text = L"Выбор авто: двойной кли по ячейке";
+			// 
 			// ChooseCarDialog
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(349, 461);
-			this->Controls->Add(this->button1);
-			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ChooseCarDialogDataGridView);
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(365, 500);

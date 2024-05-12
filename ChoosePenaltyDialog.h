@@ -39,6 +39,7 @@ namespace GIBDDBase2024 {
 	protected:
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PenaltyTypeIdColumn;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ PenaltyTypeColumn;
+	private: System::Windows::Forms::Label^ label1;
 
 	protected:
 
@@ -58,6 +59,7 @@ namespace GIBDDBase2024 {
 			this->ChoosePenaltyDialogDataGridView = (gcnew System::Windows::Forms::DataGridView());
 			this->PenaltyTypeIdColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PenaltyTypeColumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChoosePenaltyDialogDataGridView))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -69,9 +71,9 @@ namespace GIBDDBase2024 {
 					this->PenaltyTypeColumn
 			});
 			this->ChoosePenaltyDialogDataGridView->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->ChoosePenaltyDialogDataGridView->Location = System::Drawing::Point(0, 53);
+			this->ChoosePenaltyDialogDataGridView->Location = System::Drawing::Point(0, 25);
 			this->ChoosePenaltyDialogDataGridView->Name = L"ChoosePenaltyDialogDataGridView";
-			this->ChoosePenaltyDialogDataGridView->Size = System::Drawing::Size(484, 508);
+			this->ChoosePenaltyDialogDataGridView->Size = System::Drawing::Size(484, 536);
 			this->ChoosePenaltyDialogDataGridView->TabIndex = 1;
 			// 
 			// PenaltyTypeIdColumn
@@ -89,11 +91,21 @@ namespace GIBDDBase2024 {
 			this->PenaltyTypeColumn->Name = L"PenaltyTypeColumn";
 			this->PenaltyTypeColumn->ReadOnly = true;
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(12, 9);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(226, 13);
+			this->label1->TabIndex = 2;
+			this->label1->Text = L"Выбор нарушения: двойной клие по ячейки";
+			// 
 			// ChoosePenaltyDialog
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(484, 561);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ChoosePenaltyDialogDataGridView);
 			this->MaximizeBox = false;
 			this->MaximumSize = System::Drawing::Size(500, 600);
@@ -104,9 +116,7 @@ namespace GIBDDBase2024 {
 			this->Load += gcnew System::EventHandler(this, &ChoosePenaltyDialog::Dialog_Loaded);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ChoosePenaltyDialogDataGridView))->EndInit();
 			this->ResumeLayout(false);
-
-			// Handlers
-			this->ChoosePenaltyDialogDataGridView->CellDoubleClick += gcnew DataGridViewCellEventHandler(this, &ChoosePenaltyDialog::ChoosePenaltyCell_DoubleClick);
+			this->PerformLayout();
 
 		}
 #pragma endregion

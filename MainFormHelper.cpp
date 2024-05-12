@@ -46,6 +46,8 @@ void FillCarListView(DataGridView^ dataGridView, List<Car^>^ cars)
 		DataGridViewComboBoxCell^ comboBoxCell = dynamic_cast<DataGridViewComboBoxCell^>(dataGridView->Rows[rowIndex]->Cells["PenaltiesCombobox"]);
 		FillCarPenaltiesComboBox(comboBoxCell, carPenaltyTypes);
 	}
+
+	//UpdateCarListView
 }
 
 void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
@@ -115,4 +117,4 @@ void FillSearchParameters(ComboBox^ comboBox)
 	comboBox->SelectedIndex = 0;
 }
 
-
+//void UpdateCarsView(DataGridView^ dataGridView){}
