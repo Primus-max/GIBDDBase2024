@@ -88,6 +88,13 @@ namespace GIBDDBase2024 {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ amount;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ carId;
 	private: System::Windows::Forms::DataGridViewButtonColumn^ CarDesctiptionColumn;
+
+
+
+
+
+
+
 	private: System::ComponentModel::IContainer^ components;
 	private:
 		/// <summary>
@@ -104,9 +111,10 @@ namespace GIBDDBase2024 {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->CarTabControl = (gcnew System::Windows::Forms::TabControl());
 			this->CarTabPage = (gcnew System::Windows::Forms::TabPage());
 			this->ResetSearchButton = (gcnew System::Windows::Forms::Button());
@@ -439,26 +447,25 @@ namespace GIBDDBase2024 {
 				this->penalty_type,
 					this->penlty_type_id_column, this->date_p, this->PenaltyTypeColumn, this->amount, this->carId, this->CarDesctiptionColumn
 			});
-			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle3->BackColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle3->ForeColor = System::Drawing::SystemColors::ControlText;
-			dataGridViewCellStyle3->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle3->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-			this->PenaltiesDataGridView->DefaultCellStyle = dataGridViewCellStyle3;
-			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 78);
-			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
-			this->PenaltiesDataGridView->CellClick += gcnew DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
-			dataGridViewCellStyle4->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle4->BackColor = System::Drawing::SystemColors::Window;
 			dataGridViewCellStyle4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			dataGridViewCellStyle4->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle4->ForeColor = System::Drawing::SystemColors::ControlText;
 			dataGridViewCellStyle4->SelectionBackColor = System::Drawing::SystemColors::Highlight;
 			dataGridViewCellStyle4->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->PenaltiesDataGridView->RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle4->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+			this->PenaltiesDataGridView->DefaultCellStyle = dataGridViewCellStyle4;
+			this->PenaltiesDataGridView->Location = System::Drawing::Point(3, 78);
+			this->PenaltiesDataGridView->Name = L"PenaltiesDataGridView";
+			dataGridViewCellStyle5->BackColor = System::Drawing::SystemColors::Control;
+			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::WindowText;
+			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->PenaltiesDataGridView->RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this->PenaltiesDataGridView->Size = System::Drawing::Size(1285, 591);
 			this->PenaltiesDataGridView->TabIndex = 0;
 			// 
@@ -574,6 +581,9 @@ namespace GIBDDBase2024 {
 			// PenaltyTypeColumn
 			// 
 			this->PenaltyTypeColumn->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			dataGridViewCellStyle3->Alignment = System::Windows::Forms::DataGridViewContentAlignment::TopLeft;
+			dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->PenaltyTypeColumn->DefaultCellStyle = dataGridViewCellStyle3;
 			this->PenaltyTypeColumn->HeaderText = L"Øענאפ";
 			this->PenaltyTypeColumn->Name = L"PenaltyTypeColumn";
 			// 
@@ -622,7 +632,9 @@ namespace GIBDDBase2024 {
 			this->PenaltyTypes->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PenaltyTypesDataGridView))->EndInit();
 			this->ResumeLayout(false);
-
+			
+			// Handlers
+			this->PenaltiesDataGridView->CellClick += gcnew DataGridViewCellEventHandler(this, &MainForm::OpenDialogChooseCar_Click);
 		}
 #pragma endregion	
 

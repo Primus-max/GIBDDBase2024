@@ -55,19 +55,25 @@ void FillPenaltiesListView(DataGridView^ PenaltiesDataGridView)
 	PenaltiesDataGridView->Rows->Clear();
 
 	PenaltyRepository^ penaltyRepos = gcnew PenaltyRepository(connectionString);
+	PenaltyTypeRepository^ penaltyTypeRepos = gcnew PenaltyTypeRepository(connectionString);
 	CarRepository^ carRepos = gcnew CarRepository(connectionString);
 	List<Penalty^>^ penalties = penaltyRepos->GetAll();
 	Car^ car = gcnew Car();
+	PenaltyType^ penaltyType = gcnew PenaltyType();
 	for each (Penalty ^ penalty in penalties)
 	{
 		car = carRepos->GetById(penalty->carId);
+		penaltyType = penaltyTypeRepos->GetById(penalty->penaltyType);
 		String^ carBuilder = "Марка: " + car->brand + " " + "номер: " + car ->reg_number;
 		String^ formattedAmount = String::Format("{0:0.000}", penalty->amount);
 		array<Object^>^ rowData = gcnew array<Object^>(7);
 
 		rowData[0] = penalty->id;
+		rowData[1] = penalty->penaltyType;
 		rowData[2] = penalty->datP;
+		rowData[3] = penaltyType->penaltyType;
 		rowData[4] = formattedAmount;
+		rowData[5] = penalty->carId;
 		rowData[6] = carBuilder;
 
 		PenaltiesDataGridView->Rows->Add(rowData);
